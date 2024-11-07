@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">EWPMS</string>
+
+    <!--splash screen-->
+    <string name="splash_content">Engineering Works and\nProjects Management System</string>
+    <string name="get_started">Get Started</string>
+
+    <!--Login screen-->
+    <string name="login_txt">Log In</string>
+    <string name="user_name_txt">USERNAME</string>
+    <string name="enter_user_name_txt">Enter Username</string>
+    <string name="password_txt">PASSWORD</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_in_txt">Sign In</string>
+
+    <!--dashboard screen-->
+    <string name="your_dashboard">Your Dashboard</string>
+    <string name="reports_menu">Reports</string>
+    <string name="my_works_menu">My Works</string>
+    <string name="add_new_menu">Add New</string>
+    <string name="chat_menu">Chats</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_by_name_txt">Search by name</string>
+    <string name="ongoing_work">Ongoing Works</string>
+    <string name="pending_work">Pending Works</string>
+    <string name="completed_works">Completed Works</string>
+    <string name="upcoming_works">Upcoming Works</string>
+    <string name="see_more_txt">SEE MORE</string>
+
+    <!--report screen-->
+    <string name="work_Status">Status of Works</string>
+    <string name="ahead_of_schedule">AHEAD OF SCHEDULE</string>
+    <string name="beyond_schedule">BEYOND SCHEDULE</string>
+    <string name="asper_schedule">AS PER SCHEDULE</string>
+    <string name="milestones">Milestones</string>
+    <string name="completed_txt_caps">COMPLETED</string>
+    <string name="ongoing_txt_caps">ONGOING</string>
+    <string name="delay_txt">DELAY</string>
+    <string name="finance_in_lakhs">Finance(In Lakhs)</string>
+    <string name="amt_commited_txt">AMOUNTS COMMITTED</string>
+    <string name="amt_released_txt">AMOUNTS RELEASED</string>
+    <string name="amt_pending_txt">AMOUNT PENDING</string>
+
+    <string name="ongoing_txt">Ongoing</string>
+    <string name="pendidng_txt">Pending</string>
+    <string name="completed_txt">Completed</string>
+
+</resources>

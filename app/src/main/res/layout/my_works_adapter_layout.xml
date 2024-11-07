@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/sky_blue"
+        app:cardCornerRadius="12dp"
+        android:layout_marginBottom="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="56dp"
+            android:layout_height="55dp"
+            app:cardCornerRadius="5dp"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="@color/sky_blue_dark">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/libre_semi_bold"
+                android:text="0%"
+                android:textStyle="bold"
+                android:textColor="@color/white_text"
+                android:textSize="18sp"
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="2.5dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/sky_blue_dark"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:fontFamily="@font/libre_medium"
+                android:text="LAYOUT DEVELOPMENT WORKS"
+                android:textColor="@color/text_Color_light"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:fontFamily="@font/libre_semi_bold"
+                android:text="Providing CC Drains and CD..."
+                android:textColor="@color/text_Color"
+                android:textSize="14sp"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="24days Left"
+                    android:drawableLeft="@drawable/baseline_search_24"
+                    android:textColor="@color/text_Color_light"
+                    android:textSize="11sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="12 Milestones"
+                    android:drawableLeft="@drawable/baseline_search_24"
+                    android:textColor="@color/text_Color_light"
+                    android:textSize="11sp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/violet_light"
+        android:layout_marginBottom="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="55dp"
+                app:cardCornerRadius="5dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/violet_Dark">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="@font/libre_semi_bold"
+                    android:text="0%"
+                    android:textStyle="bold"
+                    android:textColor="@color/white_text"
+                    android:textSize="18sp"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="2.5dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/violet_Dark"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="MASTER PLAN ROADS"
+                    android:textColor="@color/text_Color_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_semi_bold"
+                    android:text="Widening to 2 lanes Under..."
+                    android:textColor="@color/text_Color"
+                    android:textSize="14sp"
+                    android:layout_marginTop="3dp"
+                    android:textStyle="bold"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="24days Left"
+                        android:drawableLeft="@drawable/baseline_search_24"
+                        android:textColor="@color/text_Color_light"
+                        android:textSize="11sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="12 Milestones"
+                        android:drawableLeft="@drawable/baseline_search_24"
+                        android:textColor="@color/text_Color_light"
+                        android:textSize="11sp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/violet_light"
+        android:layout_marginBottom="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="55dp"
+                app:cardCornerRadius="5dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/violet_Dark">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="@font/libre_semi_bold"
+                    android:text="0%"
+                    android:textStyle="bold"
+                    android:textColor="@color/white_text"
+                    android:textSize="18sp"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="2.5dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/violet_Dark"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="MASTER PLAN ROADS"
+                    android:textColor="@color/text_Color_light"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_semi_bold"
+                    android:text="Widening to 2 lanes Under..."
+                    android:textColor="@color/text_Color"
+                    android:textSize="14sp"
+                    android:layout_marginTop="3dp"
+                    android:textStyle="bold"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="3dp"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="24days Left"
+                        android:drawableLeft="@drawable/baseline_search_24"
+                        android:textColor="@color/text_Color_light"
+                        android:textSize="11sp"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:layout_marginLeft="15dp"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="12 Milestones"
+                        android:drawableLeft="@drawable/baseline_search_24"
+                        android:textColor="@color/text_Color_light"
+                        android:textSize="11sp"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
