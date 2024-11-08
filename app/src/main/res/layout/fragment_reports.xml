@@ -65,17 +65,26 @@
                     />
             </LinearLayout>
 
-            <com.liihuu.progressbar.FloatTextProgressBar
-                android:id="@+id/floatTextProgressBar"
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/ahead_schedule_progress"
                 android:layout_width="match_parent"
-                android:layout_marginTop="50dp"
-                android:layout_height="30dp"
-                app:backgroundColor="#d8d8d8"
-                app:fillColor="#ff0000"
-                app:triangleColor="#ff0000"
-                app:rectColor="#ff0000"
-                app:maxProgress="200"
-                app:textColor="#fff"/>
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/light_green"
+                app:progressView_progress="75"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+            />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,12 +109,33 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="16"
+                    android:text="64"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/beyond_schedule_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/red"
+                app:progressView_progress="50"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,12 +160,34 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="16"
+                    android:text="25"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/as_per_schedule_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/orange"
+                app:progressView_progress="35"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -196,12 +248,33 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="16"
+                    android:text="170"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/completed_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/light_green"
+                app:progressView_progress="75"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -226,13 +299,33 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="16"
+                    android:text="32"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
 
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/ongoing_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/red"
+                app:progressView_progress="50"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -256,12 +349,33 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="16"
+                    android:text="596"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/delay_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/orange"
+                app:progressView_progress="35"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -284,6 +398,7 @@
         android:elevation="0dp"
         app:cardElevation="0dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         app:cardBackgroundColor="@color/sky_blue">
         <LinearLayout
             android:layout_width="match_parent"
@@ -322,12 +437,34 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="RS.16"
+                    android:text="RS.7749.20"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/committed_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/light_green"
+                app:progressView_progress="75"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -352,12 +489,34 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="RS.16"
+                    android:text="RS.6.20"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/released_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/red"
+                app:progressView_progress="50"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -382,12 +541,33 @@
                     android:gravity="end|center"
                     android:layout_weight="1"
                     android:fontFamily="@font/libre_semi_bold"
-                    android:text="RS.16"
+                    android:text="RS.7743.00"
                     android:textStyle="bold"
                     android:textColor="@color/text_ColorDark"
                     android:textSize="16sp"
                     />
             </LinearLayout>
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/pending_progress"
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/orange"
+                app:progressView_progress="35"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_marginTop="10dp"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
 
             <TextView
                 android:layout_width="match_parent"

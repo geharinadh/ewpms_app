@@ -28,4 +28,13 @@
     <color name="sky_blue_dark">#1F74EC</color>
     <color name="violet_light">#F3EEFE</color>
     <color name="violet_Dark">#4E1BD9</color>
+
+    <!--progress bar dialog-->
+    <color name="light_green">#23EB31</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FAAB3C</color>
+
+    <!--menu-->
+    <color name="menu_green">#AFFFB6</color>
+
 </resources>

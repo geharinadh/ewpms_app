@@ -1,13 +1,17 @@
 package com.EWPMS
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import android.view.WindowInsetsController
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.EWPMS.databinding.ActivityLoginScreenBinding
+import com.EWPMS.utilities.AppSharedPreferences
+import com.goodworks.app.views.util.AppConstants
 
 class LoginScreen : AppCompatActivity() {
     private lateinit var binding: ActivityLoginScreenBinding
@@ -51,5 +55,33 @@ class LoginScreen : AppCompatActivity() {
                 binding.eyeImg.setImageResource(R.drawable.open_eye)
             }
         }
+
+        binding.loginBtn.setOnClickListener {
+            try {
+                if (binding.userNameEt.text.toString().isNotEmpty()) {
+                    if (binding.passwordEt.text.toString().isNotEmpty()) {
+                        if (binding.rememberMeCheckBox.isChecked) {
+                            AppSharedPreferences.setStringPreference(
+                                this, AppConstants.REMEMBER_ME, "true")
+                        } else {
+                            AppSharedPreferences.setStringPreference(
+                                this, AppConstants.REMEMBER_ME, "false")
+                        }
+
+                        startActivity(Intent(this@LoginScreen, MainActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(
+                            this@LoginScreen, getString(R.string.valid_password_error), Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(
+                        this@LoginScreen, getString(R.string.valid_username_error), Toast.LENGTH_SHORT).show()
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+
     }
 }

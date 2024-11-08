@@ -14,10 +14,12 @@
     <string name="remember_me">Remember me</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="sign_in_txt">Sign In</string>
+    <string name="valid_password_error">Please enter valid Password!</string>
 
     <!--dashboard screen-->
     <string name="your_dashboard">Your Dashboard</string>
     <string name="reports_menu">Reports</string>
+    <string name="dashboard_menu">Dashboard</string>
     <string name="my_works_menu">My Works</string>
     <string name="add_new_menu">Add New</string>
     <string name="chat_menu">Chats</string>
@@ -47,5 +49,6 @@
     <string name="ongoing_txt">Ongoing</string>
     <string name="pendidng_txt">Pending</string>
     <string name="completed_txt">Completed</string>
+    <string name="valid_username_error">Please enter valid Username!</string>
 
 </resources>

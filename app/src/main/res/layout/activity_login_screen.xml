@@ -129,12 +129,13 @@
             android:layout_marginTop="15dp"
             android:weightSum="2">
             <CheckBox
-                android:id="@+id/idCheckBox"
+                android:id="@+id/remember_me_check_box"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_ColorDark"
                 android:fontFamily="@font/libre_medium"
                 android:textSize="12dp"
+                android:buttonTint="@color/check_box_state"
                 android:layout_weight="1"
                 android:text="@string/remember_me" />
             <TextView

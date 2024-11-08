@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.vmrda"
+    namespace = "com.EWPMS"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.vmrda"
+        applicationId = "com.EWPMS"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -70,7 +70,7 @@ dependencies {
     implementation(libs.circleimageview)
 
     //horizontal progressbar
-    implementation("com.liihuu.widget:progressbar:1.2.0")
+    implementation ("com.github.skydoves:progressview:1.1.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
