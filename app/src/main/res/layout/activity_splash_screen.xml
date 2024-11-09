@@ -45,6 +45,7 @@
         android:fontFamily="@font/libre_medium"
         android:text="@string/get_started"
         android:textAllCaps="false"
+        android:visibility="gone"
         android:textColor="@color/button_text"
         android:textSize="16dp"
         android:layout_alignParentBottom="true"

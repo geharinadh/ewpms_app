@@ -4,19 +4,22 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
+    android:background="@color/white"
     tools:context="com.EWPMS.fragments.DashBoardFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="12sp"
         android:layout_marginRight="12sp"
-        android:layout_marginTop="12dp"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="48dp"
             app:cardCornerRadius="24dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:elevation="2dp"
@@ -25,7 +28,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/edt_bg">
+           >
             <ImageView
                 android:id="@+id/search_img"
                 android:layout_width="wrap_content"
@@ -297,7 +300,7 @@
         <androidx.recyclerview.widget.RecyclerView
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reverseLayout="false"
-            android:id="@+id/task_rv"
+            android:id="@+id/my_works_rv"
             tools:listitem="@layout/my_works_adapter_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

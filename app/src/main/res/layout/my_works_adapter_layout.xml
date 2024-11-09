@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/sky_blue"
         app:cardCornerRadius="12dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         android:layout_marginBottom="10dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,6 +112,8 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardCornerRadius="12dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         app:cardBackgroundColor="@color/violet_light"
         android:layout_marginBottom="10dp">
         <LinearLayout
@@ -210,6 +214,8 @@
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardCornerRadius="12dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         app:cardBackgroundColor="@color/violet_light"
         android:layout_marginBottom="10dp">
         <LinearLayout

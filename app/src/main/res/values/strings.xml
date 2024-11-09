@@ -18,11 +18,14 @@
 
     <!--dashboard screen-->
     <string name="your_dashboard">Your Dashboard</string>
+
     <string name="reports_menu">Reports</string>
     <string name="dashboard_menu">Dashboard</string>
     <string name="my_works_menu">My Works</string>
     <string name="add_new_menu">Add New</string>
     <string name="chat_menu">Chats</string>
+    <string name="work_report">Work Reports</string>
+    <string name="my_works_list">My Works List</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_by_name_txt">Search by name</string>

@@ -1,15 +1,19 @@
 package com.EWPMS
 
 import android.content.pm.ActivityInfo
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import com.EWPMS.databinding.ActivityMainBinding
 import com.EWPMS.fragments.DashBoardFragment
 import com.EWPMS.fragments.MyWorksFragment
 import com.EWPMS.fragments.ReportsFragment
+import com.goodworks.app.views.util.AppConstants
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -22,7 +26,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         bottom_navigation()
+        onClickListeners()
         call_dashboardFragment()
+    }
+
+    private fun onClickListeners() {
+        binding.backIconLayout.setOnClickListener{
+            call_dashboardFragment()
+        }
     }
 
     private fun bottom_navigation() {
@@ -52,6 +63,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun call_dashboardFragment() {
         replaceFragment(DashBoardFragment())
+        binding.titleBarHomeLayout.visibility=View.VISIBLE
+        binding.titleBarFragmentLayout.visibility=View.GONE
+
         binding.dashboardMenuBg.visibility= View.VISIBLE
         binding.reportsMenuBg.visibility= View.INVISIBLE
         binding.myWorksImgBg.visibility= View.INVISIBLE
@@ -73,6 +87,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun call_reportsFragment() {
         replaceFragment(ReportsFragment())
+        binding.titleBarHomeLayout.visibility=View.INVISIBLE
+        binding.titleBarFragmentLayout.visibility=View.VISIBLE
+        binding.fragmentName.text=getString(R.string.work_report)
+
         binding.reportsMenuBg.visibility= View.VISIBLE
         binding.dashboardMenuBg.visibility= View.INVISIBLE
         binding.myWorksImgBg.visibility= View.INVISIBLE
@@ -94,6 +112,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun call_MyWorkersFragment() {
         replaceFragment(MyWorksFragment())
+        binding.titleBarHomeLayout.visibility=View.INVISIBLE
+        binding.titleBarFragmentLayout.visibility=View.VISIBLE
+        binding.fragmentName.text=getString(R.string.my_works_list)
+
         binding.myWorksImgBg.visibility= View.VISIBLE
         binding.dashboardMenuBg.visibility= View.INVISIBLE
         binding.reportsMenuBg.visibility= View.INVISIBLE
@@ -115,6 +137,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun call_ChatFragment() {
         replaceFragment(MyWorksFragment())
+        binding.titleBarHomeLayout.visibility=View.INVISIBLE
+        binding.titleBarFragmentLayout.visibility=View.VISIBLE
+        binding.fragmentName.text=getString(R.string.chat_menu)
+
         binding.chatMenuImgBg.visibility= View.VISIBLE
         binding.dashboardMenuBg.visibility= View.INVISIBLE
         binding.reportsMenuBg.visibility= View.INVISIBLE
@@ -136,6 +162,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun call_AddNewFragment() {
         replaceFragment(DashBoardFragment())
+        binding.titleBarHomeLayout.visibility=View.INVISIBLE
+        binding.titleBarFragmentLayout.visibility=View.VISIBLE
+        binding.fragmentName.text=getString(R.string.add_new_menu)
+
         binding.addNewMenuImgBg.visibility= View.VISIBLE
         binding.dashboardMenuBg.visibility= View.INVISIBLE
         binding.reportsMenuBg.visibility= View.INVISIBLE
@@ -153,6 +183,29 @@ class MainActivity : AppCompatActivity() {
         binding.reportsMenuImg.setImageResource(R.drawable.reports_inactive)
         binding.myWorksImg.setImageResource(R.drawable.my_works_inactive)
         binding.chatMenuImg.setImageResource(R.drawable.chat_inactive)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+
+        if (currentFragment is DashBoardFragment) {
+            finishAffinity()
+        }
+
+        if(currentFragment is ReportsFragment){
+            replaceFragment(DashBoardFragment())
+            /*if((!AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USER_NAME).isEmpty()) && (AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USER_NAME)!=null)) {
+                binding.userNameTv.setText(getString(R.string.hello_text)+" "+AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USER_NAME).toString())
+            }*/
+        }
+
+        if(currentFragment is MyWorksFragment){
+            replaceFragment(DashBoardFragment())
+          /*  if((!AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USER_NAME).isEmpty()) && (AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USER_NAME)!=null)) {
+                binding.userNameTv.setText(getString(R.string.hello_text)+" "+AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USER_NAME).toString())
+            }*/
+        }
     }
 
 }

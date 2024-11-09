@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    android:elevation="0dp"
+    app:cardElevation="0dp"
+    android:layout_margin="5dp"
+    app:cardBackgroundColor="@color/white_text"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="Layout Development Works"
+                    android:textColor="@color/button_text"
+                    android:textSize="12sp" />
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/dot_icon"
+                    />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:fontFamily="@font/libre_medium"
+                android:textStyle="bold"
+                android:text="Providing CC drains and CD works for..."
+                android:textColor="@color/button_text"
+                android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/progress_bar"
+                android:layout_width="0dp"
+                android:layout_height="13dp"
+                android:layout_weight="1.6"
+                app:progressView_colorBackground="@color/white"
+                app:progressView_colorProgress="@color/orange"
+                app:progressView_progress="75"
+                app:progressView_max="100"
+                app:progressView_progressFromPrevious="true"
+                app:progressView_autoAnimate="true"
+                app:progressView_radius="12dp"
+                app:progressView_padding="1dp"
+                android:layout_gravity="center"
+                app:progressView_labelColorInner="@color/white"
+                app:progressView_labelColorOuter="@color/black"
+                app:progressView_labelSize="13sp"
+                app:progressView_labelSpace="10dp"
+                app:progressView_labelText=""
+                app:progressView_labelTypeface="bold"
+                />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="75%"
+                    android:textColor="@color/button_text"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:weightSum="2">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:fontFamily="@font/libre_medium"
+                    android:text="DEADLINE:"
+                    android:textColor="@color/text_Color_light"
+                    android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="Dec, 27 2024"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_ColorDark"
+                        android:textSize="14sp" />
+                </LinearLayout>
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/line_color"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.8">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="MILESTONES:"
+                        android:textColor="@color/text_Color_light"
+                        android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start|center"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/libre_medium"
+                        android:text="18"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_ColorDark"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+</androidx.cardview.widget.CardView>

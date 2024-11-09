@@ -53,7 +53,11 @@ class SplashScreen : AppCompatActivity() {
                         startActivity(Intent(this@SplashScreen, MainActivity::class.java))
                         finish()
                     }, 1800)
+                }else{
+                    binding.startBtn.visibility=View.VISIBLE
                 }
+            }else{
+                binding.startBtn.visibility=View.VISIBLE
             }
         }catch (e:Exception){
             e.printStackTrace()

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
+    android:background="@color/white"
     tools:context="com.EWPMS.fragments.ReportsFragment">
 <LinearLayout
     android:layout_width="match_parent"
@@ -12,6 +13,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -195,7 +197,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/libre_medium"
                 android:text="Total Works: 89"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/text_ColorDark"
                 android:textSize="14sp"
@@ -383,7 +385,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/libre_medium"
                 android:text="Total Milestones: 861"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/text_ColorDark"
                 android:textSize="14sp"
@@ -575,7 +577,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/libre_medium"
                 android:text="Total Amounts(In Lakhs): Rs. 26994.92"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/text_ColorDark"
                 android:textSize="14sp"
