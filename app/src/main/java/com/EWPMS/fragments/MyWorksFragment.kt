@@ -1,11 +1,13 @@
 package com.EWPMS.fragments
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import com.EWPMS.R
 import com.EWPMS.adapter.MyWorksAdapter
 import com.EWPMS.adapter.OngoingWorksListAdapter
@@ -44,6 +46,12 @@ class MyWorksFragment : Fragment() {
         binding.completedCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
         binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.black))
 
+        val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+        val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+        ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_selected))
+        ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_unselected))
+        ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_unselected))
+
         my_works_list=ArrayList<String>()
         my_works_list.add("0")
         my_works_list.add("0")
@@ -63,6 +71,12 @@ class MyWorksFragment : Fragment() {
            binding.completedCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
            binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.black))
 
+           val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+           val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+           ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_selected))
+           ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_unselected))
+           ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_unselected))
+
            my_works_list=ArrayList<String>()
            my_works_list.add("0")
            my_works_list.add("0")
@@ -81,6 +95,12 @@ class MyWorksFragment : Fragment() {
            binding.completedCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
            binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.black))
 
+            val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+            val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+            ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_selected))
+            ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_unselected))
+            ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_unselected))
+
            my_works_list=ArrayList<String>()
            my_works_list.add("0")
            my_works_list.add("0")
@@ -98,6 +118,12 @@ class MyWorksFragment : Fragment() {
 
            binding.pendingCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
            binding.pendingTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+
+            val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+            val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+            ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_selected))
+            ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_unselected))
+            ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_unselected))
 
            my_works_list=ArrayList<String>()
            my_works_list.add("0")

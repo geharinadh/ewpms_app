@@ -10,7 +10,6 @@
 
     <color name="colorPrimary">#1034a6</color>
     <color name="colorAccent">#FFFFFFFF</color>
-    <color name="blue_color">#1F74EC</color>
 
     <color name="splash_color">#1034a6</color>
     <color name="white_text">#F4F5F7</color>
@@ -36,5 +35,6 @@
 
     <!--menu-->
     <color name="menu_green">#AFFFB6</color>
+    <color name="green">#0EB01D</color>
 
 </resources>

@@ -2,11 +2,13 @@ package com.EWPMS.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.EWPMS.WorkDetailActivity
 import com.EWPMS.databinding.OngoingWorksListAdapterBinding
 
 class OngoingWorksListAdapter  (
@@ -28,6 +30,9 @@ class OngoingWorksListAdapter  (
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val data = list[position]
 
+        holder.binding.workDetailCardView.setOnClickListener {
+            context.startActivity(Intent(context,WorkDetailActivity::class.java))
+        }
     }
 
     override fun getItemCount(): Int {

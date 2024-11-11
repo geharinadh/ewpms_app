@@ -72,6 +72,9 @@ dependencies {
     //horizontal progressbar
     implementation ("com.github.skydoves:progressview:1.1.3")
 
+    //google map
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

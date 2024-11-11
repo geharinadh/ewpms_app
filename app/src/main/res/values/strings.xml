@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">EWPMS</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC97gN88rfv9t8O7ucYPOdu5uPQFGXov14</string>
 
     <!--splash screen-->
     <string name="splash_content">Engineering Works and\nProjects Management System</string>
@@ -53,5 +54,23 @@
     <string name="pendidng_txt">Pending</string>
     <string name="completed_txt">Completed</string>
     <string name="valid_username_error">Please enter valid Username!</string>
+
+    <!--work details-->
+    <string name="work_detail">Work Detail</string>
+    <string name="present_photoes">Present Photos</string>
+    <string name="work_description">Work Description</string>
+    <string name="edit_work">Edit Work</string>
+    <string name="name_of_the_project">NAME OF THE PROJECT</string>
+    <string name="agreement_no">AGREEMENT NO</string>
+    <string name="work_status_caps">WORK STATUS</string>
+    <string name="opening_closing_date">OPENING - CLOSING DATES</string>
+    <string name="administrative_sanction">ADMINISTRATIVE SANCTION:</string>
+    <string name="administrative_sanction_amount">ADMINISTRATIVE SANCTION AMOUNT</string>
+    <string name="technical_sanction">TECHNICAL SANCTION:</string>
+    <string name="technical_sanction_amount">TECHNICAL SANCTION AMOUNT</string>
+    <string name="time_period">TIME PERIOD</string>
+    <string name="ecv">ECV</string>
+    <string name="tcv">TCV</string>
+    <string name="view_larger_map">View larger map</string>
 
 </resources>

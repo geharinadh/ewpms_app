@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/user_name_txt"
                 android:fontFamily="@font/libre_semi_bold"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/back_icon_layout"
                 android:gravity="start|center"

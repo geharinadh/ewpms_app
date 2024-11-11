@@ -7,6 +7,7 @@
     app:cardCornerRadius="12dp"
     android:elevation="0dp"
     app:cardElevation="0dp"
+    android:id="@+id/work_detail_cardView"
     android:layout_margin="5dp"
     app:cardBackgroundColor="@color/white_text"
     >
@@ -40,6 +41,7 @@
                 android:gravity="start|center"
                 android:fontFamily="@font/libre_medium"
                 android:textStyle="bold"
+                android:singleLine="true"
                 android:text="Providing CC drains and CD works for..."
                 android:textColor="@color/button_text"
                 android:textSize="14sp" />
