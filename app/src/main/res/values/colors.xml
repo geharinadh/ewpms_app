@@ -20,6 +20,7 @@
     <color name="text_Color_light">#5D6675</color>
     <color name="line_color">#E0E4EA</color>
     <color name="text_ColorDark">#23272C</color>
+    <color name="text_color_gray">#868696</color>
 
     <color name="menu_txt_color">#DDCBFC</color>
     <color name="bottom_navigation">#4E1BD9</color>
@@ -27,11 +28,13 @@
     <color name="sky_blue_dark">#1F74EC</color>
     <color name="violet_light">#F3EEFE</color>
     <color name="violet_Dark">#4E1BD9</color>
+    <color name="pic_bg">#002F7D</color>
 
     <!--progress bar dialog-->
     <color name="light_green">#23EB31</color>
     <color name="red">#FF0000</color>
     <color name="orange">#FAAB3C</color>
+    <color name="light_orange">#FFB156</color>
 
     <!--menu-->
     <color name="menu_green">#AFFFB6</color>

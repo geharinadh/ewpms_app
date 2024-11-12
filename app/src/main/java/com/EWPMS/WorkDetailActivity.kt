@@ -3,6 +3,7 @@ package com.EWPMS
 import android.content.pm.ActivityInfo
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -58,6 +59,11 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
             binding.presentPhotosCardview.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.sky_blue))
             binding.presentPhotosTextview.setTextColor(resources.getColor(R.color.black))
+
+            binding.milestonesLayout.visibility= View.GONE
+            binding.presentPhotosLayout.visibility= View.GONE
+            binding.workDetailLayout.visibility= View.VISIBLE
+
         }
 
         binding.milestoneCardview.setOnClickListener {
@@ -69,6 +75,10 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
             binding.presentPhotosCardview.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.sky_blue))
             binding.presentPhotosTextview.setTextColor(resources.getColor(R.color.black))
+
+            binding.workDetailLayout.visibility= View.GONE
+            binding.presentPhotosLayout.visibility= View.GONE
+            binding.milestonesLayout.visibility= View.VISIBLE
         }
 
         binding.presentPhotosCardview.setOnClickListener {
@@ -80,6 +90,10 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
             binding.milestoneCardview.setCardBackgroundColor(ContextCompat.getColor(applicationContext, R.color.sky_blue))
             binding.milestoneTextview.setTextColor(resources.getColor(R.color.black))
+
+            binding.workDetailLayout.visibility= View.GONE
+            binding.milestonesLayout.visibility= View.GONE
+            binding.presentPhotosLayout.visibility= View.VISIBLE
         }
 
     }

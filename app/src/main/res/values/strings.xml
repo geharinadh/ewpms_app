@@ -72,5 +72,8 @@
     <string name="ecv">ECV</string>
     <string name="tcv">TCV</string>
     <string name="view_larger_map">View larger map</string>
+    <string name="total_work_progress">Total Work Progress</string>
+    <string name="upload_live_photo">+ Upload Live Photos</string>
+    <string name="current_status_photos">Current Status Photos</string>
 
 </resources>
