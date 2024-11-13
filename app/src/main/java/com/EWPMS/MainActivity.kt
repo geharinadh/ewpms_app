@@ -1,19 +1,15 @@
 package com.EWPMS
 
 import android.content.pm.ActivityInfo
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import com.EWPMS.databinding.ActivityMainBinding
 import com.EWPMS.fragments.DashBoardFragment
 import com.EWPMS.fragments.MyWorksFragment
 import com.EWPMS.fragments.ReportsFragment
-import com.goodworks.app.views.util.AppConstants
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

@@ -2,6 +2,9 @@
     <string name="app_name">EWPMS</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC97gN88rfv9t8O7ucYPOdu5uPQFGXov14</string>
 
+    <string name="please_check_with_the_internet_connection">Please check with the Internet connection!</string>
+    <string name="response_failure_please_try_again">Response Failure. Please try again!</string>
+
     <!--splash screen-->
     <string name="splash_content">Engineering Works and\nProjects Management System</string>
     <string name="get_started">Get Started</string>
@@ -16,6 +19,7 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="sign_in_txt">Sign In</string>
     <string name="valid_password_error">Please enter valid Password!</string>
+    <string name="user_details_not_found">User Details Not Found!</string>
 
     <!--dashboard screen-->
     <string name="your_dashboard">Your Dashboard</string>
@@ -75,5 +79,10 @@
     <string name="total_work_progress">Total Work Progress</string>
     <string name="upload_live_photo">+ Upload Live Photos</string>
     <string name="current_status_photos">Current Status Photos</string>
+
+    <string name="create_new_work">Create New Work</string>
+    <string name="basic_information">Basic Information</string>
+    <string name="name_of_the_work">NAME OF THE WORK</string>
+    <string name="wrong_password">InCorrect Password!</string>
 
 </resources>

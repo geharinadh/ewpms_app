@@ -10,9 +10,8 @@ import android.view.View
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import com.EWPMS.databinding.ActivitySplashScreenBinding
-import com.EWPMS.databinding.FragmentReportsBinding
+import com.EWPMS.utilities.AppConstants
 import com.EWPMS.utilities.AppSharedPreferences
-import com.goodworks.app.views.util.AppConstants
 
 class SplashScreen : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
