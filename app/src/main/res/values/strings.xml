@@ -84,5 +84,45 @@
     <string name="basic_information">Basic Information</string>
     <string name="name_of_the_work">NAME OF THE WORK</string>
     <string name="wrong_password">InCorrect Password!</string>
+    <string name="project_full_name">Project Full Name</string>
+    <string name="category">CATEGORY</string>
+    <string name="estimated_cost">ESTIMATED COST</string>
+    <string name="agrement_info">Agreement Information</string>
+    <string name="agreement_date">AGREEMENT DATE</string>
+    <string name="tender_premium">TENDER PREMIUM</string>
+    <string name="tender_contract_value">TENDER CONTRACT VALUE(TCV)</string>
+    <string name="continue_text">Continue</string>
+    <string name="administrative_sanction_small">Administrative Sanction</string>
+    <string name="administrative_sanction_on">ADMINISTRATIVE\nSANCTION ON</string>
+    <string name="sanction_by">SANCTION\nACCORDED BY</string>
+    <string name="administrative_sanction_details">ADMINISTRATIVE SANCTION DETAILS</string>
+    <string name="technical_sanction_small">Technical Sanction</string>
+    <string name="technical_sanction_on">TECHNICAL\nSANCTION ON</string>
+    <string name="technical_sanction_details">TECHNICAL SANCTION DETAILS</string>
+    <string name="revised_info">Revised Information</string>
+    <string name="revised_cost">REVISED COST</string>
+    <string name="estimate_revised_cost">ESTIMATE/REVISED ESTIMATE COST</string>
+    <string name="supplementary_info">Supplementary Information</string>
+    <string name="supplementary_order_no">SUPPLEMENTARY ORDER NO</string>
+    <string name="approval_date">APPROVAL DATE</string>
+    <string name="granted_upto">GRANTED UPTO</string>
+    <string name="geographocal_Details">Geographical Details</string>
+    <string name="district_txt">DISTRICT</string>
+    <string name="mandal_txt">MANDAL</string>
+    <string name="villege_txt">VILLEGE</string>
+    <string name="landmark_txt">LANDMARK/SY.NO</string>
+    <string name="latitude_txt">LATITUDE</string>
+    <string name="longitude_txt">LONGITUDE</string>
+    <string name="site_area_txt">SITE AREA</string>
+    <string name="staff_details">Staff Details</string>
+    <string name="se_txt">SE</string>
+    <string name="division_txt">DIVISION</string>
+    <string name="ee_txt">EE</string>
+    <string name="dee_txt">DEE</string>
+    <string name="aee_txt">AEE</string>
+    <string name="create_project">Create New Project</string>
+
+    <string name="profile_txt">Profile</string>
+    <string name="edit_txt">Edit</string>
 
 </resources>

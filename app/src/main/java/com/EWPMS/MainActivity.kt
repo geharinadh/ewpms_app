@@ -7,9 +7,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.EWPMS.databinding.ActivityMainBinding
+import com.EWPMS.fragments.CreateNewWorkFragment
 import com.EWPMS.fragments.DashBoardFragment
 import com.EWPMS.fragments.MyWorksFragment
 import com.EWPMS.fragments.ReportsFragment
+import com.EWPMS.utilities.AppConstants
+import com.EWPMS.utilities.AppSharedPreferences
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -59,6 +62,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun call_dashboardFragment() {
         replaceFragment(DashBoardFragment())
+
+        binding.userNameTv.text =
+            AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERNAME).toString()
+
         binding.titleBarHomeLayout.visibility=View.VISIBLE
         binding.titleBarFragmentLayout.visibility=View.GONE
 
@@ -157,10 +164,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun call_AddNewFragment() {
-        replaceFragment(DashBoardFragment())
+        replaceFragment(CreateNewWorkFragment())
         binding.titleBarHomeLayout.visibility=View.INVISIBLE
         binding.titleBarFragmentLayout.visibility=View.VISIBLE
-        binding.fragmentName.text=getString(R.string.add_new_menu)
+        binding.fragmentName.text=getString(R.string.create_new_work)
 
         binding.addNewMenuImgBg.visibility= View.VISIBLE
         binding.dashboardMenuBg.visibility= View.INVISIBLE
