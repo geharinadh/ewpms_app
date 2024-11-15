@@ -90,12 +90,12 @@
                         android:layout_height="wrap_content"
                         android:gravity="start|center"
                         android:fontFamily="@font/libre_medium"
-                        android:text="@string/ongoing_work"
+                        android:text="@string/total_work"
                         android:textColor="@color/text_Color"
                         android:textSize="14sp"
                          />
                     <TextView
-                        android:id="@+id/ongoing_work_count_tv"
+                        android:id="@+id/total_work_count_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start|center"
@@ -139,12 +139,12 @@
                             android:layout_height="wrap_content"
                             android:gravity="start|center"
                             android:fontFamily="@font/libre_medium"
-                            android:text="@string/pending_work"
+                            android:text="@string/ongoing_work"
                             android:textColor="@color/text_Color"
                             android:textSize="14sp"
                             />
                         <TextView
-                            android:id="@+id/pending_work_count_tv"
+                            android:id="@+id/ongoing_work_count_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="start|center"

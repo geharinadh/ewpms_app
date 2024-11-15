@@ -163,9 +163,9 @@ class LoginScreen : AppCompatActivity() {
                     }
                 },
                 { error ->
+                    progressDialog.dismiss()
                     Log.e("VolleyError", "Request failed", error)
-                    Toast.makeText(
-                        this, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
                 }
             )
             queue.add(stringRequest)

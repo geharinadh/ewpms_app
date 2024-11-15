@@ -63,8 +63,17 @@ class MainActivity : AppCompatActivity() {
     private fun call_dashboardFragment() {
         replaceFragment(DashBoardFragment())
 
-        binding.userNameTv.text =
-            AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERNAME).toString()
+        if(AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERNAME)!=null && AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERNAME).isNotEmpty()) {
+            binding.userNameTv.text =
+                AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERNAME)
+                    .toString()
+        }
+
+        if(AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERID)!=null && AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERID).isNotEmpty()) {
+            binding.userIdTv.text =
+                AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.USERID)
+                    .toString()
+        }
 
         binding.titleBarHomeLayout.visibility=View.VISIBLE
         binding.titleBarFragmentLayout.visibility=View.GONE

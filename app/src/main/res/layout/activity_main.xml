@@ -63,7 +63,7 @@
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal">
                         <TextView
-                            android:id="@+id/position_tv"
+                            android:id="@+id/user_id_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="EE1"
@@ -158,6 +158,7 @@
             android:layout_height="90dp"
             android:layout_alignParentBottom="true"
             android:weightSum="5"
+            android:gravity="center"
             android:background="@color/bottom_navigation"
             android:orientation="horizontal">
             <RelativeLayout
@@ -313,6 +314,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="vertical">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/chat_menu_img_bg"
