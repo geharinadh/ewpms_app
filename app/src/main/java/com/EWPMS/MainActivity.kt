@@ -3,6 +3,7 @@ package com.EWPMS
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -49,8 +50,9 @@ class MainActivity : AppCompatActivity() {
              call_AddNewFragment()
          }
         binding.chatsMenu.setOnClickListener{
-             call_ChatFragment()
-         }
+            /* call_ChatFragment()*/
+            Toast.makeText(this@MainActivity, getString(R.string.comming_soon), Toast.LENGTH_SHORT).show()
+        }
     }
 
 

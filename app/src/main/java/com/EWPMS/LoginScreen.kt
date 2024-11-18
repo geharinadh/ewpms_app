@@ -58,6 +58,10 @@ class LoginScreen : AppCompatActivity() {
     }
 
     private fun onclick_listerners() {
+        binding.forgotPasswordTv.setOnClickListener {
+            Toast.makeText(this@LoginScreen, getString(R.string.comming_soon), Toast.LENGTH_SHORT).show()
+        }
+
         binding.eyeImg.setOnClickListener {
             if (check) {
                 check = false

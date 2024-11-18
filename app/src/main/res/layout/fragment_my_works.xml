@@ -9,7 +9,7 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:layout_marginTop="10dp"
+       android:layout_marginTop="5dp"
        android:layout_marginLeft="20dp"
        android:layout_marginRight="20dp"
        android:orientation="vertical">
@@ -30,7 +30,7 @@
                android:weightSum="3">
 
                <androidx.cardview.widget.CardView
-                   android:id="@+id/ongoing_cardview"
+                   android:id="@+id/all_works_cardview"
                    android:layout_width="0dp"
                    android:layout_height="35dp"
                    android:layout_weight="1"
@@ -41,12 +41,12 @@
                    app:cardBackgroundColor="@color/sky_blue_dark"
                    app:cardElevation="0dp">
                    <TextView
-                       android:id="@+id/ongoing_textview"
+                       android:id="@+id/all_works_textview"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:gravity="center"
                        android:fontFamily="@font/libre_medium"
-                       android:text="@string/ongoing_txt"
+                       android:text="@string/all_works_txt"
                        android:textColor="@color/white_text"
                        android:textSize="14sp"
                        android:textAllCaps="false"
@@ -63,7 +63,7 @@
                    app:cardBackgroundColor="@color/line_color"/>
 
                <androidx.cardview.widget.CardView
-                   android:id="@+id/pending_cardview"
+                   android:id="@+id/ongoing_cardview"
                    android:layout_width="0dp"
                    android:layout_height="35dp"
                    android:layout_weight="1"
@@ -74,12 +74,12 @@
                    app:cardBackgroundColor="@color/sky_blue"
                    app:cardElevation="0dp">
                    <TextView
-                       android:id="@+id/pending_textview"
+                       android:id="@+id/ongoing_textview"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
                        android:gravity="center"
                        android:fontFamily="@font/libre_medium"
-                       android:text="@string/pendidng_txt"
+                       android:text="@string/ongoing_txt"
                        android:textColor="@color/text_ColorDark"
                        android:textSize="14sp"
                        android:textAllCaps="false"
@@ -132,17 +132,52 @@
                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                    app:reverseLayout="false"
                    android:id="@+id/my_works_rv"
-                   tools:listitem="@layout/my_works_adapter_layout"
+                   tools:listitem="@layout/ongoing_works_list_adapter"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
-                   android:layout_margin="10dp"
-                   android:visibility="visible" />
+                   android:layout_margin="5dp"
+                   android:visibility="gone" />
+
+               <LinearLayout
+                   android:id="@+id/no_data_layout"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="50dp"
+                   android:layout_marginBottom="50dp"
+                   android:visibility="visible"
+                   android:orientation="vertical">
+                   <com.airbnb.lottie.LottieAnimationView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       app:lottie_rawRes="@raw/no_data"
+                       app:lottie_autoPlay="true"
+                       android:visibility="visible"
+                       android:layout_gravity="center"
+                       app:lottie_loop="true"/>
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:gravity="center"
+                   android:layout_gravity="center"
+                   android:fontFamily="@font/libre_medium"
+                   android:text="@string/no_data"
+                   android:textColor="@color/text_ColorDark"
+                   android:textSize="14sp"
+                   android:textAllCaps="false"
+                   android:visibility="visible"
+                   />
+               </LinearLayout>
            </LinearLayout>
 
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="30dp">
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:gravity="center"
+           android:layout_alignParentBottom="true"
            android:layout_marginTop="20dp"
            android:orientation="horizontal">
            <ImageView
@@ -169,5 +204,7 @@
                android:src="@drawable/dot_circle"
                />
        </LinearLayout>
+       </RelativeLayout>
+
    </LinearLayout>
 </androidx.core.widget.NestedScrollView>

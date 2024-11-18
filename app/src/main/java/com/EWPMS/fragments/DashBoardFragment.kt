@@ -109,4 +109,53 @@ class DashBoardFragment : Fragment() {
         }
     }
 
+    private fun call_my_works_api() {
+        if (Common.isInternetAvailable(requireContext())) {
+            progressDialog.show()
+            val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_get_UserDashboard_Data/?id="+AppSharedPreferences.getStringSharedPreference(requireContext(), AppConstants.USERID).toString()
+            Log.d("API_URL", url)
+
+            val queue = Volley.newRequestQueue(requireContext())
+            val stringRequest = StringRequest(
+                Request.Method.GET, url,
+                { response ->
+                    try {
+                        val jsonArray = JSONArray(response)
+                        val obj = jsonArray.getJSONObject(0)
+                        Log.d("Response", response)
+
+                        // Assuming `Password` or `UserType` exists
+                        val CompletedWorks = obj.getString("CompletedWorks")
+                        val OngoingWorks = obj.getString("OngoingWorks")
+                        val TotalWorks = obj.getString("TotalWorks")
+                        val UpcomingWorks = obj.getString("UpcomingWorks")
+
+                        if(CompletedWorks.toString().isNotEmpty()){
+                            progressDialog.dismiss()
+                            binding.completedWorkCountTv.text=CompletedWorks.toString()
+                            binding.ongoingWorkCountTv.text=OngoingWorks.toString()
+                            binding.totalWorkCountTv.text=TotalWorks.toString()
+                            binding.upcomingWorkCountTv.text=UpcomingWorks.toString()
+                        }else{
+                            progressDialog.dismiss()
+                            Toast.makeText(requireContext(), getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: JSONException) {
+                        Log.e("JSONError", "Parsing error", e)
+                        progressDialog.dismiss()
+                        Toast.makeText(requireContext(), getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                    }
+                },
+                { error ->
+                    progressDialog.dismiss()
+                    Log.e("VolleyError", "Request failed", error)
+                    Toast.makeText(requireContext(), getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                }
+            )
+            queue.add(stringRequest)
+        }else{
+            Toast.makeText(requireContext(), getString(R.string.please_check_with_the_internet_connection), Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

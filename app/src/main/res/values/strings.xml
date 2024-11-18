@@ -124,5 +124,8 @@
 
     <string name="profile_txt">Profile</string>
     <string name="edit_txt">Edit</string>
+    <string name="all_works_txt">All Works</string>
+    <string name="no_data">No Data Available</string>
+    <string name="comming_soon">Coming Soon!..</string>
 
 </resources>
