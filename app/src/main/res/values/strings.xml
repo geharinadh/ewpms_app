@@ -33,7 +33,7 @@
     <string name="my_works_list">My Works List</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search_by_name_txt">Search by name</string>
+    <string name="search_by_name_txt">Search by project name</string>
     <string name="total_work">Total Works</string>
     <string name="ongoing_work">Ongoing Works</string>
     <string name="completed_works">Completed Works</string>

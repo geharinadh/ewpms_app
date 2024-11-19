@@ -60,7 +60,7 @@
                 app:progressView_colorProgress="@color/orange"
                 app:progressView_progress="75"
                 app:progressView_max="100"
-                app:progressView_progressFromPrevious="true"
+                app:progressView_duration="1000"
                 app:progressView_autoAnimate="true"
                 app:progressView_radius="12dp"
                 app:progressView_padding="1dp"

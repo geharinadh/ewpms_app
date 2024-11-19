@@ -132,7 +132,7 @@
                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                    app:reverseLayout="false"
                    android:id="@+id/my_works_rv"
-                   tools:listitem="@layout/ongoing_works_list_adapter"
+                   tools:listitem="@layout/my_works_list_adapter"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_margin="5dp"

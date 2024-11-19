@@ -27,7 +27,11 @@ class MainActivity : AppCompatActivity() {
 
         bottom_navigation()
         onClickListeners()
-        call_dashboardFragment()
+        if(intent.getStringExtra("screen")!=null) {
+            call_MyWorkersFragment()
+        }else{
+            call_dashboardFragment()
+        }
     }
 
     private fun onClickListeners() {

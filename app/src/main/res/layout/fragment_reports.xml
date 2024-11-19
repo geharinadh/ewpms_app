@@ -56,6 +56,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/ahead_schedule_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -72,6 +73,7 @@
                 android:id="@+id/ahead_schedule_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/light_green"
                 app:progressView_progress="75"
@@ -107,6 +109,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/beyond_schedule_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -123,6 +126,7 @@
                 android:id="@+id/beyond_schedule_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/red"
                 app:progressView_progress="50"
@@ -158,6 +162,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/as_per_schedule_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -175,6 +180,7 @@
                 android:id="@+id/as_per_schedule_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/orange"
                 app:progressView_progress="35"
@@ -193,6 +199,7 @@
                 />
 
             <TextView
+                android:id="@+id/total_work_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -246,6 +253,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/completed_ms_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -262,6 +270,7 @@
                 android:id="@+id/completed_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/light_green"
                 app:progressView_progress="75"
@@ -297,6 +306,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/ongoing_ms_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -313,6 +323,7 @@
                 android:id="@+id/ongoing_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/red"
                 app:progressView_progress="50"
@@ -347,6 +358,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/delay_ms_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -363,6 +375,7 @@
                 android:id="@+id/delay_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/orange"
                 app:progressView_progress="35"
@@ -381,6 +394,7 @@
                 />
 
             <TextView
+                android:id="@+id/total_milestone_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -435,6 +449,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/committed_amt_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -452,6 +467,7 @@
                 android:id="@+id/committed_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/light_green"
                 app:progressView_progress="75"
@@ -487,6 +503,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/released_amt_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -504,6 +521,7 @@
                 android:id="@+id/released_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/red"
                 app:progressView_progress="50"
@@ -539,6 +557,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/pending_amt_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="end|center"
@@ -555,6 +574,7 @@
                 android:id="@+id/pending_progress"
                 android:layout_width="match_parent"
                 android:layout_height="13dp"
+                app:progressView_duration="1000"
                 app:progressView_colorBackground="@color/white"
                 app:progressView_colorProgress="@color/orange"
                 app:progressView_progress="35"
@@ -573,6 +593,7 @@
                 />
 
             <TextView
+                android:id="@+id/total_amount_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

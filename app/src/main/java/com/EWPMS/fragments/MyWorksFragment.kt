@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import com.EWPMS.R
-import com.EWPMS.adapter.OngoingWorksListAdapter
+import com.EWPMS.adapter.MyWorksListAdapter
 import com.EWPMS.data_response.MyWorksResponse
 import com.EWPMS.databinding.FragmentMyWorksBinding
 import com.EWPMS.utilities.AppConstants
@@ -116,7 +116,7 @@ class MyWorksFragment : Fragment() {
                         if(my_works_list.size>0){
                             binding.noDataLayout.visibility=View.GONE
                             binding.myWorksRv.visibility=View.VISIBLE
-                            binding.myWorksRv.adapter = OngoingWorksListAdapter(requireContext(), my_works_list)
+                            binding.myWorksRv.adapter = MyWorksListAdapter(requireContext(), my_works_list)
                             progressDialog.dismiss()
                         }else{
                             progressDialog.dismiss()

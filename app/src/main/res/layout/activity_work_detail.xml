@@ -37,10 +37,10 @@
                    />
            </RelativeLayout>
            <TextView
-               android:id="@+id/work_name"
+               android:id="@+id/project_title_tv"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="@string/user_name_txt"
+               android:text=""
                android:fontFamily="@font/libre_semi_bold"
                android:textSize="20dp"
                android:singleLine="true"
@@ -139,6 +139,8 @@
                        android:gravity="center"
                        android:fontFamily="@font/libre_medium"
                        android:text="@string/milestones"
+                       android:paddingStart="2dp"
+                       android:paddingEnd="2dp"
                        android:textColor="@color/text_ColorDark"
                        android:textSize="13sp"
                        android:textAllCaps="false"
@@ -244,9 +246,10 @@
                        android:textColor="@color/text_Color_light"/>
 
                    <TextView
+                       android:id="@+id/project_name_tv"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="Providing CC drains and CD works for Reconstituted plots of LPS Layouts work in the Layout of Sector-1 of Pydiwada Agraharam (V) of Sabbavaram( M)"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_marginTop="5dp"
@@ -271,9 +274,10 @@
                        android:textColor="@color/text_Color_light"/>
 
                    <TextView
+                       android:id="@+id/agreement_no_tv"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="09/2023-24/CE/SE-II/EE-V/VMRDA"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_marginTop="5dp"
@@ -309,9 +313,10 @@
                            android:src="@drawable/dot_circle"
                            app:tint="@color/green" />
                    <TextView
+                       android:id="@+id/project_status"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="Ongoing"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_toRightOf="@+id/dot_img"
@@ -343,10 +348,13 @@
                        android:orientation="horizontal"
                        android:weightSum="2">
                        <TextView
+                           android:id="@+id/start_date_tv"
                            android:layout_width="0dp"
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
-                           android:text="Sep, 22 2023"
+                           android:text=""
+                           android:drawablePadding="5dp"
+                           android:drawableTint="@color/text_Color_light"
                            android:drawableLeft="@drawable/baseline_calendar_today_24"
                            android:fontFamily="@font/libre_medium"
                            android:textSize="14dp"
@@ -355,10 +363,13 @@
                            android:gravity="start|center"
                            android:textColor="@color/text_Color"/>
                        <TextView
+                           android:id="@+id/end_date_tv"
                            android:layout_width="0dp"
                            android:layout_height="wrap_content"
                            android:layout_weight="1"
-                           android:text="Apr, 21 2024"
+                           android:text=""
+                           android:drawablePadding="5dp"
+                           android:drawableTint="@color/text_Color_light"
                            android:drawableLeft="@drawable/baseline_calendar_today_24"
                            android:fontFamily="@font/libre_medium"
                            android:textSize="14dp"
@@ -387,9 +398,10 @@
                        android:textColor="@color/text_Color_light"/>
 
                    <TextView
+                       android:id="@+id/admin_sanction_tv"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="Special Chief Secretary, MA &amp; UD Dept., vide Memo No.1823530/M2/2022/ dt.11-11-2022"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_marginTop="5dp"
@@ -415,9 +427,10 @@
                        android:textColor="@color/text_Color_light"/>
 
                    <TextView
+                       android:id="@+id/admin_sanction_amt_tv"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="200.00 Lakhs"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_marginTop="5dp"
@@ -443,9 +456,10 @@
                        android:textColor="@color/text_Color_light"/>
 
                    <TextView
+                       android:id="@+id/technical_sanction_tv"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="Technical sanction Rs.320.95 Lakhs only and registered CR No.24/2022-23/CE/SE (i/c)/VMRDA dt.24-12-2022"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_marginTop="5dp"
@@ -471,9 +485,10 @@
                        android:textColor="@color/text_Color_light"/>
 
                    <TextView
+                       android:id="@+id/technical_sanction_amt_tv"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="320.95 Lakhs"
+                       android:text=""
                        android:fontFamily="@font/libre_medium"
                        android:textSize="14dp"
                        android:layout_marginTop="5dp"
@@ -509,9 +524,10 @@
                                android:textColor="@color/text_Color_light"/>
 
                            <TextView
+                               android:id="@+id/time_period_tv"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:text="6 Months"
+                               android:text=""
                                android:fontFamily="@font/libre_medium"
                                android:textSize="14dp"
                                android:layout_marginTop="5dp"
@@ -538,9 +554,10 @@
                                android:textColor="@color/text_Color_light"/>
 
                            <TextView
+                               android:id="@+id/ecv_tv"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:text="320.95"
+                               android:text=""
                                android:fontFamily="@font/libre_medium"
                                android:textSize="14dp"
                                android:layout_marginTop="5dp"
@@ -567,9 +584,10 @@
                                android:textColor="@color/text_Color_light"/>
 
                            <TextView
+                               android:id="@+id/tcv_tv"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:text="320.95"
+                               android:text=""
                                android:fontFamily="@font/libre_medium"
                                android:textSize="14dp"
                                android:layout_marginTop="5dp"
@@ -586,7 +604,13 @@
                        android:layout_marginTop="20dp"
                        android:layout_marginBottom="10dp">
 
+                       <com.google.android.gms.maps.MapView
+                           android:id="@+id/small_map"
+                           android:layout_width="match_parent"
+                           android:layout_height="150dp"
+                       />
                        <TextView
+                           android:id="@+id/view_larger_map"
                            android:layout_width="120dp"
                            android:layout_height="35dp"
                            android:text="@string/view_larger_map"
@@ -599,11 +623,7 @@
                            android:gravity="center"
                            android:background="@color/white"
                            android:textColor="@color/sky_blue_dark"/>
-                   <com.google.android.gms.maps.MapView
-                       android:id="@+id/small_map"
-                       android:layout_width="match_parent"
-                       android:layout_height="150dp"
-                       />
+
                    </RelativeLayout>
 
                </LinearLayout>
@@ -687,6 +707,7 @@
                    app:progressView_colorProgress="@color/orange"
                    app:progressView_progress="75"
                    app:progressView_max="100"
+                   app:progressView_duration="1000"
                    app:progressView_progressFromPrevious="true"
                    app:progressView_autoAnimate="true"
                    app:progressView_radius="12dp"
@@ -891,6 +912,7 @@
                    android:layout_width="0dp"
                    android:layout_height="10dp"
                    android:layout_weight="1.7"
+                   app:progressView_duration="1000"
                    app:progressView_colorBackground="@color/text_color_gray"
                    app:progressView_colorProgress="@color/sky_blue_dark"
                    app:progressView_progress="68"
@@ -1008,6 +1030,7 @@
                    android:layout_width="0dp"
                    android:layout_height="10dp"
                    android:layout_weight="1.7"
+                   app:progressView_duration="1000"
                    app:progressView_colorBackground="@color/text_color_gray"
                    app:progressView_colorProgress="@color/sky_blue_dark"
                    app:progressView_progress="80"
@@ -1125,6 +1148,7 @@
                    android:layout_width="0dp"
                    android:layout_height="10dp"
                    android:layout_weight="1.7"
+                   app:progressView_duration="1000"
                    app:progressView_colorBackground="@color/text_color_gray"
                    app:progressView_colorProgress="@color/sky_blue_dark"
                    app:progressView_progress="50"
@@ -1242,6 +1266,7 @@
                    android:layout_width="0dp"
                    android:layout_height="10dp"
                    android:layout_weight="1.7"
+                   app:progressView_duration="1000"
                    app:progressView_colorBackground="@color/text_color_gray"
                    app:progressView_colorProgress="@color/sky_blue_dark"
                    app:progressView_progress="50"

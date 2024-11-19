@@ -10,20 +10,20 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.EWPMS.WorkDetailActivity
 import com.EWPMS.data_response.MyWorksResponse
-import com.EWPMS.databinding.OngoingWorksListAdapterBinding
+import com.EWPMS.databinding.MyWorksListAdapterBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class OngoingWorksListAdapter  (
+class MyWorksListAdapter  (
     private val context: Context,
     private val list: List<MyWorksResponse>
-) : RecyclerView.Adapter<OngoingWorksListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MyWorksListAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val binding: OngoingWorksListAdapterBinding) :
+    inner class ViewHolder(val binding: MyWorksListAdapterBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = OngoingWorksListAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = MyWorksListAdapterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding)
     }
@@ -58,7 +58,7 @@ class OngoingWorksListAdapter  (
         holder.binding.progressBar.progress=data.completedPercentage.toFloat()
 
         holder.binding.workDetailCardView.setOnClickListener {
-            context.startActivity(Intent(context,WorkDetailActivity::class.java))
+            context.startActivity(Intent(context,WorkDetailActivity::class.java).putExtra("project_id",data.currentProjectsID.toString()))
         }
 
     }
