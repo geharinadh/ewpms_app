@@ -68,18 +68,24 @@ dependencies {
 
     //circular imageview
     implementation(libs.circleimageview)
+    implementation(libs.ucrop)
 
     //horizontal progressbar
     implementation ("com.github.skydoves:progressview:1.1.3")
 
     //google map
     implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
 
     //lottie
     implementation ("com.airbnb.android:lottie:6.0.0")
 
     //volley
     implementation ("com.android.volley:volley:1.2.1")
+
+    //glide
+    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

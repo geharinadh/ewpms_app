@@ -127,5 +127,12 @@
     <string name="all_works_txt">All Works</string>
     <string name="no_data">No Data Available</string>
     <string name="comming_soon">Coming Soon!..</string>
+    <string name="no_maps_app_found">No Maps app found</string>
+
+    <string name="unable_to_fetch_location">Unable to fetch location</string>
+    <string name="failed_to_fetch_location">Failed to fetch location: %1$s</string>
+    <string name="location_permission_denied">Location permission denied</string>
+    <string name="upload_failed">Upload failed!</string>
+    <string name="live_photo_uploaded_successfully">Live Photo uploaded successfully</string>
 
 </resources>

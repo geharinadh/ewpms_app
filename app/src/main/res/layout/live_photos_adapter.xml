@@ -51,9 +51,10 @@
                 android:textColor="@color/text_color_gray"/>
 
             <TextView
+                android:id="@+id/file_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="7mb"
+                android:text=""
                 android:fontFamily="@font/libre_medium"
                 android:textSize="10dp"
                 android:gravity="start|center"
