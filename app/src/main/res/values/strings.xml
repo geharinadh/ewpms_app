@@ -135,4 +135,13 @@
     <string name="upload_failed">Upload failed!</string>
     <string name="live_photo_uploaded_successfully">Live Photo uploaded successfully</string>
 
+    <string name="current_working_projects">Current Working Projects</string>
+    <string name="add_new_project">Add New Project</string>
+    <string name="settings">Settings</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="notifications">Notification</string>
+    <string name="language">Language</string>
+    <string name="support">Support</string>
+    <string name="sign_out">Sign Out</string>
+
 </resources>

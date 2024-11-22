@@ -28,7 +28,11 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation()
         onClickListeners()
         if(intent.getStringExtra("screen")!=null) {
-            call_MyWorkersFragment()
+            if(intent.getStringExtra("screen").equals("profile")){
+                call_AddNewFragment()
+            }else {
+                call_MyWorkersFragment()
+            }
         }else{
             call_dashboardFragment()
         }

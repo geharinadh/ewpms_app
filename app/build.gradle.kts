@@ -77,6 +77,9 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation ("com.google.android.gms:play-services-location:21.0.1")
 
+    //custom toggle
+    implementation ("com.github.zcweng:switch-button:0.0.3@aar")
+
     //lottie
     implementation ("com.airbnb.android:lottie:6.0.0")
 

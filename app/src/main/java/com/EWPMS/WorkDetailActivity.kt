@@ -15,6 +15,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -33,10 +34,13 @@ import com.EWPMS.databinding.ActivityWorkDetailBinding
 import com.EWPMS.utilities.Common
 import com.EWPMS.utilities.FileUtils
 import com.EWPMS.utilities.MultipartRequest
+import com.android.volley.AuthFailureError
 import com.android.volley.NetworkResponse
 import com.android.volley.Request
+import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.finowizx.CallBackInterface.CallBackData
@@ -56,6 +60,12 @@ import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Random
+import org.json.JSONObject
+import java.io.DataOutputStream
+import java.io.FileInputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData {
     private lateinit var mapView: MapView
@@ -253,6 +263,9 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                             binding.tcvTv.text=tcv.toString()
 
                             if(Latitude.toString().isNotEmpty()) {
+
+                                binding.mapLayout.visibility=View.VISIBLE
+
                                 gMap.moveCamera(
                                     CameraUpdateFactory.newLatLngZoom(
                                         LatLng(Latitude.toDouble(), Longitude.toDouble()), 12f))
@@ -277,6 +290,8 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                                     }
                                 }
 
+                            }else{
+                                binding.mapLayout.visibility=View.GONE
                             }
 
                         }else{
@@ -619,7 +634,6 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             try {
-
                 filepath=imageUri
                 Log.d("imageUri",imageUri.toString())
                 val imageFile1: File =
@@ -649,8 +663,123 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         if (Common.isInternetAvailable(this@WorkDetailActivity)) {
             try {
                 progressDialog.show()
-                val url = "http://www.vmrda.gov.in/ewpms_api//api/Usp_Upload_LivePhoto/?id=${project_id}&img=$milestone_id_live&mid=${milestone_id_live}&lat=${latitude_txt!!.toDouble()}&lon=${longitude_txt!!.toDouble()}"
 
+                class MultipartRequest(
+                    url: String,
+                    private val headers: Map<String, String>?,
+                    private val params: Map<String, String>,
+                    private val filePartName: String,
+                    private val file: File,
+                    private val listener: Response.Listener<String>,
+                    errorListener: Response.ErrorListener
+                ) : StringRequest(Method.POST, url, listener, errorListener) {
+
+                    private val boundary = "volleyBoundary" + System.currentTimeMillis()
+
+                    override fun getBodyContentType(): String {
+                        return "multipart/form-data;boundary=$boundary"
+                    }
+
+                    override fun getHeaders(): MutableMap<String, String> {
+                        return headers?.toMutableMap() ?: super.getHeaders()
+                    }
+
+                    override fun getBody(): ByteArray {
+                        val bos = ByteArrayOutputStream()
+                        val dos = DataOutputStream(bos)
+                        try {
+                            // Add form fields
+                            for ((key, value) in params) {
+                                buildTextPart(dos, key, value)
+                            }
+
+                            // Add file field
+                            buildFilePart(dos, filePartName, file)
+
+                            // End of multipart
+                            dos.writeBytes("--$boundary--\r\n")
+                        } catch (e: IOException) {
+                            e.printStackTrace()
+                        }
+                        return bos.toByteArray()
+                    }
+
+                    private fun buildTextPart(dos: DataOutputStream, name: String, value: String) {
+                        dos.writeBytes("--$boundary\r\n")
+                        dos.writeBytes("Content-Disposition: form-data; name=\"$name\"\r\n\r\n")
+                        dos.writeBytes("$value\r\n")
+                    }
+
+                    private fun buildFilePart(dos: DataOutputStream, fieldName: String, file: File) {
+                        dos.writeBytes("--$boundary\r\n")
+                        dos.writeBytes("Content-Disposition: form-data; name=\"$fieldName\"; filename=\"${file.name}\"\r\n")
+                        dos.writeBytes("Content-Type: ${getMimeType(file)}\r\n\r\n")
+
+                        val fileInputStream = FileInputStream(file)
+                        val buffer = ByteArray(1024)
+                        var bytesRead: Int
+                        while (fileInputStream.read(buffer).also { bytesRead = it } != -1) {
+                            dos.write(buffer, 0, bytesRead)
+                        }
+                        dos.writeBytes("\r\n")
+                        fileInputStream.close()
+                    }
+
+                    private fun getMimeType(file: File): String {
+                        return "image/jpeg" // Change this based on file type if needed
+                    }
+
+                    override fun parseNetworkResponse(response: NetworkResponse): Response<String> {
+                        return try {
+                            val result = String(response.data)
+                            Response.success(result, HttpHeaderParser.parseCacheHeaders(response))
+                        } catch (e: Exception) {
+                            Response.error(AuthFailureError())
+                        }
+                    }
+                }
+
+                val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_Upload_LivePhoto2"
+
+                val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+
+                val params = mapOf(
+                    "id" to project_id,
+                    "img" to timeStamp.toString()+".jpg",
+                    "mid" to milestone_id_live,
+                    "lat" to latitude_txt.toString(),
+                    "lon" to longitude_txt.toString()
+                )
+
+                val file = imageFile
+
+                val request = MultipartRequest(
+                    url = url,
+                    headers = null, // Add headers if needed
+                    params = params,
+                    filePartName = "image", // This should match the server's expected field name for the file
+                    file = file,
+                    listener = Response.Listener { response ->
+                        println("Response: $response")
+                        progressDialog.dismiss()
+                        Toast.makeText(this, getString(R.string.live_photo_uploaded_successfully), Toast.LENGTH_LONG).show()
+                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
+                    },
+                    errorListener = Response.ErrorListener { error ->
+                        error.printStackTrace()
+                        println("Error: ${error.message}")
+                        progressDialog.dismiss()
+                        live_photo_position=""
+                        live_photo_list.removeAt((live_photo_list.size - 1))
+                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
+                        Toast.makeText(this, getString(R.string.upload_failed)+": ${error.message}", Toast.LENGTH_LONG).show()
+                    }
+                )
+
+                val requestQueue = Volley.newRequestQueue(this@WorkDetailActivity)
+                requestQueue.add(request)
+
+                /*
                 val stringRequest = StringRequest(
                     Request.Method.GET, url,
                     { response ->
@@ -673,7 +802,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         }
                     }
                 )
-                Volley.newRequestQueue(this).add(stringRequest)
+                Volley.newRequestQueue(this).add(stringRequest)*/
 
                 /* val url =
                      "http://www.vmrda.gov.in/ewpms_api//api/Usp_Upload_LivePhoto/?id=$project_id&img=$milestone_id_live.jpg&mid=$milestone_id_live&lat=$latitude_txt&lon=$longitude_txt"
@@ -707,7 +836,8 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                  )
 
                  queue.add(multipartRequest)
- */            }catch (e:Exception){
+ */
+            }catch (e:Exception){
                 e.printStackTrace()
                 Toast.makeText(
                     applicationContext,
