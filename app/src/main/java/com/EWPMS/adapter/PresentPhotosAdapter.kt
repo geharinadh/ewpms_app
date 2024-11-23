@@ -37,13 +37,11 @@ class PresentPhotosAdapter (
         holder.binding.dateTv.text=uniqueDateList[position].toString()
 
         val photo_list=ArrayList<String>()
-        for(p in list.indices){
-            for( j in uniqueDateList.indices) {
-                if (list[p].PhotoDate == uniqueDateList[j].toString()){
-                    photo_list.add(list[p].fn.toString())
+            for( j in list.indices) {
+                if (uniqueDateList[position].toString()== list[j].PhotoDate){
+                    photo_list.add(list[j].fn.toString())
                 }
             }
-        }
 
         holder.binding.presentPhotosRv.layoutManager = GridLayoutManager(context, 2)
         holder.binding.presentPhotosRv.adapter = PresentPhotosGridAdapter(context,photo_list)

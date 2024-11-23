@@ -259,8 +259,8 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                             binding.technicalSanctionAmtTv.text=TechnicalSanctionAmount.toString()+" Lakhs"
 
                             binding.timePeriodTv.text=TimePeriod.toString()
-                            binding.ecvTv.text=ECV.toString()
-                            binding.tcvTv.text=tcv.toString()
+                            binding.ecvTv.text="\u20B9"+ECV.toString()
+                            binding.tcvTv.text="\u20B9"+tcv.toString()
 
                             if(Latitude.toString().isNotEmpty()) {
 
@@ -778,65 +778,6 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
 
                 val requestQueue = Volley.newRequestQueue(this@WorkDetailActivity)
                 requestQueue.add(request)
-
-                /*
-                val stringRequest = StringRequest(
-                    Request.Method.GET, url,
-                    { response ->
-                        progressDialog.dismiss()
-                        Toast.makeText(this, getString(R.string.live_photo_uploaded_successfully), Toast.LENGTH_LONG).show()
-                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
-                    },
-                    { error ->
-                        progressDialog.dismiss()
-                        live_photo_position=""
-                        live_photo_list.removeAt((live_photo_list.size - 1))
-                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
-                        Toast.makeText(this, getString(R.string.upload_failed)+": ${error.message}", Toast.LENGTH_LONG).show()
-
-                        // Handle error
-                        error.printStackTrace()
-                        if (error.networkResponse != null) {
-                            Log.e("API_ERROR", "Status Code: ${error.networkResponse.statusCode}")
-                            Log.e("API_ERROR", "Response: ${String(error.networkResponse.data)}")
-                        }
-                    }
-                )
-                Volley.newRequestQueue(this).add(stringRequest)*/
-
-                /* val url =
-                     "http://www.vmrda.gov.in/ewpms_api//api/Usp_Upload_LivePhoto/?id=$project_id&img=$milestone_id_live.jpg&mid=$milestone_id_live&lat=$latitude_txt&lon=$longitude_txt"
-
-                 val queue = Volley.newRequestQueue(this)
-
-                 Log.d("Response", url+" "+milestone_id_live+" "+project_id)
-
-                 val fileData = imageFile.readBytes()
-
-                 val multipartRequest = MultipartRequest(
-                     url,
-                     headers = null, // or provide headers if needed
-                     params = mutableMapOf(), // No params needed here; they are part of the URL
-                     fileKey = "img",
-                     fileData = fileData,
-                     listener = Response.Listener { response ->
-                         progressDialog.dismiss()
-                         Toast.makeText(this, getString(R.string.live_photo_uploaded_successfully), Toast.LENGTH_LONG).show()
-                         live_photo_position=""
-                         live_photo_list=ArrayList<String>()
-                         binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
-                     },
-                     errorListener = Response.ErrorListener { error ->
-                         progressDialog.dismiss()
-                         live_photo_position=""
-                         live_photo_list=ArrayList<String>()
-                         binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
-                         Toast.makeText(this, getString(R.string.upload_failed)+": ${error.message}", Toast.LENGTH_LONG).show()
-                     }
-                 )
-
-                 queue.add(multipartRequest)
- */
             }catch (e:Exception){
                 e.printStackTrace()
                 Toast.makeText(

@@ -1,5 +1,6 @@
 package com.EWPMS
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
@@ -60,6 +61,11 @@ class MainActivity : AppCompatActivity() {
         binding.chatsMenu.setOnClickListener{
             /* call_ChatFragment()*/
             Toast.makeText(this@MainActivity, getString(R.string.comming_soon), Toast.LENGTH_SHORT).show()
+        }
+
+        binding.profileIcon.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ProfileActivity::class.java))
+            finish()
         }
     }
 

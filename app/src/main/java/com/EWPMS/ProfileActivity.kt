@@ -43,6 +43,12 @@ class ProfileActivity : AppCompatActivity() {
         onclick_listeners()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this@ProfileActivity, MainActivity::class.java))
+        finish()
+    }
+
     private fun onclick_listeners() {
 
         binding.addNewProject.setOnClickListener {
