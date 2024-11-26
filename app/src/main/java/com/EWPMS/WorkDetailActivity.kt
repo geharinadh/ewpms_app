@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.IntentSender
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
@@ -14,12 +15,15 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -44,8 +48,12 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.finowizx.CallBackInterface.CallBackData
+import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.LocationSettingsRequest
+import com.google.android.gms.location.SettingsClient
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -92,9 +100,17 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     private var checkcamera: String? = ""
 
 
+    private var check_location_enabled: String? = ""
+
+    //turn on location
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var latitude_txt: String? = ""
     private var longitude_txt: String? = ""
+
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationSettingsRequest: LocationSettingsRequest
+    private lateinit var settingsClient: SettingsClient
+    private lateinit var locationSettingsLauncher: androidx.activity.result.ActivityResultLauncher<IntentSenderRequest>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -103,9 +119,31 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         binding = ActivityWorkDetailBinding.inflate(layoutInflater);
         setContentView(binding.root)
 
+        // Initialize the FusedLocationProviderClient
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        settingsClient = LocationServices.getSettingsClient(this@WorkDetailActivity)
+
         mapView = findViewById(R.id.small_map)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        //location data
+        //turn on location
+        locationSettingsLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                // User enabled location services
+                Log.d("WorkDetail", "Location services are enabled.")
+                // Proceed with location-based actions (e.g., get current location)
+                check_location_enabled="yes"
+                requestLocationPermission()
+            } else {
+                // User did not enable location services
+                Log.d("WorkDetail", "Location services were not enabled.")
+                check_location_enabled="no"
+                enableLocationSettings()
+                // Toast.makeText(this@WorkDetailActivity,getString(R.string.grant_permisison), Toast.LENGTH_SHORT).show()
+            }
+        }
 
         callCommonClass()
 
@@ -530,19 +568,83 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         live_photo_position=position
         milestone_id_live=milestone_id
 
-        if(ContextCompat.checkSelfPermission(this@WorkDetailActivity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            if (hasPermissions(this@WorkDetailActivity, *arrayOf<String>(Manifest.permission.CAMERA))) {
-                checkcamera = "1"
-                callCam()
-                getUserLocation()
+        if(check_location_enabled.equals("yes")) {
+            if (ContextCompat.checkSelfPermission(
+                    this@WorkDetailActivity,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                if (ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.CAMERA
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    checkcamera = ""
+                    callPer()
+                } else {
+                    checkcamera = "1"
+                    callCam()
+                    getUserLocation()
+                }
             } else {
-                checkcamera = ""
-                callPer()
+                requestLocationPermission()
             }
         }else{
-            requestLocationPermission()
+            enableLocationSettings()
         }
+
     }
+
+    //turn on location
+    private fun enableLocationSettings() {
+        // Create a location request
+        locationRequest = LocationRequest.create().apply {
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        }
+
+        // Create a LocationSettingsRequest
+        val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest)
+        locationSettingsRequest = builder.build()
+
+        // Check if location settings are satisfied
+        settingsClient.checkLocationSettings(locationSettingsRequest)
+            .addOnSuccessListener {
+                // All location settings are satisfied, proceed with location-based actions
+                Log.d("WorkDetails", "Location settings are satisfied.")
+                if (ContextCompat.checkSelfPermission(
+                        this@WorkDetailActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.CAMERA
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        checkcamera = ""
+                        callPer()
+                    } else {
+                        checkcamera = "1"
+                        callCam()
+                        getUserLocation()
+                    }
+                }else{
+                    requestLocationPermission()
+                }
+            }
+            .addOnFailureListener { exception ->
+                if (exception is ResolvableApiException) {
+                    try {
+                        // Prompt user to enable location settings with a dialog
+                        val intentSenderRequest = IntentSenderRequest.Builder(exception.resolution).build()
+                        locationSettingsLauncher.launch(intentSenderRequest)
+                    } catch (sendEx: IntentSender.SendIntentException) {
+                        Log.e("WorkDetails", "Error resolving location settings: ${sendEx.message}")
+                    }
+                }
+            }
+    }
+
 
     private fun requestLocationPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -550,24 +652,26 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
             != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 100)
         }else{
-            if (hasPermissions(this@WorkDetailActivity, *arrayOf<String>(Manifest.permission.CAMERA))) {
-                checkcamera = "1"
-                callCam()
-            } else {
+            if (ContextCompat.checkSelfPermission(
+                    this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 checkcamera = ""
                 callPer()
+            } else {
+                checkcamera = "1"
+                callCam()
+                getUserLocation()
             }
         }
     }
 
     private fun getUserLocation() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
+        Handler(Looper.getMainLooper()).postDelayed({
         if (ActivityCompat.checkSelfPermission(
                 this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location ->
                     if (location != null) {
@@ -579,16 +683,16 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
 
                         println("status_txt "+latitude_txt+" "+longitude_txt)
 
-                        if (hasPermissions(this@WorkDetailActivity, *arrayOf<String>(Manifest.permission.CAMERA))) {
-                            checkcamera = "1"
-                            callCam()
-                        } else {
+                        if (ContextCompat.checkSelfPermission(
+                                this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                             checkcamera = ""
                             callPer()
+                        } else {
+                            checkcamera = "1"
+                            callCam()
                         }
                     } else {
-                        Toast.makeText(this,
-                            getString(R.string.unable_to_fetch_location), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.unable_to_fetch_location), Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener {
@@ -598,66 +702,57 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         } else {
             requestLocationPermission()
         }
-    }
-
-    private fun hasPermissions(context: Context?, vararg permissions: String): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && this != null && permissions != null) {
-            for (permission in permissions) {
-                if (ActivityCompat.checkSelfPermission(
-                        this,
-                        permission
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    return false
-                }
-            }
-        }
-        return true
+        }, 1500)
     }
 
     private fun callCam() {
-        val values = ContentValues()
-        values.put(MediaStore.Images.Media.TITLE, "New Picture")
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera")
-        imageUri = contentResolver.insert(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values
-        )
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-        Log.d("camuri",""+imageUri)
+        val values = ContentValues().apply {
+            put(MediaStore.Images.Media.TITLE, "New Picture")
+            put(MediaStore.Images.Media.DESCRIPTION, "From your Camera")
+        }
+        imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
 
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
+            putExtra(MediaStore.EXTRA_OUTPUT, imageUri) // Ensure the camera saves the image to this URI
+        }
         cameraResult.launch(intent)
     }
 
-    var cameraResult = registerForActivityResult<Intent, ActivityResult>(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
+    var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             try {
-                filepath=imageUri
-                Log.d("imageUri",imageUri.toString())
-                val imageFile1: File =
-                    File(FileUtils.getPath(this, filepath))
-                if (imageFile1 != null) {
-                    imageFile = imageFile1.absolutePath
-                    Log.d("imageUri",imageFile.toString())
+                // Use the imageUri for the captured image
+                filepath = imageUri
+                Log.d("imageUri", imageUri.toString())
 
-                    // Step 1: Get file size
-                    val fileSizeInBytes = imageFile1.length() // Get size in bytes
-                    val fileSizeInKB = fileSizeInBytes / 1024 // Convert to KB
-                    val fileSizeInMB = fileSizeInKB / 1024 // Convert to MB
-
-                   live_photo_list.add(fileSizeInKB.toString()+"KB")
-                   binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
-
-                    call_live_photo_api(imageFile1)
-                    println("File size: $fileSizeInKB KB ($fileSizeInMB MB)"+" "+live_photo_list.size)
+                // Copy the image to a temporary file for further use
+                val inputStream = contentResolver.openInputStream(imageUri!!)
+                val tempFile = File(cacheDir, "captured_image.jpg")
+                inputStream?.use { input ->
+                    tempFile.outputStream().use { output ->
+                        input.copyTo(output)
+                    }
                 }
+
+                // Use the temporary file
+                val fileSizeInBytes = tempFile.length()
+                val fileSizeInKB = fileSizeInBytes / 1024
+                val fileSizeInMB = fileSizeInKB / 1024
+
+                live_photo_list.add("$fileSizeInKB KB")
+                binding.mileStonesRv.adapter = MilestonesListAdapter(
+                    this@WorkDetailActivity, live_photo_position, mile_stone_list, live_photo_list, this
+                )
+
+                // Call your API with the temp file
+                call_live_photo_api(tempFile)
+                println("File size: $fileSizeInKB KB ($fileSizeInMB MB) ${live_photo_list.size}")
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
+
 
     private fun call_live_photo_api(imageFile: File) {
         if (Common.isInternetAvailable(this@WorkDetailActivity)) {
@@ -818,24 +913,15 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
 
     private fun callPer() {
         if (Build.VERSION.SDK_INT >= 23) {
-            val PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-            if (!hasPermissions(this@WorkDetailActivity, *PERMISSIONS)) {
+            if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)  {
                 Log.d("Start", "FeedCamer1")
-                ActivityCompat.requestPermissions(
-                    (this@WorkDetailActivity as Activity?)!!,
-                    PERMISSIONS,
-                    111
-                )
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 111)
             } else {
                 callCam()
             }
         }
     }
 
-    fun gen(): Int {
-        val r = Random(System.currentTimeMillis())
-        return 10000 + r.nextInt(20000)
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -847,6 +933,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
             111 -> {
                 checkcamera="1"
                 callCam()
+                getUserLocation()
                 return
             }
             100 -> {

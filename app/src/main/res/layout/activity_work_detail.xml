@@ -87,6 +87,7 @@
                android:layout_height="40dp"
                android:orientation="horizontal"
                android:layout_margin="10dp"
+               android:layout_gravity="center"
                android:weightSum="3">
 
                <androidx.cardview.widget.CardView
@@ -119,15 +120,15 @@
                    android:layout_height="30dp"
                    app:cardCornerRadius="4dp"
                    android:layout_gravity="center"
-                   android:layout_marginLeft="10dp"
-                   android:layout_marginRight="10dp"
+                   android:layout_marginLeft="5dp"
+                   android:layout_marginRight="5dp"
                    app:cardBackgroundColor="@color/line_color"/>
 
                <androidx.cardview.widget.CardView
                    android:id="@+id/milestone_cardview"
                    android:layout_width="0dp"
                    android:layout_height="35dp"
-                   android:layout_weight="0.8"
+                   android:layout_weight="0.9"
                    app:cardCornerRadius="20dp"
                    android:layout_gravity="center"
                    android:layout_marginRight="5dp"
@@ -155,15 +156,15 @@
                    android:layout_height="30dp"
                    app:cardCornerRadius="4dp"
                    android:layout_gravity="center"
-                   android:layout_marginLeft="10dp"
-                   android:layout_marginRight="10dp"
+                   android:layout_marginLeft="5dp"
+                   android:layout_marginRight="5dp"
                    app:cardBackgroundColor="@color/line_color"/>
 
                <androidx.cardview.widget.CardView
                    android:id="@+id/present_photos_cardview"
                    android:layout_width="0dp"
                    android:layout_height="35dp"
-                   android:layout_weight="1.2"
+                   android:layout_weight="1.1"
                    app:cardCornerRadius="20dp"
                    android:layout_gravity="center"
                    android:layout_marginRight="5dp"

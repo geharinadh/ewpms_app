@@ -143,5 +143,6 @@
     <string name="language">Language</string>
     <string name="support">Support</string>
     <string name="sign_out">Sign Out</string>
+    <string name="grant_permisison">Kindly grant the permission to access location!</string>
 
 </resources>
