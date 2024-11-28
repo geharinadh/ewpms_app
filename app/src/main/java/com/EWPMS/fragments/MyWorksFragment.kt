@@ -56,22 +56,82 @@ class MyWorksFragment : Fragment() {
     private fun callCommonClass() {
         progressDialog = Common.progressDialog(requireContext())
 
-        binding.allWorksCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue_dark))
-        binding.allWorksTextview.setTextColor(requireContext().resources.getColor(R.color.white))
+        val message = arguments?.getString("screen")
 
-        binding.ongoingCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
-        binding.ongoingTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+        if(message.equals("ongoing")){
+            binding.ongoingCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue_dark))
+            binding.ongoingTextview.setTextColor(requireContext().resources.getColor(R.color.white))
 
-        binding.completedCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
-        binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+            binding.allWorksCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
+            binding.allWorksTextview.setTextColor(requireContext().resources.getColor(R.color.black))
 
-        val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
-        val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
-        ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_selected))
-        ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_unselected))
-        ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_unselected))
+            binding.completedCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
+            binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.black))
 
-        call_Works_api("All")
+            val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+            val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+            ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_selected))
+            ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_unselected))
+            ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_unselected))
+
+            call_Works_api("OnGoing")
+        }
+        else if(message.equals("completed")){
+            binding.completedCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue_dark))
+            binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.white))
+
+            binding.ongoingCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
+            binding.ongoingTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+
+            binding.allWorksCardview.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.sky_blue))
+            binding.allWorksTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+
+            val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+            val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+            ImageViewCompat.setImageTintList(binding.dotThree, ColorStateList.valueOf(color_selected))
+            ImageViewCompat.setImageTintList(binding.dotTwo, ColorStateList.valueOf(color_unselected))
+            ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_unselected))
+
+            call_Works_api("Completed")
+        }else {
+            binding.allWorksCardview.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.sky_blue_dark
+                )
+            )
+            binding.allWorksTextview.setTextColor(requireContext().resources.getColor(R.color.white))
+
+            binding.ongoingCardview.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.sky_blue
+                )
+            )
+            binding.ongoingTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+
+            binding.completedCardview.setCardBackgroundColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.sky_blue
+                )
+            )
+            binding.completedTextview.setTextColor(requireContext().resources.getColor(R.color.black))
+
+            val color_unselected = ContextCompat.getColor(requireContext(), R.color.white_text)
+            val color_selected = ContextCompat.getColor(requireContext(), R.color.bottom_navigation)
+            ImageViewCompat.setImageTintList(binding.dotOne, ColorStateList.valueOf(color_selected))
+            ImageViewCompat.setImageTintList(
+                binding.dotTwo,
+                ColorStateList.valueOf(color_unselected)
+            )
+            ImageViewCompat.setImageTintList(
+                binding.dotThree,
+                ColorStateList.valueOf(color_unselected)
+            )
+
+            call_Works_api("All")
+        }
     }
 
     private fun call_Works_api(tab_type:String) {

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             if(intent.getStringExtra("screen").equals("profile")){
                 call_AddNewFragment()
             }else {
-                call_MyWorkersFragment()
+                call_MyWorkersFragment(intent.getStringExtra("screen").toString())
             }
         }else{
             call_dashboardFragment()
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
              call_reportsFragment()
          }
         binding.myWorksMenu.setOnClickListener{
-             call_MyWorkersFragment()
+             call_MyWorkersFragment("All")
          }
         binding.addNewMenu.setOnClickListener{
              call_AddNewFragment()
@@ -138,8 +138,17 @@ class MainActivity : AppCompatActivity() {
         binding.chatMenuImg.setImageResource(R.drawable.chat_inactive)
     }
 
-    private fun call_MyWorkersFragment() {
-        replaceFragment(MyWorksFragment())
+    private fun call_MyWorkersFragment(screen: String) {
+        val bundle = Bundle()
+        bundle.putString("screen",screen)
+        val fragment = MyWorksFragment()
+
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+
         binding.titleBarHomeLayout.visibility=View.INVISIBLE
         binding.titleBarFragmentLayout.visibility=View.VISIBLE
         binding.fragmentName.text=getString(R.string.my_works_list)

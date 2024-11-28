@@ -7,6 +7,7 @@
     android:orientation="vertical"
     >
     <androidx.cardview.widget.CardView
+        android:id="@+id/my_works_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/sky_blue"

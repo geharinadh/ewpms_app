@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.EWPMS.CategoryProjects
 import com.EWPMS.MainActivity
 import com.EWPMS.R
+import com.EWPMS.WorkDetailActivity
 import com.EWPMS.adapter.MyWorksAdapter
 import com.EWPMS.data_response.DashboardWorkResponse
 import com.EWPMS.data_response.MyWorksResponse
@@ -23,12 +25,13 @@ import com.EWPMS.utilities.Common
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.finowizx.CallBackInterface.CallBackData
 import com.google.android.gms.maps.model.Dash
 import org.json.JSONArray
 import org.json.JSONException
 
 
-class DashBoardFragment : Fragment() {
+class DashBoardFragment : Fragment(),CallBackData {
 
     private lateinit var binding: FragmentDashBoardBinding
     private lateinit var my_works_list: ArrayList<DashboardWorkResponse>
@@ -61,6 +64,27 @@ class DashBoardFragment : Fragment() {
             requireActivity().finish()
         }
 
+        binding.totalWorksCard.setOnClickListener {
+            startActivity(Intent(requireActivity(), MainActivity::class.java).putExtra("screen","dashboard"))
+            requireActivity().finish()
+        }
+
+        binding.ongoingCard.setOnClickListener {
+            startActivity(Intent(requireActivity(), MainActivity::class.java).putExtra("screen","ongoing"))
+            requireActivity().finish()
+            requireActivity().finish()
+        }
+
+        binding.completedCard.setOnClickListener {
+            startActivity(Intent(requireActivity(), MainActivity::class.java).putExtra("screen","completed"))
+            requireActivity().finish()
+        }
+
+        binding.filterImg.setOnClickListener {
+            startActivity(Intent(requireActivity(), CategoryProjects::class.java))
+            requireActivity().finish()
+        }
+
         binding.searchEdt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -88,7 +112,7 @@ class DashBoardFragment : Fragment() {
                             binding.noDataLayout.visibility=View.GONE
                             binding.myWorksRv.visibility=View.VISIBLE
 
-                            binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_searchlist)
+                            binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_searchlist,this@DashBoardFragment)
                         }else{
                             binding.countOneLayout.visibility=View.VISIBLE
                             binding.countTwoLayout.visibility=View.VISIBLE
@@ -103,7 +127,7 @@ class DashBoardFragment : Fragment() {
                         binding.noDataLayout.visibility=View.GONE
                         binding.myWorksRv.visibility=View.VISIBLE
 
-                        binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_list)
+                        binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_list,this@DashBoardFragment)
                     }
                 }
             }
@@ -210,7 +234,7 @@ class DashBoardFragment : Fragment() {
                         if(my_works_list.size>0){
                             binding.noDataLayout.visibility=View.GONE
                             binding.myWorksRv.visibility=View.VISIBLE
-                            binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_list)
+                            binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_list,this)
                             progressDialog.dismiss()
                         }else{
                             progressDialog.dismiss()
@@ -234,6 +258,10 @@ class DashBoardFragment : Fragment() {
         }else{
             Toast.makeText(requireContext(), getString(R.string.please_check_with_the_internet_connection), Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun getTaskStatus(id: String,position : String) {
+        startActivity(Intent(context, WorkDetailActivity::class.java).putExtra("project_id",id))
     }
 
 }

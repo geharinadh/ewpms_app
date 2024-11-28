@@ -9,10 +9,12 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.EWPMS.data_response.DashboardWorkResponse
 import com.EWPMS.databinding.MyWorksAdapterLayoutBinding
+import com.finowizx.CallBackInterface.CallBackData
 
 class MyWorksAdapter  (
     private val context: Context,
-    private val list: List<DashboardWorkResponse>
+    private val list: List<DashboardWorkResponse>,
+    private val callBackStatus: CallBackData,
 ) : RecyclerView.Adapter<MyWorksAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: MyWorksAdapterLayoutBinding) :
@@ -34,6 +36,11 @@ class MyWorksAdapter  (
         holder.binding.categoryNameTv.text=data.CategoryName.toString()
         holder.binding.daysLeftTv.text=data.DaysLeft.toString()
         holder.binding.mileStonesTv.text=data.NoOfMileStones.toString()+" Milestones"
+
+        holder.binding.myWorksLayout.setOnClickListener {
+            callBackStatus.getTaskStatus(data.CurrentProjectsID.toString(),position.toString())
+        }
+
     }
 
     override fun getItemCount(): Int {

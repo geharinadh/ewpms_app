@@ -126,13 +126,13 @@ class ReportsFragment : Fragment() {
                             binding.totalMilestoneTv.text="Total Milestones: "+TotalMileStones.toString()
 
                             binding.committedProgress.progress=AmountsCommittedPercentage.toFloat()
-                            binding.committedAmtTv.text=AmountsCommitted.toString()
+                            binding.committedAmtTv.text="Rs."+AmountsCommitted.toString()
 
                             binding.releasedProgress.progress=AmountsReleasedPercentage.toFloat()
-                            binding.releasedAmtTv.text=AmountsReleased.toString()
+                            binding.releasedAmtTv.text="Rs."+AmountsReleased.toString()
 
                             binding.pendingProgress.progress=AmountsPendingPercentage.toFloat()
-                            binding.pendingAmtTv.text=AmountsPending.toString()
+                            binding.pendingAmtTv.text="Rs."+AmountsPending.toString()
 
                             binding.totalAmountTv.text="Total Amounts(In Lakhs): Rs."+TotalAmount.toString()
                         }else{

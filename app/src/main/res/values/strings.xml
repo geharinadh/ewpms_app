@@ -144,5 +144,7 @@
     <string name="support">Support</string>
     <string name="sign_out">Sign Out</string>
     <string name="grant_permisison">Kindly grant the permission to access location!</string>
+    <string name="division_txt_small">Division</string>
+    <string name="update_progress">Update Progress</string>
 
 </resources>
