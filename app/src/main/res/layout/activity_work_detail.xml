@@ -84,7 +84,7 @@
            app:cardElevation="0dp">
            <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="40dp"
+               android:layout_height="45dp"
                android:orientation="horizontal"
                android:layout_margin="10dp"
                android:layout_gravity="center"
@@ -93,11 +93,11 @@
                <androidx.cardview.widget.CardView
                    android:id="@+id/work_detail_cardview"
                    android:layout_width="0dp"
-                   android:layout_height="35dp"
+                   android:layout_height="40dp"
                    android:layout_weight="1"
                    app:cardCornerRadius="20dp"
                    android:layout_gravity="center"
-                   android:layout_marginRight="5dp"
+                   android:layout_marginRight="3dp"
                    android:elevation="0dp"
                    app:cardBackgroundColor="@color/sky_blue_dark"
                    app:cardElevation="0dp">
@@ -127,7 +127,7 @@
                <androidx.cardview.widget.CardView
                    android:id="@+id/milestone_cardview"
                    android:layout_width="0dp"
-                   android:layout_height="35dp"
+                   android:layout_height="40dp"
                    android:layout_weight="0.9"
                    app:cardCornerRadius="20dp"
                    android:layout_gravity="center"
@@ -163,11 +163,11 @@
                <androidx.cardview.widget.CardView
                    android:id="@+id/present_photos_cardview"
                    android:layout_width="0dp"
-                   android:layout_height="35dp"
+                   android:layout_height="40dp"
                    android:layout_weight="1.1"
                    app:cardCornerRadius="20dp"
                    android:layout_gravity="center"
-                   android:layout_marginRight="5dp"
+                   android:layout_marginRight="3dp"
                    android:elevation="0dp"
                    app:cardBackgroundColor="@color/sky_blue"
                    app:cardElevation="0dp">
@@ -192,7 +192,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_marginTop="5dp"
-           android:visibility="gone"
+           android:visibility="visible"
            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -640,7 +640,7 @@
            android:id="@+id/milestones_layout"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:visibility="visible"
+           android:visibility="gone"
            android:orientation="vertical">
            <androidx.cardview.widget.CardView
                android:layout_width="match_parent"
@@ -668,7 +668,7 @@
                    android:fontFamily="@font/libre_medium"
                    android:textSize="14dp"
                    android:layout_gravity="center"
-                   android:layout_weight="1.3"
+                   android:layout_weight="1.2"
                    android:gravity="start|center"
                    android:paddingHorizontal="5dp"
                    android:textStyle="bold"
@@ -678,7 +678,7 @@
                        android:layout_width="0dp"
                        android:layout_height="40dp"
                        app:cardBackgroundColor="@color/orange"
-                       android:layout_weight="0.7"
+                       android:layout_weight="0.8"
                        android:layout_gravity="center|end"
                        app:cardCornerRadius="5dp">
                        <TextView
@@ -701,9 +701,10 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:layout_marginLeft="5dp"
+                   android:layout_marginLeft="0dp"
                    android:layout_marginTop="10dp"
                    android:weightSum="2"
+                   android:visibility="visible"
                    android:orientation="horizontal">
                    <ImageView
                        android:layout_width="22dp"
@@ -740,10 +741,10 @@
                </LinearLayout>
 
                <com.skydoves.progressview.ProgressView
-                   android:id="@+id/total_work_progress"
+                   android:id="@+id/amount_paid_progress"
                    android:layout_width="match_parent"
-                   android:layout_height="10dp"
-                   app:progressView_colorBackground="@color/text_color_gray"
+                   android:layout_height="13dp"
+                   app:progressView_colorBackground="@color/line_color"
                    app:progressView_colorProgress="@color/orange"
                    app:progressView_progress="75"
                    app:progressView_max="100"
@@ -755,16 +756,142 @@
                    android:layout_marginTop="10dp"
                    app:progressView_labelColorInner="@color/white"
                    app:progressView_labelColorOuter="@color/black"
-                   app:progressView_labelSize="13sp"
+                   app:progressView_labelSize="8sp"
                    app:progressView_labelSpace="10dp"
                    app:progressView_labelText=""
                    app:progressView_labelTypeface="bold"
                    />
 
+               <com.skydoves.progressview.ProgressView
+                   android:id="@+id/total_work_progress"
+                   android:layout_width="match_parent"
+                   android:layout_height="13dp"
+                   app:progressView_colorBackground="@color/line_color"
+                   app:progressView_colorProgress="@color/green"
+                   app:progressView_progress="75"
+                   app:progressView_max="100"
+                   app:progressView_duration="1000"
+                   app:progressView_progressFromPrevious="true"
+                   app:progressView_autoAnimate="true"
+                   app:progressView_radius="12dp"
+                   app:progressView_padding="1dp"
+                   android:layout_marginTop="5dp"
+                   app:progressView_labelColorInner="@color/white"
+                   app:progressView_labelColorOuter="@color/black"
+                   app:progressView_labelSize="8sp"
+                   app:progressView_labelSpace="10dp"
+                   app:progressView_labelText=""
+                   app:progressView_labelTypeface="bold"
+                   />
+
+               <com.skydoves.progressview.ProgressView
+                   android:id="@+id/milestone_progress"
+                   android:layout_width="match_parent"
+                   android:layout_height="13dp"
+                   app:progressView_colorBackground="@color/line_color"
+                   app:progressView_colorProgress="@color/red"
+                   app:progressView_progress="75"
+                   app:progressView_max="100"
+                   app:progressView_duration="1000"
+                   app:progressView_progressFromPrevious="true"
+                   app:progressView_autoAnimate="true"
+                   app:progressView_radius="12dp"
+                   app:progressView_padding="1dp"
+                   android:layout_marginTop="5dp"
+                   app:progressView_labelColorInner="@color/white"
+                   app:progressView_labelColorOuter="@color/black"
+                   app:progressView_labelSize="8sp"
+                   app:progressView_labelSpace="10dp"
+                   app:progressView_labelText=""
+                   app:progressView_labelTypeface="bold"
+                   />
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:layout_marginTop="5dp"
+                   >
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                   <ImageView
+                       android:layout_width="10dp"
+                       android:layout_height="10dp"
+                       android:layout_gravity="center"
+                       android:src="@color/light_orange"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:fontFamily="@font/libre_medium"
+                       android:text="@string/actual_amount_paid_for_project"
+                       android:paddingStart="2dp"
+                       android:paddingEnd="2dp"
+                       android:layout_marginLeft="5dp"
+                       android:layout_gravity="center"
+                       android:textColor="@color/text_Color_light"
+                       android:textSize="12sp"
+                       android:textAllCaps="false"
+                       />
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                   <ImageView
+                       android:layout_width="10dp"
+                       android:layout_height="10dp"
+                       android:layout_gravity="center"
+                       android:src="@color/green"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:fontFamily="@font/libre_medium"
+                       android:text="@string/actual_work_done_against_milestone"
+                       android:paddingStart="2dp"
+                       android:paddingEnd="2dp"
+                       android:layout_marginLeft="5dp"
+                       android:layout_gravity="center"
+                       android:textColor="@color/text_Color_light"
+                       android:textSize="12sp"
+                       android:textAllCaps="false"
+                       />
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                   <ImageView
+                       android:layout_width="10dp"
+                       android:layout_height="10dp"
+                       android:layout_gravity="center"
+                       android:src="@color/red"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:fontFamily="@font/libre_medium"
+                       android:text="@string/milestone_work_as_per_timeline"
+                       android:paddingStart="2dp"
+                       android:paddingEnd="2dp"
+                       android:layout_marginLeft="5dp"
+                       android:layout_gravity="center"
+                       android:textColor="@color/text_Color_light"
+                       android:textSize="12sp"
+                       android:textAllCaps="false"
+                       />
+                   </LinearLayout>
+               </LinearLayout>
+
                <View
                    android:layout_width="match_parent"
                    android:layout_height="1dp"
-                   android:layout_marginTop="15dp"
+                   android:layout_marginTop="10dp"
                    android:background="@color/line_color"/>
 
                <androidx.recyclerview.widget.RecyclerView

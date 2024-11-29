@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/mile_stones_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/libre_medium"
+            android:gravity="center"
+            android:text=""
+            android:layout_weight="0.9"
+            android:textColor="@color/text_color_gray"
+            android:textSize="12sp" />
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/start_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/libre_medium"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/text_color_gray"
+                android:textSize="12sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/line_color" />
+
+            <TextView
+                android:id="@+id/end_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/libre_medium"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/text_color_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_color" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/amount_tv"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_0corner"
+                android:fontFamily="@font/libre_medium"
+                android:gravity="start|center"
+                android:text=""
+                android:singleLine="true"
+                android:paddingStart="5dp"
+                android:textColor="@color/text_color_gray"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/completed_tv"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_0corner"
+                android:fontFamily="@font/libre_medium"
+                android:gravity="start|center"
+                android:text=""
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:inputType="numberDecimal"
+                android:digits="0123456789."
+                android:singleLine="true"
+                android:paddingStart="5dp"
+                android:textColor="@color/text_color_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_color" />
+
+        <TextView
+            android:id="@+id/remarks_tv"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="3dp"
+            android:layout_weight="1.1"
+            android:background="@drawable/bg_0corner"
+            android:fontFamily="@font/libre_medium"
+            android:gravity="center"
+            android:textColorHint="@color/line_color"
+            android:hint="@string/enter_remarks"
+            android:textColor="@color/text_color_gray"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/line_color" />
+</LinearLayout>

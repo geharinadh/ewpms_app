@@ -88,7 +88,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
+                android:layout_margin="13dp"
                 android:translationZ="10dp"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
@@ -139,7 +139,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15dp"
+                    android:layout_margin="13dp"
                     android:translationZ="10dp"
                     android:orientation="horizontal">
                     <androidx.cardview.widget.CardView
@@ -198,7 +198,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15dp"
+                    android:layout_margin="13dp"
                     android:translationZ="10dp"
                     android:orientation="horizontal">
                     <androidx.cardview.widget.CardView
@@ -248,7 +248,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15dp"
+                    android:layout_margin="13dp"
                     android:translationZ="10dp"
                     android:orientation="horizontal">
                     <androidx.cardview.widget.CardView

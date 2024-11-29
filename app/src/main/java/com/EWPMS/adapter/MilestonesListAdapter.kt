@@ -39,15 +39,15 @@ class MilestonesListAdapter(
 
         holder.binding.mileStonesLayout.setOnClickListener{
             holder.binding.livePhotosRv.visibility = View.GONE
-            holder.binding.uploadLivePhotosBtn.visibility = View.GONE
-            holder.binding.uploadLivePhotosBtn.visibility= View.VISIBLE
+            holder.binding.uploadLivePhotosLayout.visibility = View.GONE
+            holder.binding.uploadLivePhotosLayout.visibility= View.VISIBLE
         }
 
         holder.binding.uploadLivePhotosBtn.setOnClickListener {
             if(live_photo_position.isNotEmpty()) {
                 if (live_photo_position.toInt() != position) {
                     holder.binding.livePhotosRv.visibility = View.GONE
-                    holder.binding.uploadLivePhotosBtn.visibility = View.GONE
+                    holder.binding.uploadLivePhotosLayout.visibility = View.GONE
                 }
             }
             task_status.getTaskStatus(data.MileStoneID.toString(), position.toString())
@@ -55,7 +55,7 @@ class MilestonesListAdapter(
 
         if(live_photo_list.size>0){
             if(position==live_photo_position.toInt()) {
-                holder.binding.uploadLivePhotosBtn.visibility=View.VISIBLE
+                holder.binding.uploadLivePhotosLayout.visibility=View.VISIBLE
                 holder.binding.livePhotosRv.visibility=View.VISIBLE
                 holder.binding.livePhotosRv.adapter = LivePhotosAdapter(context,live_photo_list)
             }

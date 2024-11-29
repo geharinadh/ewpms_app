@@ -19,8 +19,11 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
@@ -30,11 +33,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.EWPMS.adapter.MilestonesListAdapter
+import com.EWPMS.adapter.MyWorksListAdapter
 import com.EWPMS.adapter.PresentPhotosAdapter
+import com.EWPMS.adapter.ProjectDataAdapter
 import com.EWPMS.data_response.MileStoneResponse
+import com.EWPMS.data_response.MyWorksResponse
 import com.EWPMS.data_response.PresentPhotosResponse
+import com.EWPMS.data_response.ProjectDataResponse
 import com.EWPMS.databinding.ActivityWorkDetailBinding
+import com.EWPMS.utilities.AppConstants
+import com.EWPMS.utilities.AppSharedPreferences
 import com.EWPMS.utilities.Common
 import com.EWPMS.utilities.FileUtils
 import com.EWPMS.utilities.MultipartRequest
@@ -173,6 +183,12 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     }
 
     private fun tab_click_listeners() {
+
+        binding.updateProgressCard.setOnClickListener {
+            startActivity(Intent(this@WorkDetailActivity,UpdateProjectActivity::class.java).putExtra("project_id",project_id))
+            finish()
+        }
+
         binding.workDetailCardview.setOnClickListener {
             binding.workDetailCardview.setCardBackgroundColor(ContextCompat.getColor(applicationContext,R.color.sky_blue_dark))
             binding.workDetailTv.setTextColor(resources.getColor(R.color.white))
@@ -225,6 +241,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         }
 
     }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         gMap=googleMap
@@ -396,13 +413,22 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         Log.d("Response", response)
 
                         // Assuming `Password` or `UserType` exists
-                        val TotalPercentage = obj.getString("TotalPercentage")
-                        val TotalMilestones = obj.getString("TotalMilestones")
+                        val totalMilestones = obj.getString("TotalMilestones")
+                        val financePercentage = obj.getString("FinancePercentage")
+                        val totalPercentage = obj.getString("TotalPercentage")
+                        val daysPercentage = obj.getString("DaysPercentage")
 
                         progressDialog.dismiss()
-                        binding.totalWorkTv.text = TotalMilestones.toString()+" Milestones"
-                        binding.totalWorkPercentage.text = TotalPercentage.toString()+"%"
-                        binding.totalWorkProgress.progress=TotalPercentage.toFloat()
+                        binding.totalWorkTv.text = totalMilestones.toString()+" Milestones"
+                        binding.totalWorkPercentage.text = totalPercentage.toString()+"%"
+
+                        binding.totalWorkProgress.progress=totalPercentage.toFloat()
+                        binding.amountPaidProgress.progress=financePercentage.toFloat()
+                        binding.milestoneProgress.progress=daysPercentage.toFloat()
+
+                        binding.totalWorkProgress.labelText=totalPercentage.toString()+"%"
+                        binding.amountPaidProgress.labelText=financePercentage.toString()+"%"
+                        binding.milestoneProgress.labelText=daysPercentage.toString()+"%"
 
                         call_milestones_api(project_id)
 
@@ -557,42 +583,41 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     }
 
     override fun getTaskStatus(milestone_id: String, position: String) {
-        if(live_photo_position.isNotEmpty()) {
-            if(live_photo_position != position) {
-                live_photo_list = ArrayList<String>()
-            }
-        }else{
-            live_photo_list = ArrayList<String>()
-        }
-
-        live_photo_position=position
-        milestone_id_live=milestone_id
-
-        if(check_location_enabled.equals("yes")) {
-            if (ContextCompat.checkSelfPermission(
-                    this@WorkDetailActivity,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                if (ContextCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.CAMERA
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    checkcamera = ""
-                    callPer()
-                } else {
-                    checkcamera = "1"
-                    callCam()
-                    getUserLocation()
+            if (live_photo_position.isNotEmpty()) {
+                if (live_photo_position != position) {
+                    live_photo_list = ArrayList<String>()
                 }
             } else {
-                requestLocationPermission()
+                live_photo_list = ArrayList<String>()
             }
-        }else{
-            enableLocationSettings()
-        }
 
+            live_photo_position = position
+            milestone_id_live = milestone_id
+
+            if (check_location_enabled.equals("yes")) {
+                if (ContextCompat.checkSelfPermission(
+                        this@WorkDetailActivity,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.CAMERA
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        checkcamera = ""
+                        callPer()
+                    } else {
+                        checkcamera = "1"
+                        callCam()
+                        getUserLocation()
+                    }
+                } else {
+                    requestLocationPermission()
+                }
+            } else {
+                enableLocationSettings()
+            }
     }
 
     //turn on location
@@ -644,7 +669,6 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                 }
             }
     }
-
 
     private fun requestLocationPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -752,7 +776,6 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
             }
         }
     }
-
 
     private fun call_live_photo_api(imageFile: File) {
         if (Common.isInternetAvailable(this@WorkDetailActivity)) {
@@ -881,6 +904,12 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        }else{
+            Toast.makeText(
+                applicationContext,
+                getString(R.string.please_check_with_the_internet_connection),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -947,5 +976,4 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
             }
         }
     }
-
 }

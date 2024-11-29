@@ -146,5 +146,34 @@
     <string name="grant_permisison">Kindly grant the permission to access location!</string>
     <string name="division_txt_small">Division</string>
     <string name="update_progress">Update Progress</string>
+    <string name="actual_amount_paid_for_project">Actual Amount Paid for Project</string>
+    <string name="actual_work_done_against_milestone">Actual Work Done against Milestone</string>
+    <string name="milestone_work_as_per_timeline">Milestone work as per Timeline</string>
+    <string name="update_latest_progress_of_work">Update Latest Progress of work</string>
+    <string name="start_date_nend_date">Start Date/\nEnd Date</string>
+    <string name="amount_ncompleted">Amount/\nCompleted</string>
+    <string name="remarks">Remarks</string>
+    <string name="update">Update</string>
+    <string name="project_progress_updated_successfully">Project progress Updated Successfully!.</string>
+    <string name="enter_remarks">Enter Remarks!</string>
+    <string name="updates_not_found">Updates Not Found!</string>
+
+    <string name="finance_details">Finance Details</string>
+    <string name="project_financial_details">Project Financial Details</string>
+    <string name="bill_id">Bill ID</string>
+    <string name="bill_no">Bill No</string>
+    <string name="bill_amt">Bill Amount</string>
+    <string name="paid_on">Paid On</string>
+    <string name="status">Status\nAction</string>
+
+    <string name="add_or_update_project_financials">Add or Update Project Financials</string>
+    <string name="mile_stone_name">Mile Stone Name *</string>
+    <string name="financial_remarks">Financial Remarks</string>
+    <string name="financial_remarks_imp">Financial Remarks *</string>
+    <string name="bill_no_imp">Bill No *</string>
+    <string name="bill_amt_imp">Bill Amount *</string>
+    <string name="paid_on_imp">Paid On *</string>
+    <string name="status_imp">Status *</string>
+    <string name="save">Save</string>
 
 </resources>

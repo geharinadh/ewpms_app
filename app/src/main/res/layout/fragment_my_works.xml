@@ -10,8 +10,8 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:layout_marginTop="5dp"
-       android:layout_marginLeft="20dp"
-       android:layout_marginRight="20dp"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
        android:orientation="vertical">
 
        <androidx.cardview.widget.CardView
@@ -102,7 +102,7 @@
                    android:layout_weight="1"
                    app:cardCornerRadius="20dp"
                    android:layout_gravity="center"
-                   android:layout_marginRight="5dp"
+                   android:layout_marginRight="2dp"
                    android:elevation="0dp"
                    app:cardBackgroundColor="@color/sky_blue"
                    app:cardElevation="0dp">
