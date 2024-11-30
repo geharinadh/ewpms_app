@@ -1,5 +1,7 @@
 package com.EWPMS.utilities;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,7 +15,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 
+import com.EWPMS.Interface.DatePickerCallBack;
 import com.EWPMS.R;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +34,30 @@ public class Common {
         if (inputMethodManager != null) {
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    public static DatePickerDialog getPreviousDatePicker(Activity activity, DatePickerCallBack callback) {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog;
+        datePickerDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                //DO SOMETHING
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, monthOfYear);
+                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String myFormat = "yyyy-MM-dd";
+                SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.US);
+                String date = dateFormat.format(cal.getTime());
+                callback.date_picker_data(date, "date");
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis() + (1000L * 60 * 60 * 24 * 365));
+        return datePickerDialog;
     }
 
     public static void fullScreen(Window window) {

@@ -175,5 +175,13 @@
     <string name="paid_on_imp">Paid On *</string>
     <string name="status_imp">Status *</string>
     <string name="save">Save</string>
+    <string name="delete_txt">Delete</string>
+
+    <string name="enter_bill_no">Enter Bill no!</string>
+    <string name="enter_bill_amt">Enter Bill Amount!</string>
+    <string name="select_paid_date">Select Paid Date!</string>
+    <string name="enter_financial_remark">Enter Financial Remark!</string>
+    <string name="select_status">Select Status!</string>
+    <string name="finance_added_success">Financial details uploaded successfully..</string>
 
 </resources>

@@ -63,7 +63,7 @@ class ProjectDataAdapter (
                     position.toString()+","+holder.binding.completedTv.text.toString().trim(),
                     holder.binding.remarksTv.text.toString().trim()
                 )
-                hideKeyboard(context,holder.binding.completedTv)
+              //  hideKeyboard(context,holder.binding.completedTv)
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

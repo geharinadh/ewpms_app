@@ -2,12 +2,14 @@ package com.EWPMS.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.EWPMS.FinanceDetailsActivity
 import com.EWPMS.data_response.MileStoneResponse
 import com.EWPMS.databinding.MilestonesListAdapterBinding
 import com.finowizx.CallBackInterface.CallBackData
@@ -16,6 +18,7 @@ import java.time.format.DateTimeFormatter
 
 class MilestonesListAdapter(
     private val context: Context,
+    private val project_id: String,
     private val live_photo_position: String,
     private val list: List<MileStoneResponse>,
     private val live_photo_list: ArrayList<String>,
@@ -51,6 +54,10 @@ class MilestonesListAdapter(
                 }
             }
             task_status.getTaskStatus(data.MileStoneID.toString(), position.toString())
+        }
+
+        holder.binding.financeBtn.setOnClickListener {
+            context.startActivity(Intent(context, FinanceDetailsActivity::class.java).putExtra("project_id",project_id).putExtra("milestone_id",data.MileStoneID))
         }
 
         if(live_photo_list.size>0){

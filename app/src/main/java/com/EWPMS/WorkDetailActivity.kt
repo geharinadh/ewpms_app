@@ -1,31 +1,23 @@
 package com.EWPMS
 
 import android.Manifest
-import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
-import android.util.Base64
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -33,28 +25,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.EWPMS.adapter.MilestonesListAdapter
-import com.EWPMS.adapter.MyWorksListAdapter
 import com.EWPMS.adapter.PresentPhotosAdapter
-import com.EWPMS.adapter.ProjectDataAdapter
 import com.EWPMS.data_response.MileStoneResponse
-import com.EWPMS.data_response.MyWorksResponse
 import com.EWPMS.data_response.PresentPhotosResponse
-import com.EWPMS.data_response.ProjectDataResponse
 import com.EWPMS.databinding.ActivityWorkDetailBinding
-import com.EWPMS.utilities.AppConstants
-import com.EWPMS.utilities.AppSharedPreferences
 import com.EWPMS.utilities.Common
 import com.EWPMS.utilities.FileUtils
-import com.EWPMS.utilities.MultipartRequest
 import com.android.volley.AuthFailureError
 import com.android.volley.NetworkResponse
 import com.android.volley.Request
-import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.HttpHeaderParser
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.finowizx.CallBackInterface.CallBackData
@@ -69,7 +51,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
-import com.yalantis.ucrop.UCrop
 import org.json.JSONArray
 import org.json.JSONException
 import java.io.ByteArrayOutputStream
@@ -77,8 +58,6 @@ import java.io.File
 import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Random
-import org.json.JSONObject
 import java.io.DataOutputStream
 import java.io.FileInputStream
 import java.text.SimpleDateFormat
@@ -125,6 +104,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         binding = ActivityWorkDetailBinding.inflate(layoutInflater);
         setContentView(binding.root)
@@ -552,6 +532,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                             binding.mileStonesRv.visibility=View.VISIBLE
                             binding.mileStonesRv.adapter = MilestonesListAdapter(
                                 this@WorkDetailActivity,
+                                project_id,
                                 live_photo_position,
                                 mile_stone_list,
                                 live_photo_list,
@@ -765,7 +746,12 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
 
                 live_photo_list.add("$fileSizeInKB KB")
                 binding.mileStonesRv.adapter = MilestonesListAdapter(
-                    this@WorkDetailActivity, live_photo_position, mile_stone_list, live_photo_list, this
+                    this@WorkDetailActivity,
+                    project_id,
+                    live_photo_position,
+                    mile_stone_list,
+                    live_photo_list,
+                    this
                 )
 
                 // Call your API with the temp file
@@ -881,7 +867,14 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         println("Response: $response")
                         progressDialog.dismiss()
                         Toast.makeText(this, getString(R.string.live_photo_uploaded_successfully), Toast.LENGTH_LONG).show()
-                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
+                        binding.mileStonesRv.adapter = MilestonesListAdapter(
+                            this@WorkDetailActivity,
+                            project_id,
+                            live_photo_position,
+                            mile_stone_list,
+                            live_photo_list,
+                            this
+                        )
                     },
                     errorListener = Response.ErrorListener { error ->
                         error.printStackTrace()
@@ -889,7 +882,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         progressDialog.dismiss()
                         live_photo_position=""
                         live_photo_list.removeAt((live_photo_list.size - 1))
-                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,live_photo_position, mile_stone_list,live_photo_list,this)
+                        binding.mileStonesRv.adapter = MilestonesListAdapter(this@WorkDetailActivity,project_id,live_photo_position, mile_stone_list,live_photo_list,this)
                         Toast.makeText(this, getString(R.string.upload_failed)+": ${error.message}", Toast.LENGTH_LONG).show()
                     }
                 )

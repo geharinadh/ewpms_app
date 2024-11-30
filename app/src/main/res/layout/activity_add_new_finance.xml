@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:fitsSystemWindows="true"
     android:fillViewport="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -68,13 +69,14 @@
            android:layout_height="45dp"
            android:gravity="start|center"
            android:layout_gravity="center"
-           android:layout_marginLeft="5dp"
+           android:layout_marginLeft="15dp"
+           android:layout_marginRight="15dp"
            android:layout_marginTop="10dp"
            android:paddingStart="15dp"
            android:background="@drawable/edt_bg"
            android:fontFamily="@font/libre_medium"
            android:textColor="@color/black"
-           android:textSize="16sp"
+           android:textSize="14sp"
            />
 
        <TextView
@@ -96,7 +98,8 @@
            android:layout_height="45dp"
            android:gravity="start|center"
            android:layout_gravity="center"
-           android:layout_marginLeft="5dp"
+           android:layout_marginLeft="15dp"
+           android:layout_marginRight="15dp"
            android:layout_marginTop="10dp"
            android:hint="@string/bill_no"
            android:paddingStart="10dp"
@@ -106,7 +109,7 @@
            android:background="@drawable/edt_bg"
            android:fontFamily="@font/libre_medium"
            android:textColor="@color/black"
-           android:textSize="16sp"
+           android:textSize="14sp"
            />
 
        <TextView
@@ -128,7 +131,8 @@
            android:layout_height="45dp"
            android:gravity="start|center"
            android:layout_gravity="center"
-           android:layout_marginLeft="5dp"
+           android:layout_marginLeft="15dp"
+           android:layout_marginRight="15dp"
            android:layout_marginTop="10dp"
            android:hint="@string/bill_amt"
            android:paddingStart="10dp"
@@ -137,7 +141,7 @@
            android:background="@drawable/edt_bg"
            android:fontFamily="@font/libre_medium"
            android:textColor="@color/black"
-           android:textSize="16sp"
+           android:textSize="14sp"
            />
 
        <TextView
@@ -159,14 +163,16 @@
            android:layout_height="45dp"
            android:gravity="start|center"
            android:layout_gravity="center"
-           android:layout_marginLeft="5dp"
+           android:layout_marginLeft="15dp"
+           android:layout_marginRight="15dp"
            android:layout_marginTop="10dp"
            android:paddingStart="10dp"
+           android:hint="dd-MM-yyyy"
            android:textColorHint="@color/line_color"
            android:background="@drawable/edt_bg"
            android:fontFamily="@font/libre_medium"
            android:textColor="@color/black"
-           android:textSize="16sp"
+           android:textSize="14sp"
            />
 
        <TextView
@@ -188,16 +194,17 @@
            android:layout_height="45dp"
            android:gravity="start|center"
            android:layout_gravity="center"
-           android:layout_marginLeft="5dp"
+           android:layout_marginLeft="15dp"
+           android:layout_marginRight="15dp"
            android:layout_marginTop="10dp"
-           android:hint="@string/bill_amt"
+           android:hint="@string/financial_remarks"
            android:paddingStart="10dp"
            android:inputType="numberDecimal"
            android:textColorHint="@color/line_color"
            android:background="@drawable/edt_bg"
            android:fontFamily="@font/libre_medium"
            android:textColor="@color/black"
-           android:textSize="16sp"
+           android:textSize="14sp"
            />
 
        <TextView
@@ -213,38 +220,63 @@
            android:textSize="16sp"
            />
 
-       <EditText
-           android:id="@+id/status_tv"
+       <RelativeLayout
            android:layout_width="match_parent"
            android:layout_height="45dp"
-           android:gravity="start|center"
-           android:layout_gravity="center"
-           android:layout_marginLeft="5dp"
-           android:layout_marginTop="10dp"
-           android:hint="@string/status_imp"
-           android:paddingStart="10dp"
-           android:inputType="numberDecimal"
-           android:textColorHint="@color/line_color"
-           android:background="@drawable/edt_bg"
-           android:fontFamily="@font/libre_medium"
-           android:textColor="@color/black"
-           android:textSize="16sp"
-           />
-
-       <Button
-           android:id="@+id/save_btn"
-           android:layout_width="120dp"
-           android:layout_height="40dp"
            android:layout_marginTop="15dp"
-           android:layout_marginBottom="10dp"
-           android:backgroundTint="@color/sky_blue_dark"
-           android:background="@drawable/edt_bg_blue"
-           android:fontFamily="@font/libre_semi_bold"
-           android:text="@string/save"
-           android:textAllCaps="false"
-           android:layout_gravity="center"
-           android:textColor="@color/white_text"
-           android:textSize="14dp"
-           />
+           android:layout_marginLeft="15dp"
+           android:layout_marginRight="15dp"
+           android:background="@drawable/edt_bg">
+           <ImageView
+               android:layout_width="24sp"
+               android:layout_height="24sp"
+               android:layout_centerVertical="true"
+               android:layout_marginRight="10dp"
+               android:src="@drawable/baseline_keyboard_arrow_down_24"
+               android:layout_alignParentRight="true"/>
+
+           <Spinner
+               android:id="@+id/spinnerStatus"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@android:color/transparent"
+               android:layout_marginStart="5sp"/>
+       </RelativeLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:layout_marginTop="30dp"
+           android:layout_marginBottom="10dp">
+           <Button
+               android:id="@+id/save_btn"
+               android:layout_width="120dp"
+               android:layout_height="40dp"
+               android:backgroundTint="@color/sky_blue_dark"
+               android:background="@drawable/edt_bg_blue"
+               android:fontFamily="@font/libre_semi_bold"
+               android:text="@string/save"
+               android:textAllCaps="false"
+               android:layout_gravity="center"
+               android:textColor="@color/white_text"
+               android:textSize="14dp"
+               />
+           <Button
+               android:id="@+id/delete_btn"
+               android:layout_width="120dp"
+               android:layout_height="40dp"
+               android:backgroundTint="@color/red"
+               android:background="@drawable/edt_bg_blue"
+               android:fontFamily="@font/libre_semi_bold"
+               android:text="@string/delete_txt"
+               android:textAllCaps="false"
+               android:layout_marginLeft="20dp"
+               android:layout_gravity="center"
+               android:textColor="@color/white_text"
+               android:textSize="14dp"
+               />
+       </LinearLayout>
    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

@@ -171,7 +171,7 @@ class UpdateProjectActivity : AppCompatActivity(), CallBackData {
             if (Common.isInternetAvailable(this@UpdateProjectActivity)) {
                 try {
                     progressDialog.show()
-                    val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_Update_ItemsDetailed/"
+                    val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_Update_ItemsDetailed2/"
 
                     // Create the JSON payload
                     val jsonBody = JSONObject()
