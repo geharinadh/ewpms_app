@@ -199,7 +199,7 @@
            android:layout_marginTop="10dp"
            android:hint="@string/financial_remarks"
            android:paddingStart="10dp"
-           android:inputType="numberDecimal"
+           android:inputType="text"
            android:textColorHint="@color/line_color"
            android:background="@drawable/edt_bg"
            android:fontFamily="@font/libre_medium"

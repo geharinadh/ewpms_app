@@ -193,70 +193,96 @@ class DashBoardFragment : Fragment(),CallBackData {
     }
 
     private fun call_my_works_api() {
-        if (Common.isInternetAvailable(requireContext())) {
-            progressDialog.show()
-            val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_get_DashboardMyWorks/?id="+AppSharedPreferences.getStringSharedPreference(requireContext(), AppConstants.USERID).toString()
-            Log.d("API_URL", url)
+        try {
+            if (Common.isInternetAvailable(requireContext())) {
+                progressDialog.show()
+                val url =
+                    "http://www.vmrda.gov.in/ewpms_api/api/Usp_get_DashboardMyWorks/?id=" + AppSharedPreferences.getStringSharedPreference(
+                        requireContext(),
+                        AppConstants.USERID
+                    ).toString()
+                Log.d("API_URL", url)
 
-            val queue = Volley.newRequestQueue(requireContext())
-            val stringRequest = StringRequest(
-                Request.Method.GET, url,
-                { response ->
-                    try {
-                        my_works_list=ArrayList<DashboardWorkResponse>()
-                        val jsonArray = JSONArray(response)
-                        Log.d("Response", response)
+                val queue = Volley.newRequestQueue(requireContext())
+                val stringRequest = StringRequest(
+                    Request.Method.GET, url,
+                    { response ->
+                        try {
+                            my_works_list = ArrayList<DashboardWorkResponse>()
+                            val jsonArray = JSONArray(response)
+                            Log.d("Response", response)
 
-                        for (i in 0 until jsonArray.length()) {
-                            val jsonObject = jsonArray.getJSONObject(i)
+                            for (i in 0 until jsonArray.length()) {
+                                val jsonObject = jsonArray.getJSONObject(i)
 
-                            // Extract the required fields from the JSON object
-                            val categoryName = jsonObject.optString("CategoryName")
-                            val completedPercentage = jsonObject.optString("CompletedPercentage")
-                            val currentProjectsID = jsonObject.optString("CurrentProjectsID")
-                            val daysLeft = jsonObject.optString("DaysLeft")
-                            val noOfMileStones = jsonObject.optString("NoOfMileStones")
-                            val projectName = jsonObject.optString("ProjectName")
+                                // Extract the required fields from the JSON object
+                                val categoryName = jsonObject.optString("CategoryName")
+                                val completedPercentage =
+                                    jsonObject.optString("CompletedPercentage")
+                                val currentProjectsID = jsonObject.optString("CurrentProjectsID")
+                                val daysLeft = jsonObject.optString("DaysLeft")
+                                val noOfMileStones = jsonObject.optString("NoOfMileStones")
+                                val projectName = jsonObject.optString("ProjectName")
 
-                            // Create a new MyWorksResponse object and add it to the list
-                            val workItem = DashboardWorkResponse(
-                                categoryName,
-                                completedPercentage,
-                                currentProjectsID,
-                                daysLeft,
-                                noOfMileStones,
-                                projectName
-                            )
+                                // Create a new MyWorksResponse object and add it to the list
+                                val workItem = DashboardWorkResponse(
+                                    categoryName,
+                                    completedPercentage,
+                                    currentProjectsID,
+                                    daysLeft,
+                                    noOfMileStones,
+                                    projectName
+                                )
 
-                            my_works_list.add(workItem)
-                        }
+                                my_works_list.add(workItem)
+                            }
 
-                        if(my_works_list.size>0){
-                            binding.noDataLayout.visibility=View.GONE
-                            binding.myWorksRv.visibility=View.VISIBLE
-                            binding.myWorksRv.adapter = MyWorksAdapter(requireContext(), my_works_list,this)
+                            if (my_works_list.size > 0) {
+                                binding.noDataLayout.visibility = View.GONE
+                                binding.myWorksRv.visibility = View.VISIBLE
+                                binding.myWorksRv.adapter =
+                                    MyWorksAdapter(requireContext(), my_works_list, this)
+                                progressDialog.dismiss()
+                            } else {
+                                progressDialog.dismiss()
+                                binding.noDataLayout.visibility = View.VISIBLE
+                                binding.myWorksRv.visibility = View.GONE
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.response_failure_please_try_again),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } catch (e: JSONException) {
+                            Log.e("JSONError", "Parsing error", e)
                             progressDialog.dismiss()
-                        }else{
-                            progressDialog.dismiss()
-                            binding.noDataLayout.visibility=View.VISIBLE
-                            binding.myWorksRv.visibility=View.GONE
-                            Toast.makeText(requireContext(), getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.response_failure_please_try_again),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                    } catch (e: JSONException) {
-                        Log.e("JSONError", "Parsing error", e)
+                    },
+                    { error ->
                         progressDialog.dismiss()
-                        Toast.makeText(requireContext(), getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                        Log.e("VolleyError", "Request failed", error)
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.response_failure_please_try_again),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                },
-                { error ->
-                    progressDialog.dismiss()
-                    Log.e("VolleyError", "Request failed", error)
-                    Toast.makeText(requireContext(), getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
-                }
-            )
-            queue.add(stringRequest)
-        }else{
-            Toast.makeText(requireContext(), getString(R.string.please_check_with_the_internet_connection), Toast.LENGTH_SHORT).show()
+                )
+                queue.add(stringRequest)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.please_check_with_the_internet_connection),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 

@@ -18,6 +18,7 @@ import com.EWPMS.utilities.Common
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -171,52 +172,79 @@ class UpdateProjectActivity : AppCompatActivity(), CallBackData {
             if (Common.isInternetAvailable(this@UpdateProjectActivity)) {
                 try {
                     progressDialog.show()
-                    val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_Update_ItemsDetailed2/"
 
-                    // Create the JSON payload
-                    val jsonBody = JSONObject()
-                    jsonBody.put("Id", update_project_data_list[i].Id)
-                    jsonBody.put("ItemId",update_project_data_list[i].Itemid)
-                    jsonBody.put("ComAmt", update_project_data_list[i].ComAmt)
-                    jsonBody.put("Remarks", update_project_data_list[i].Remarks)
+                    val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_Update_ItemsDetailed2"
 
-                    // Initialize Volley RequestQueue
+                // Create the JSON payload
+                    val jsonBody = JSONObject().apply {
+                        put("Id", "70684")
+                        put("ItemId", "137")
+                        put("ComAmt", "15.02")
+                        put("Remarks", "")
+                    }
+
                     val requestQueue: RequestQueue = Volley.newRequestQueue(this)
 
-                    // Create a JsonObjectRequest
-                    val jsonObjectRequest = JsonObjectRequest(
+                    val jsonArrayRequest = object : JsonArrayRequest(
                         Request.Method.POST,
                         url,
-                        jsonBody,
-                        Response.Listener { response ->
-                            Log.e("API Error", response.toString())
-                            if((update_project_data_list.size-1)==i) {
-                                progressDialog.dismiss()
-                                // Handle the successful response
-                                Toast.makeText(
-                                    this,
-                                    getString(R.string.project_progress_updated_successfully),
-                                    Toast.LENGTH_SHORT).show()
-                                startActivity(Intent(this@UpdateProjectActivity,WorkDetailActivity::class.java).putExtra("project_id",project_id))
-                                finish()
+                        null, // Passing null here as the body will be sent in getBody
+                        { response ->
+                            try {
+                                // Handle the JSONArray response
+                                for (i in 0 until response.length()) {
+                                    val jsonObject = response.getJSONObject(i)
+                                    val retVal = jsonObject.getString("RetVal")
+                                    Log.d("Response Value", "RetVal: $retVal")
+                                    if (retVal == "Success") {
+                                        if((update_project_data_list.size-1)==i) {
+                                            progressDialog.dismiss()
+                                            // Handle the successful response
+                                            Toast.makeText(
+                                                this,
+                                                getString(R.string.project_progress_updated_successfully),
+                                                Toast.LENGTH_SHORT).show()
+                                            startActivity(Intent(this@UpdateProjectActivity,WorkDetailActivity::class.java).putExtra("project_id",project_id))
+                                            finish()
+                                        }
+                                    } else {
+                                        if((update_project_data_list.size-1)==i) {
+                                            progressDialog.dismiss()
+                                            Toast.makeText(
+                                                this,
+                                                getString(R.string.upload_failed) + ": ${retVal}",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
+                                    }
+                                }
+                            } catch (e: JSONException) {
+                                e.printStackTrace()
+                                Log.e("API Error", "JSON Parsing error: ${e.message}")
                             }
                         },
-                        Response.ErrorListener { error ->
-                            // Handle error
-                            Log.e("API Error", error.toString())
-                            if((update_project_data_list.size-1)==i) {
-                                progressDialog.dismiss()
-                                Toast.makeText(
-                                    this,
-                                    getString(R.string.upload_failed) + ": ${error.message}",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
+                        { error ->
+                            // Handle errors
+                            Log.e("API Error", "Volley Error: ${error.message}")
+                            Toast.makeText(this, "API Request Failed: ${error.message}", Toast.LENGTH_LONG).show()
                         }
-                    )
+                    ) {
+                        // Override getHeaders to set Content-Type
+                        override fun getHeaders(): MutableMap<String, String> {
+                            val headers = HashMap<String, String>()
+                            headers["Content-Type"] = "application/json"
+                            return headers
+                        }
 
-                    // Add the request to the RequestQueue
-                    requestQueue.add(jsonObjectRequest)
+                        // Override getBody to send the JSON payload
+                        override fun getBody(): ByteArray {
+                            return jsonBody.toString().toByteArray(Charsets.UTF_8)
+                        }
+                    }
+
+                // Add the request to the Volley queue
+                    requestQueue.add(jsonArrayRequest)
+
                 } catch (e: Exception) {
                     e.printStackTrace()
                     Toast.makeText(

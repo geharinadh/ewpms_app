@@ -87,28 +87,12 @@
             android:paddingRight="3dp"
             android:background="@color/sky_blue_dark"
             android:weightSum="6">
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="0.6"
-                android:maxLength="9"
-                android:padding="5dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/libre_medium"
-                android:text="@string/bill_id"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                />
-            <View
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:background="@color/line_color"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"
                 android:padding="5dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/libre_medium"
@@ -141,7 +125,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1.1"
+                android:layout_weight="1.3"
                 android:fontFamily="@font/libre_medium"
                 android:gravity="center"
                 android:padding="5dp"
@@ -156,7 +140,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_weight="1.1"
+                android:layout_weight="1.4"
                 android:padding="5dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/libre_medium"
@@ -172,7 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="1.4"
                 android:padding="5dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/libre_medium"
@@ -180,6 +164,19 @@
                 android:textColor="@color/white"
                 android:textSize="13sp"
                 />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="0.2"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/libre_medium"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -190,6 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
+            android:layout_marginLeft="5dp"
             android:visibility="gone" />
 
         <LinearLayout

@@ -91,7 +91,7 @@
                 android:background="@drawable/bg_0corner"
                 android:fontFamily="@font/libre_medium"
                 android:gravity="start|center"
-                android:text=""
+                android:text="  "
                 android:singleLine="true"
                 android:paddingStart="5dp"
                 android:textColor="@color/text_color_gray"

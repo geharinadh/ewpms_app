@@ -164,7 +164,8 @@
     <string name="bill_no">Bill No</string>
     <string name="bill_amt">Bill Amount</string>
     <string name="paid_on">Paid On</string>
-    <string name="status">Status\nAction</string>
+    <string name="status">Status</string>
+    <string name="action">Action</string>
 
     <string name="add_or_update_project_financials">Add or Update Project Financials</string>
     <string name="mile_stone_name">Mile Stone Name *</string>

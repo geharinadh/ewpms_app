@@ -49,7 +49,7 @@ class ProjectDataAdapter (
         val data = list[position]
         holder.binding.startDateTv.text=data.StartDate.toString()
         holder.binding.endDateTv.text=data.EndDate.toString()
-        holder.binding.completedTv.setText("\u20B9"+data.CompletedAmount.toString())
+        holder.binding.completedTv.setText(data.CompletedAmount.toString())
         holder.binding.amountTv.text="\u20B9"+data.MileStone_Amount.toString()
         if(data.Remarks.isNotEmpty()) {
             holder.binding.remarksTv.text = data.Remarks.toString()
@@ -100,7 +100,7 @@ class ProjectDataAdapter (
                 if(remarks_tv.text.toString().isNotEmpty()) {
                     holder.binding.remarksTv.setText(remarks_tv.text.toString())
                     task_status.getTaskStatus(
-                        position.toString()+holder.binding.completedTv.text.toString().trim(),
+                        position.toString()+","+holder.binding.completedTv.text.toString().trim(),
                         holder.binding.remarksTv.text.toString().trim()
                     )
                     dialog.dismiss()

@@ -13,7 +13,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.EWPMS.adapter.FinanceListAdapter
 import com.EWPMS.adapter.MyWorksListAdapter
+import com.EWPMS.data_response.FinanceDataResponse
 import com.EWPMS.data_response.MyWorksResponse
 import com.EWPMS.databinding.ActivityFinanceDetailsBinding
 import com.EWPMS.databinding.UpdateProjectProgressLayoutBinding
@@ -25,6 +27,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONException
+import java.lang.reflect.Array
 
 class FinanceDetailsActivity : AppCompatActivity() {
 
@@ -34,6 +37,8 @@ class FinanceDetailsActivity : AppCompatActivity() {
 
     lateinit var project_id:String
     lateinit var milestone_id:String
+
+    var finace_list=ArrayList<FinanceDataResponse>()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +72,7 @@ class FinanceDetailsActivity : AppCompatActivity() {
     }
 
     private fun call_finance_list() {
-       /* if (Common.isInternetAvailable(this@FinanceDetailsActivity)) {
+        if (Common.isInternetAvailable(this@FinanceDetailsActivity)) {
             progressDialog.show()
             val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_get_ProjectFinancials/?id="+project_id
             Log.d("API_URL", url)
@@ -77,7 +82,7 @@ class FinanceDetailsActivity : AppCompatActivity() {
                 Request.Method.GET, url,
                 { response ->
                     try {
-                        my_works_list=ArrayList<MyWorksResponse>()
+                        finace_list=ArrayList<FinanceDataResponse>()
 
                         val jsonArray = JSONArray(response)
 
@@ -85,43 +90,38 @@ class FinanceDetailsActivity : AppCompatActivity() {
                             val jsonObject = jsonArray.getJSONObject(i)
 
                             // Extract the required fields from the JSON object
-                            val categoryName = jsonObject.optString("CategoryName")
-                            val completedPercentage = jsonObject.optString("CompletedPercentage")
-                            val currentProjectsID = jsonObject.optString("CurrentProjectsID")
-                            val deadline = jsonObject.optString("DeadLine")
-                            val noOfMileStones = jsonObject.optString("NoOfMileStones")
-                            val projectName = jsonObject.optString("ProjectName")
+                            val BillAmount = jsonObject.optString("BillAmount")
+                            val BillNo = jsonObject.optString("BillNo")
+                            val PaidOn1 = jsonObject.optString("PaidOn1")
+                            val Remarks = jsonObject.optString("Remarks")
+                            val Status = jsonObject.optString("Status")
 
                             // Create a new MyWorksResponse object and add it to the list
-                            val workItem = MyWorksResponse(
-                                categoryName,
-                                completedPercentage,
-                                currentProjectsID,
-                                deadline,
-                                noOfMileStones,
-                                projectName
-                            )
+                            val workItem = FinanceDataResponse(
+                                BillAmount,
+                                BillNo,
+                                PaidOn1,
+                                Remarks,
+                                Status)
 
-                            my_works_list.add(workItem)
+                            finace_list.add(workItem)
                         }
-                        Log.d("Responsee", my_works_list.size.toString())
-                        if(my_works_list.size>0){
+                        Log.d("Responsee", finace_list.size.toString())
+                        if(finace_list.size>0){
                             binding.noDataLayout.visibility= View.GONE
                             binding.myWorksRv.visibility= View.VISIBLE
-                            binding.myWorksRv.adapter = MyWorksListAdapter(this@FinanceDetailsActivity, my_works_list)
+                            binding.myWorksRv.adapter = FinanceListAdapter(this@FinanceDetailsActivity, project_id,milestone_id,finace_list)
                             progressDialog.dismiss()
                         }else{
                             progressDialog.dismiss()
                             binding.myWorksRv.visibility= View.GONE
                             binding.noDataLayout.visibility= View.VISIBLE
-                            Toast.makeText(this@FinanceDetailsActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: JSONException) {
                         Log.e("JSONError", "Parsing error", e)
                         progressDialog.dismiss()
                         binding.myWorksRv.visibility= View.GONE
                         binding.noDataLayout.visibility= View.VISIBLE
-                        Toast.makeText(this@FinanceDetailsActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
                     }
                 },
                 { error ->
@@ -129,13 +129,12 @@ class FinanceDetailsActivity : AppCompatActivity() {
                     binding.myWorksRv.visibility= View.GONE
                     binding.noDataLayout.visibility= View.VISIBLE
                     Log.e("VolleyError", "Request failed", error)
-                    Toast.makeText(this@FinanceDetailsActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
                 }
             )
             queue.add(stringRequest)
         }else{
             Toast.makeText(this@FinanceDetailsActivity, getString(R.string.please_check_with_the_internet_connection), Toast.LENGTH_SHORT).show()
-        }*/
+        }
     }
 
     override fun onBackPressed() {
