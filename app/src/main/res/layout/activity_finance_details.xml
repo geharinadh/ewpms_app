@@ -152,6 +152,7 @@
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:background="@color/line_color"/>
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -182,13 +183,14 @@
         <androidx.recyclerview.widget.RecyclerView
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reverseLayout="false"
+            tools:itemCount="2"
             tools:listitem="@layout/finance_details_list_adpater"
             android:id="@+id/my_works_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
-            android:layout_marginLeft="5dp"
-            android:visibility="gone" />
+            android:layout_marginLeft="3dp"
+            android:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/no_data_layout"
@@ -196,7 +198,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:orientation="vertical">
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="100dp"

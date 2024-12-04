@@ -37,6 +37,7 @@ class FinanceDetailsActivity : AppCompatActivity() {
 
     lateinit var project_id:String
     lateinit var milestone_id:String
+    var milestone_name=""
 
     var finace_list=ArrayList<FinanceDataResponse>()
 
@@ -48,8 +49,14 @@ class FinanceDetailsActivity : AppCompatActivity() {
         binding = ActivityFinanceDetailsBinding.inflate(layoutInflater);
         setContentView(binding.root)
 
-        project_id=intent.getStringExtra("project_id").toString()
-        milestone_id=intent.getStringExtra("milestone_id").toString()
+        try {
+            project_id = intent.getStringExtra("project_id").toString()
+            milestone_id = intent.getStringExtra("milestone_id").toString()
+            milestone_name = intent.getStringExtra("milestone_name").toString()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
         callCommonClass()
 
         binding.backIconLayout.setOnClickListener {
@@ -59,6 +66,7 @@ class FinanceDetailsActivity : AppCompatActivity() {
         binding.addBtn.setOnClickListener {
             startActivity(Intent(this, addNewFinanceActivity::class.java)
                 .putExtra("project_id",project_id)
+                .putExtra("milestone_name",milestone_name)
                 .putExtra("milestone_id",milestone_id))
             finish()
         }
@@ -110,7 +118,7 @@ class FinanceDetailsActivity : AppCompatActivity() {
                         if(finace_list.size>0){
                             binding.noDataLayout.visibility= View.GONE
                             binding.myWorksRv.visibility= View.VISIBLE
-                            binding.myWorksRv.adapter = FinanceListAdapter(this@FinanceDetailsActivity, project_id,milestone_id,finace_list)
+                            binding.myWorksRv.adapter = FinanceListAdapter(this@FinanceDetailsActivity, project_id,milestone_id,milestone_name,finace_list)
                             progressDialog.dismiss()
                         }else{
                             progressDialog.dismiss()

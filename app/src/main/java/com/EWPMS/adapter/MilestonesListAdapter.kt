@@ -57,7 +57,7 @@ class MilestonesListAdapter(
         }
 
         holder.binding.financeBtn.setOnClickListener {
-            context.startActivity(Intent(context, FinanceDetailsActivity::class.java).putExtra("project_id",project_id).putExtra("milestone_id",data.MileStoneID))
+            context.startActivity(Intent(context, FinanceDetailsActivity::class.java).putExtra("project_id",project_id).putExtra("milestone_id",data.MileStoneID).putExtra("milestone_name",data.ItemDetailed))
         }
 
         if(live_photo_list.size>0){

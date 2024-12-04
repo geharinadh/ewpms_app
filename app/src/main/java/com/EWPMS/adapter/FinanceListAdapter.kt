@@ -1,6 +1,7 @@
 package com.EWPMS.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -16,6 +17,7 @@ class FinanceListAdapter (
     private val context: Context,
     private val project_id: String,
     private val milestone_id: String,
+    private val milestone_name: String,
     private val list: List<FinanceDataResponse>
 ) : RecyclerView.Adapter<FinanceListAdapter.ViewHolder>() {
 
@@ -40,8 +42,20 @@ class FinanceListAdapter (
         holder.binding.statusTv.text=data.Status.toString()
 
         holder.binding.editImg.setOnClickListener {
-            context.startActivity(Intent(context, addNewFinanceActivity::class.java).putExtra("project_id",project_id)
-                .putExtra("milestone_id",milestone_id).putExtra("position",position.toString()))
+            if(data.Status!="Completed") {
+                context.startActivity(
+                    Intent(context, addNewFinanceActivity::class.java).putExtra(
+                        "project_id",
+                        project_id
+                    )
+                        .putExtra("milestone_id", milestone_id)
+                        .putExtra("position", position.toString())
+                        .putExtra("milestone_name", milestone_name.toString())
+                )
+                if (context is Activity) {
+                    context.finish()
+                }
+            }
         }
 
     }

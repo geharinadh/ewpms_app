@@ -37,6 +37,7 @@ class addNewFinanceActivity : AppCompatActivity(),DatePickerCallBack{
 
     lateinit var project_id:String
     lateinit var milestone_id:String
+    lateinit var milestone_name:String
     lateinit var position:String
 
     var finace_list=ArrayList<FinanceDataResponse>()
@@ -52,12 +53,10 @@ class addNewFinanceActivity : AppCompatActivity(),DatePickerCallBack{
         project_id=intent.getStringExtra("project_id").toString()
         milestone_id=intent.getStringExtra("milestone_id").toString()
         position=intent.getStringExtra("position").toString()
+        milestone_name=intent.getStringExtra("milestone_name").toString()
 
-        println("stayst "+position)
         datePickerDialog = Common.getPreviousDatePicker(this,this)
         progressDialog = Common.progressDialog(this@addNewFinanceActivity)
-
-        binding.mileStoneNameTv.text = milestone_id.toString()
 
         var status_list=ArrayList<String>()
         status_list.add("Choose..")
@@ -68,7 +67,7 @@ class addNewFinanceActivity : AppCompatActivity(),DatePickerCallBack{
         binding.spinnerStatus.adapter = statusAdapter
 
         binding.backIconLayout.setOnClickListener {
-            startActivity(Intent(this, FinanceDetailsActivity::class.java))
+            startActivity(Intent(this, FinanceDetailsActivity::class.java).putExtra("project_id",project_id).putExtra("milestone_id",milestone_id))
             finish()
         }
 
@@ -209,7 +208,7 @@ class addNewFinanceActivity : AppCompatActivity(),DatePickerCallBack{
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, FinanceDetailsActivity::class.java))
+        startActivity(Intent(this, FinanceDetailsActivity::class.java).putExtra("project_id",project_id).putExtra("milestone_id",milestone_id))
         finish()
     }
 
@@ -258,6 +257,7 @@ class addNewFinanceActivity : AppCompatActivity(),DatePickerCallBack{
                             binding.billAmtTv.setText("\u20B9"+finace_list[position.toInt()].BillAmount.toString())
                             binding.paidOnTv.text = finace_list[position.toInt()].PaidOn1.toString()
                             binding.financialRemarkTv.setText(finace_list[position.toInt()].Remarks.toString())
+                            binding.mileStoneNameTv.text = milestone_name.toString()
                             if(finace_list[position.toInt()].Status.toString() == "Completed") {
                                 binding.spinnerStatus.setSelection(2)
                             }else{
