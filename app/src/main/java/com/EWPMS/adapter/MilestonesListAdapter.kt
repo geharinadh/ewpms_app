@@ -38,7 +38,7 @@ class MilestonesListAdapter(
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val data = list[position]
-        holder.binding.mileStonesTv.text="Milestones "+(position+1).toString()
+        holder.binding.mileStonesTv.text=data.ItemDetailed.toString()
 
         holder.binding.mileStonesLayout.setOnClickListener{
             holder.binding.livePhotosRv.visibility = View.GONE

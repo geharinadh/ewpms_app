@@ -61,7 +61,7 @@
             android:layout_margin="20dp"
             android:paddingTop="10dp"
             android:paddingLeft="5dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="@drawable/edt_bg">
             <TextView
                 android:layout_width="match_parent"
@@ -89,14 +89,16 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/project_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:hint="@string/project_full_name"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:background="@drawable/edt_bg_blue"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
                 android:textSize="14dp"
+                android:singleLine="false"
                 android:textStyle="bold"
                 android:layout_margin="10dp"
                 android:textColor="@color/text_Color_light"
@@ -150,10 +152,11 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
-                android:id="@+id/estimated_cost_tv"
+                android:id="@+id/estimated_cost_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textPersonName"
+                android:digits="0123456789."
+                android:inputType="numberDecimal"
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -187,9 +190,10 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/agreement_no_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:background="@drawable/edt_bg_blue"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -211,10 +215,10 @@
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/text_ColorDark"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/agreement_date_tv"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textPersonName"
                 android:paddingRight="20dp"
                 android:drawableRight="@drawable/baseline_calendar_today_24"
                 android:background="@drawable/edt_bg"
@@ -240,9 +244,36 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/time_period_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textPersonName"
+                android:inputType="text"
+                android:background="@drawable/edt_bg"
+                android:fontFamily="@font/libre_medium"
+                android:paddingStart="10dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/text_Color_light"
+                android:textColorHint="@color/text_Color_light" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/estimated_contract_value"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <EditText
+                android:id="@+id/ecv_et"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="numberDecimal"
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -277,6 +308,7 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/edt_bg">
                     <EditText
+                        android:id="@+id/tender_premium_et"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:inputType="number"
@@ -360,7 +392,7 @@
                 android:id="@+id/tender_cost_edt"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textPersonName"
+                android:inputType="numberDecimal"
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -376,7 +408,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -412,6 +444,7 @@
             android:textColor="@color/text_ColorDark"/>
 
         <EditText
+            android:id="@+id/admin_saction_amt_et"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:inputType="number"
@@ -446,10 +479,10 @@
                 android:paddingHorizontal="5dp"
                 android:textColor="@color/text_ColorDark"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/admin_sanction_date_tv"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="textPersonName"
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"

@@ -30,14 +30,14 @@
                 android:layout_height="65dp">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile"
-                    android:src="@drawable/demo_profile"
-                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo"
                     app:civ_border_width="1dp"
+                    app:civ_circle_background_color="@color/colorPrimary"
                     app:civ_border_color="@color/line_color"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"/>
+                    android:layout_width="60dp"
+                    android:layout_height="55dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
