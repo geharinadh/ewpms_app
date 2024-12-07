@@ -61,7 +61,7 @@
             android:layout_margin="20dp"
             android:paddingTop="10dp"
             android:paddingLeft="5dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@drawable/edt_bg">
             <TextView
                 android:layout_width="match_parent"
@@ -225,6 +225,7 @@
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
                 android:textSize="14dp"
+                android:gravity="start|center"
                 android:layout_margin="10dp"
                 android:textColor="@color/text_Color_light"
                 android:textColorHint="@color/text_Color_light" />
@@ -408,7 +409,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -447,8 +448,8 @@
             android:id="@+id/admin_saction_amt_et"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:inputType="number"
-            android:digits="0123456789"
+            android:inputType="numberDecimal"
+            android:digits="0123456789."
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/libre_medium"
             android:paddingStart="10dp"
@@ -489,6 +490,7 @@
                 android:drawableRight="@drawable/baseline_calendar_today_24"
                 android:paddingRight="10dp"
                 android:textSize="14dp"
+                android:gravity="start|center"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/text_Color_light"
                 android:textColorHint="@color/text_Color_light" />
@@ -551,6 +553,7 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/admin_sanction_detail_et"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:inputType="textMultiLine"
@@ -559,6 +562,7 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:textSize="14dp"
+                android:paddingTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
@@ -604,10 +608,11 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/technical_sanction_amt_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="number"
-                android:digits="0123456789"
+                android:inputType="numberDecimal"
+                android:digits="0123456789."
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -638,16 +643,17 @@
                         android:paddingHorizontal="5dp"
                         android:textColor="@color/text_ColorDark"/>
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/technical_sanction_date_tv"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:inputType="textPersonName"
                         android:background="@drawable/edt_bg"
                         android:fontFamily="@font/libre_medium"
                         android:paddingStart="10dp"
                         android:drawableRight="@drawable/baseline_calendar_today_24"
                         android:paddingRight="10dp"
                         android:textSize="14dp"
+                        android:gravity="start|center"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/text_Color_light"
                         android:textColorHint="@color/text_Color_light" />
@@ -709,6 +715,7 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/technical_sanction_details_et"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:inputType="textMultiLine"
@@ -717,6 +724,7 @@
                 android:paddingStart="10dp"
                 android:gravity="start"
                 android:textSize="14dp"
+                android:paddingTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
@@ -762,10 +770,11 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/revised_cost_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="number"
-                android:digits="0123456789"
+                android:inputType="numberDecimal"
+                android:digits="0123456789."
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -788,10 +797,11 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/estimated_revised_cost_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="number"
-                android:digits="0123456789"
+                android:inputType="numberDecimal"
+                android:digits="0123456789."
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -837,10 +847,10 @@
                 android:textColor="@color/text_ColorDark"/>
 
             <EditText
+                android:id="@+id/supp_order_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="number"
-                android:digits="0123456789"
+                android:inputType="text"
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -862,11 +872,10 @@
              android:textStyle="bold"
                 android:textColor="@color/text_ColorDark"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/approval_date_tv"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="number"
-                android:digits="0123456789"
                 android:drawableRight="@drawable/baseline_calendar_today_24"
                 android:paddingRight="10dp"
                 android:background="@drawable/edt_bg"
@@ -874,6 +883,7 @@
                 android:paddingStart="10dp"
                 android:textSize="14dp"
                 android:layout_margin="10dp"
+                android:gravity="start|center"
                 android:textColor="@color/text_Color_light"
                 android:textColorHint="@color/text_Color_light" />
 
@@ -890,11 +900,12 @@
                 android:paddingHorizontal="16dp"
                 android:textColor="@color/text_ColorDark"/>
 
-            <EditText
+            <TextView
+                android:id="@+id/granded_upto_et"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:inputType="number"
-                android:digits="0123456789"
+                android:paddingRight="20dp"
+                android:drawableRight="@drawable/baseline_calendar_today_24"
                 android:background="@drawable/edt_bg"
                 android:fontFamily="@font/libre_medium"
                 android:paddingStart="10dp"
@@ -1051,6 +1062,7 @@
             android:textColor="@color/text_ColorDark"/>
 
         <EditText
+            android:id="@+id/landmark_et"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:inputType="textPersonName"
@@ -1079,7 +1091,8 @@
             android:id="@+id/latitude_txt"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:inputType="text"
+            android:inputType="numberDecimal"
+            android:digits="0123456789."
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/libre_medium"
             android:paddingStart="10dp"
@@ -1105,7 +1118,8 @@
             android:id="@+id/longitude_txt"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:inputType="text"
+            android:inputType="numberDecimal"
+            android:digits="0123456789."
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/libre_medium"
             android:paddingStart="10dp"
@@ -1131,7 +1145,8 @@
             android:id="@+id/site_area_et"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:inputType="text"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"
             android:background="@drawable/edt_bg"
             android:fontFamily="@font/libre_medium"
             android:paddingStart="10dp"
@@ -1334,6 +1349,201 @@
                     android:background="@android:color/transparent"
                     android:layout_marginStart="15sp"/>
             </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/edt_bg">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contractor_details"
+                android:fontFamily="@font/libre_semi_bold"
+                android:textSize="20dp"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:paddingHorizontal="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/button_text"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contractor_txt"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/edt_bg">
+                <ImageView
+                    android:layout_width="24sp"
+                    android:layout_height="24sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"
+                    android:layout_alignParentRight="true"/>
+
+                <Spinner
+                    android:id="@+id/spinnerContractor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:layout_marginStart="15sp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_txt"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <EditText
+                android:id="@+id/mobile_et"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:digits="0123456789."
+                android:inputType="numberDecimal"
+                android:background="@drawable/edt_bg"
+                android:fontFamily="@font/libre_medium"
+                android:paddingStart="10dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/text_Color_light"
+                android:textColorHint="@color/text_Color_light" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mail_txt"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <EditText
+                android:id="@+id/email_et"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/edt_bg"
+                android:fontFamily="@font/libre_medium"
+                android:paddingStart="10dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/text_Color_light"
+                android:textColorHint="@color/text_Color_light" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/addres_txt"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <EditText
+                android:id="@+id/address_et"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textPostalAddress"
+                android:background="@drawable/edt_bg"
+                android:fontFamily="@font/libre_medium"
+                android:paddingStart="10dp"
+                android:textSize="14dp"
+                android:layout_margin="10dp"
+                android:textColor="@color/text_Color_light"
+                android:textColorHint="@color/text_Color_light" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/start_date"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <TextView
+                android:id="@+id/start_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingRight="20dp"
+                android:drawableRight="@drawable/baseline_calendar_today_24"
+                android:background="@drawable/edt_bg"
+                android:fontFamily="@font/libre_medium"
+                android:paddingStart="10dp"
+                android:textSize="14dp"
+                android:gravity="start|center"
+                android:layout_margin="10dp"
+                android:textColor="@color/text_Color_light"
+                android:textColorHint="@color/text_Color_light" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/end_date"
+                android:fontFamily="@font/libre_medium"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:gravity="start|center"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/text_ColorDark"/>
+
+            <TextView
+                android:id="@+id/end_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:paddingRight="20dp"
+                android:drawableRight="@drawable/baseline_calendar_today_24"
+                android:background="@drawable/edt_bg"
+                android:fontFamily="@font/libre_medium"
+                android:paddingStart="10dp"
+                android:textSize="14dp"
+                android:gravity="start|center"
+                android:layout_margin="10dp"
+                android:textColor="@color/text_Color_light"
+                android:textColorHint="@color/text_Color_light" />
 
         </LinearLayout>
 
