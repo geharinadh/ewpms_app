@@ -110,14 +110,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
-        android:layout_weight="1"
+        android:layout_weight="1.1"
         android:backgroundTint="@color/sky_blue_dark"
         android:background="@drawable/button_shape"
         android:fontFamily="@font/libre_semi_bold"
         android:text="@string/upload_live_photo"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="14dp"
+        android:textSize="13dp"
         android:textStyle="bold" />
 
         <Button
@@ -125,7 +125,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_weight="1"
+            android:layout_weight="0.9"
             android:backgroundTint="@color/sky_blue_dark"
             android:background="@drawable/button_shape"
             android:fontFamily="@font/libre_semi_bold"

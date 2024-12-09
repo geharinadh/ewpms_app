@@ -9,6 +9,7 @@ import android.os.Looper
 import android.view.View
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.EWPMS.databinding.ActivitySplashScreenBinding
 import com.EWPMS.utilities.AppConstants
 import com.EWPMS.utilities.AppSharedPreferences
@@ -34,6 +35,19 @@ class SplashScreen : AppCompatActivity() {
         }catch (e:Exception){
             e.printStackTrace()
         }
+
+        /*//theme
+        if (AppSharedPreferences.getStringSharedPreference(
+                baseContext, AppConstants.THEME) != null && (!AppSharedPreferences.getStringSharedPreference(
+                baseContext, AppConstants.THEME).equals(""))) {
+            if(AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.THEME).equals("dark")){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }*/
 
         try {
             if (AppSharedPreferences.getStringSharedPreference(

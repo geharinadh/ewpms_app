@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.EWPMS.databinding.ActivityProfileBinding
@@ -50,6 +51,28 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun onclick_listeners() {
+
+      /*  if (AppSharedPreferences.getStringSharedPreference(
+                baseContext, AppConstants.THEME) != null && (!AppSharedPreferences.getStringSharedPreference(
+                baseContext, AppConstants.THEME).equals(""))) {
+            if(AppSharedPreferences.getStringSharedPreference(baseContext, AppConstants.THEME).equals("dark")){
+                binding.switchDarkMode.isChecked=true
+                binding.switchDarkMode.requestLayout()
+            }
+        }
+
+        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+            // Check the current DND state and update the switch
+            if (isChecked) {
+                AppSharedPreferences.setStringPreference(
+                    this, AppConstants.THEME, "dark")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppSharedPreferences.setStringPreference(
+                    this, AppConstants.THEME, "white")
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }*/
 
         binding.addNewProject.setOnClickListener {
             startActivity(Intent(this@ProfileActivity, MainActivity::class.java).putExtra("screen","profile"))

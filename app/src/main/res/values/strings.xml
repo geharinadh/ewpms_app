@@ -192,23 +192,14 @@
     <string name="please_enter_agreement_no">Please enter a Agreement No!</string>
     <string name="please_select_agreement_date">Please select Agreement Date!</string>
     <string name="please_enter_ecv">Please enter Estimated Contract Value!</string>
-    <string name="please_enter_time_period">Please Enter Time Period!</string>
     <string name="please_enter_tender_premium">Please enter Tender Premium!</string>
     <string name="please_enter_tender_ecv">Please enter Tender Contract Value!</string>
 
     <string name="please_administrative_sanction_amount">Please enter Administrative Sanction Amount!</string>
     <string name="please_select_admin_date">Please select Administrative Sanction date!</string>
-    <string name="please_select_sanction">Please Select Sanction Accorded By!</string>
-    <string name="please_enter_admin_details">Please Enter Administrative Sanction Details!</string>
 
     <string name="please_enter_tech_amt">Please Enter Technical Sanction Amount!</string>
     <string name="please_select_tech_sanction">Please Select Technical Sanction Date!</string>
-    <string name="please_enter_tech_details">Please Enter Technical Sanction Details!</string>
-    <string name="please_enter_revised_cost">Please Enter Revised Cost!</string>
-    <string name="please_enter_estimate_revised">Please Enter Estimated Revised Cost!</string>
-    <string name="please_enter_order_no">Please Enter Supplementary Order No!</string>
-    <string name="please_select_approval">Please Select Approval Date!</string>
-    <string name="please_enter_grant_txt">Please Enter the Granded Upto Details!</string>
 
     <string name="contractor_details">Contractor Details</string>
     <string name="contractor_txt">Contractor</string>
@@ -221,10 +212,6 @@
     <string name="please_select_district">Please Select District!</string>
     <string name="please_select_madal">Please Select Mandal!</string>
     <string name="please_select_villege">Please Select Village!</string>
-    <string name="please_enter_landmark">Please Enter Landmark!</string>
-    <string name="please_enter_latitude">Please Enter Latitude!</string>
-    <string name="please_enter_longidude">Please enter Longitude!</string>
-    <string name="please_enter_site_area">Please Enter Site Area!</string>
     <string name="please_select_se">Please Select SE!</string>
     <string name="please_select_dv">Please Select Division!</string>
     <string name="please_select_ee">Please Select EE!</string>

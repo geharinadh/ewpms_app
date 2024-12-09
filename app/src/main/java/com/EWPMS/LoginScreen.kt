@@ -131,6 +131,14 @@ class LoginScreen : AppCompatActivity() {
                                     this, AppConstants.REMEMBER_ME, "false"
                                 )
                             }
+
+                            if (AppSharedPreferences.getStringSharedPreference(
+                                    baseContext, AppConstants.THEME) != null && (!AppSharedPreferences.getStringSharedPreference(
+                                    baseContext, AppConstants.THEME).equals(""))) {
+                                AppSharedPreferences.setStringPreference(
+                                    this, AppConstants.THEME, "white")
+                            }
+
                             AppSharedPreferences.setStringPreference(
                                 this,
                                 AppConstants.USERTYPE,

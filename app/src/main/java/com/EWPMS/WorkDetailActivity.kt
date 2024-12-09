@@ -11,6 +11,7 @@ import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
@@ -18,6 +19,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -87,7 +89,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     private var filepath: Uri? = null
     private var imageFile: String? = ""
     private var checkcamera: String? = ""
-
+    private var checkCameraOpen: String? = ""
 
     private var check_location_enabled: String? = ""
 
@@ -563,6 +565,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun getTaskStatus(milestone_id: String, position: String) {
             if (live_photo_position.isNotEmpty()) {
                 if (live_photo_position != position) {
@@ -602,6 +605,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     }
 
     //turn on location
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun enableLocationSettings() {
         // Create a location request
         locationRequest = LocationRequest.create().apply {
@@ -651,6 +655,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
             }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun requestLocationPermission() {
         if (ContextCompat.checkSelfPermission(
                 this@WorkDetailActivity, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -669,6 +674,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun getUserLocation() {
         Handler(Looper.getMainLooper()).postDelayed({
         if (ActivityCompat.checkSelfPermission(
@@ -688,8 +694,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
 
                         println("status_txt "+latitude_txt+" "+longitude_txt)
 
-                        if (ContextCompat.checkSelfPermission(
-                                this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                             checkcamera = ""
                             callPer()
                         } else {
@@ -707,22 +712,76 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         } else {
             requestLocationPermission()
         }
-        }, 1500)
+        }, 2000)
     }
 
     private fun callCam() {
-        val values = ContentValues().apply {
-            put(MediaStore.Images.Media.TITLE, "New Picture")
-            put(MediaStore.Images.Media.DESCRIPTION, "From your Camera")
+        if(checkCameraOpen!="true") {
+            val values = ContentValues()
+            values.put(MediaStore.Images.Media.TITLE, "New Picture")
+            values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera")
+            imageUri = contentResolver.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values
+            )
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            Log.d("camuri", "" + imageUri)
+            checkCameraOpen = "true"
+            cameraResult.launch(intent)
         }
-        imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE).apply {
-            putExtra(MediaStore.EXTRA_OUTPUT, imageUri) // Ensure the camera saves the image to this URI
-        }
-        cameraResult.launch(intent)
     }
 
+    var cameraResult = registerForActivityResult<Intent, ActivityResult>(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            try {
+                filepath=imageUri
+                Log.d("imageUri1",imageUri.toString())
+                val imageFile1: File =
+                    File(FileUtils.getPath(this, filepath))
+                if (imageFile1 != null) {
+                    imageFile = imageFile1.absolutePath
+                    Log.d("imageUri2",imageFile.toString())
+
+                    // Copy the image to a temporary file for further use
+                    val inputStream = contentResolver.openInputStream(imageUri!!)
+                    val tempFile = File(cacheDir, "captured_image.jpg")
+                    inputStream?.use { input ->
+                        tempFile.outputStream().use { output ->
+                            input.copyTo(output)
+                        }
+                    }
+
+                    // Use the temporary file
+                    val fileSizeInBytes = tempFile.length()
+                    val fileSizeInKB = fileSizeInBytes / 1024
+                    val fileSizeInMB = fileSizeInKB / 1024
+
+                    live_photo_list.add("$fileSizeInKB KB")
+                    binding.mileStonesRv.adapter = MilestonesListAdapter(
+                        this@WorkDetailActivity,
+                        project_id,
+                        live_photo_position,
+                        mile_stone_list,
+                        live_photo_list,
+                        this
+                    )
+                    checkCameraOpen=="false"
+                    // Call your API with the temp file
+                    call_live_photo_api(tempFile)
+                    println("File size: $fileSizeInKB KB ($fileSizeInMB MB) ${live_photo_list.size}")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }else{
+            println("File size: result not found ")
+        }
+    }
+
+
+/*
     var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             try {
@@ -762,6 +821,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
             }
         }
     }
+*/
 
     private fun call_live_photo_api(imageFile: File) {
         if (Common.isInternetAvailable(this@WorkDetailActivity)) {
@@ -933,21 +993,21 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun callPer() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)  {
-                Log.d("Start", "FeedCamer1")
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 111)
-            } else {
-                callCam()
-            }
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)  {
+            Log.d("Start", "FeedCamer1")
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), 111)
+        } else {
+            callCam()
         }
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onRequestPermissionsResult(
         requestCode: Int,
-        permissions: Array<String>,
+        permissions: Array<out String>,
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

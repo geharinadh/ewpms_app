@@ -38,6 +38,7 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
     lateinit var datePickerDialog: DatePickerDialog
 
     var date_from=""
+    var tender_premium_status=""
 
     private lateinit var category_list: ArrayList<CategoryResponse>
     private lateinit var district_list: ArrayList<CategoryResponse>
@@ -155,24 +156,36 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
         }
 
         binding.plusLayout.setOnClickListener {
-            var value=binding.tenderPremiumEt.text.toString()
-            if(value.isNotEmpty()) {
-                value=(value.toInt()+1).toString()
-                binding.tenderPremiumEt.setText(value)
-            }else{
-                binding.tenderPremiumEt.setText("1")
+            if (binding.ecvEt.text.toString().trim().isNotEmpty()) {
+                if (binding.tenderPremiumEt.text.toString().trim().isNotEmpty()) {
+                    tender_premium_status="Excess"
+                    var value = binding.ecvEt.text.toString().trim()
+                    var percentage = binding.tenderPremiumEt.text.toString().trim()
+                    var formula= percentage.toFloat()*value.toFloat()/100
+                    var result_value=formula.toFloat()+value.toFloat()
+                    binding.tenderCostEdt.text = result_value.toString()
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.please_enter_tender_premium), Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.please_enter_ecv), Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.minusLayout.setOnClickListener {
-            var value=binding.tenderPremiumEt.text.toString()
-            if(value.isNotEmpty()) {
-                if(value!="1") {
-                    value = (value.toInt() - 1).toString()
-                    binding.tenderPremiumEt.setText(value)
-                }else{
-                    binding.tenderPremiumEt.setText("0")
+            if (binding.ecvEt.text.toString().trim().isNotEmpty()) {
+                if (binding.tenderPremiumEt.text.toString().trim().isNotEmpty()) {
+                    tender_premium_status="Less"
+                    var value = binding.ecvEt.text.toString().trim()
+                    var percentage = binding.tenderPremiumEt.text.toString().trim()
+                    var formula= percentage.toFloat()*value.toFloat()/100
+                    var result_value=value.toFloat()-formula.toFloat()
+                    binding.tenderCostEdt.text = result_value.toString()
+                } else {
+                    Toast.makeText(requireContext(), getString(R.string.please_enter_tender_premium), Toast.LENGTH_SHORT).show()
                 }
+            } else {
+                Toast.makeText(requireContext(), getString(R.string.please_enter_ecv), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -213,75 +226,48 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
     private fun tab_click_listeners() {
 
         binding.continueBtn.setOnClickListener {
-           if(binding.tabOneLayout.visibility==View.VISIBLE){
-               continue_btn_one()
-           }else{
-               continue_btn_two()
-             }
+            if (binding.tabOneLayout.visibility == View.VISIBLE) {
+                continue_btn_one()
+            } else {
+                continue_btn_two()
+            }
         }
 
         binding.createProjectBtn.setOnClickListener {
             if (binding.spinnerDistrict.selectedItemPosition != 0) {
                 if (binding.spinnerMandal.selectedItemPosition != 0) {
                     if (binding.spinnerVillege.selectedItemPosition != 0) {
-                        if (binding.landmarkEt.text.toString().isNotEmpty()) {
-                            if (binding.latitudeTxt.text.toString().isNotEmpty()) {
-                                if (binding.longitudeTxt.text.toString().isNotEmpty()) {
-                                    if (binding.siteAreaEt.text.toString().isNotEmpty()) {
-                                        if (binding.spinnerSE.selectedItemPosition != 0) {
-                                            if (binding.spinnerDivision.selectedItemPosition != 0) {
-                                                if (binding.spinnerEE.selectedItemPosition != 0) {
-                                                    if (binding.spinnerDEE.selectedItemPosition != 0) {
-                                                        if (binding.spinnerAEE.selectedItemPosition != 0) {
-                                                            if (binding.spinnerContractor.selectedItemPosition != 0) {
-                                                                if (binding.startDateTv.text.toString().isNotEmpty()) {
-                                                                    if (binding.endDateTv.text.toString().isNotEmpty()) {
-                                                                        create_project_api()
-                                                                    } else {
-                                                                        Toast.makeText(requireContext(), getString(R.string.please_select_end_date), Toast.LENGTH_SHORT).show()
-                                                                    }
-                                                                } else {
-                                                                    Toast.makeText(
-                                                                        requireContext(),
-                                                                        getString(R.string.please_enter_start_date),
-                                                                        Toast.LENGTH_SHORT
-                                                                    ).show()
-                                                                }
-                                                            } else {
-                                                                Toast.makeText(
-                                                                    requireContext(),
-                                                                    getString(R.string.please_select_contractor),
-                                                                    Toast.LENGTH_SHORT
-                                                                ).show()
-                                                            }
-
-                                                        } else {
-                                                            Toast.makeText(
-                                                                requireContext(),
-                                                                getString(R.string.please_select_aee),
-                                                                Toast.LENGTH_SHORT
-                                                            ).show()
-                                                        }
-
+                        if (binding.spinnerSE.selectedItemPosition != 0) {
+                            if (binding.spinnerDivision.selectedItemPosition != 0) {
+                                if (binding.spinnerEE.selectedItemPosition != 0) {
+                                    if (binding.spinnerDEE.selectedItemPosition != 0) {
+                                        if (binding.spinnerAEE.selectedItemPosition != 0) {
+                                            if (binding.spinnerContractor.selectedItemPosition != 0) {
+                                                if (binding.startDateTv.text.toString()
+                                                        .isNotEmpty()
+                                                ) {
+                                                    if (binding.endDateTv.text.toString()
+                                                            .isNotEmpty()
+                                                    ) {
+                                                        create_project_api()
                                                     } else {
                                                         Toast.makeText(
                                                             requireContext(),
-                                                            getString(R.string.please_select_dee),
+                                                            getString(R.string.please_select_end_date),
                                                             Toast.LENGTH_SHORT
                                                         ).show()
                                                     }
-
                                                 } else {
                                                     Toast.makeText(
                                                         requireContext(),
-                                                        getString(R.string.please_select_ee),
+                                                        getString(R.string.please_enter_start_date),
                                                         Toast.LENGTH_SHORT
                                                     ).show()
                                                 }
                                             } else {
                                                 Toast.makeText(
                                                     requireContext(),
-                                                    getString(R.string.please_select_dv),
+                                                    getString(R.string.please_select_contractor),
                                                     Toast.LENGTH_SHORT
                                                 ).show()
                                             }
@@ -289,38 +275,42 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
                                         } else {
                                             Toast.makeText(
                                                 requireContext(),
-                                                getString(R.string.please_select_se),
+                                                getString(R.string.please_select_aee),
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         }
+
                                     } else {
                                         Toast.makeText(
                                             requireContext(),
-                                            getString(R.string.please_enter_site_area),
+                                            getString(R.string.please_select_dee),
                                             Toast.LENGTH_SHORT
                                         ).show()
                                     }
+
                                 } else {
                                     Toast.makeText(
                                         requireContext(),
-                                        getString(R.string.please_enter_longidude),
+                                        getString(R.string.please_select_ee),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
                             } else {
                                 Toast.makeText(
                                     requireContext(),
-                                    getString(R.string.please_enter_latitude),
+                                    getString(R.string.please_select_dv),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                                getString(R.string.please_enter_landmark),
+                                getString(R.string.please_select_se),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
                     } else {
                         Toast.makeText(
                             requireContext(),
@@ -347,67 +337,63 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
 
 
     private fun continue_btn_two() {
-        if(binding.adminSactionAmtEt.text.toString().isNotEmpty()){
-            if(binding.adminSanctionDateTv.text.toString().isNotEmpty()){
-                if(binding.spinnerSanctionName.selectedItemPosition!=0){
-                    if(binding.adminSanctionDetailEt.text.toString().isNotEmpty()){
-                        if(binding.technicalSanctionAmtEt.text.toString().isNotEmpty()){
-                            if(binding.technicalSanctionDateTv.text.toString().isNotEmpty()){
-                                if(binding.spinnerTechSanctionName.selectedItemPosition!=0){
-                                    if(binding.technicalSanctionDetailsEt.text.toString().isNotEmpty()){
-                                        if(binding.revisedCostEt.text.toString().isNotEmpty()){
-                                            if(binding.estimatedRevisedCostEt.text.toString().isNotEmpty()){
-                                                if(binding.suppOrderEt.text.toString().isNotEmpty()){
-                                                    if(binding.approvalDateTv.text.toString().isNotEmpty()){
-                                                        if(binding.grandedUptoEt.text.toString().isNotEmpty()){
-                                                            binding.tabOneLayout.visibility=View.GONE
-                                                            binding.tabTwoLayout.visibility=View.GONE
-                                                            binding.tabThreeLayout.visibility=View.VISIBLE
+        if (binding.adminSactionAmtEt.text.toString().isNotEmpty()) {
+            if (binding.adminSanctionDateTv.text.toString().isNotEmpty()) {
+                if (binding.technicalSanctionAmtEt.text.toString().isNotEmpty()) {
+                    if (binding.technicalSanctionDateTv.text.toString().isNotEmpty()) {
 
-                                                            binding.continueBtn.visibility=View.GONE
-                                                            binding.createProjectBtn.visibility=View.VISIBLE
+                        binding.tabOneLayout.visibility = View.GONE
+                        binding.tabTwoLayout.visibility = View.GONE
+                        binding.tabThreeLayout.visibility = View.VISIBLE
 
-                                                            binding.tabOneCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
-                                                            binding.tabTwoCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
-                                                            binding.tabThreeCard.setCardBackgroundColor(ContextCompat.getColor(requireContext(), R.color.orange))
-                                                        }else{
-                                                            Toast.makeText(requireContext(), getString(R.string.please_enter_grant_txt),Toast.LENGTH_SHORT).show()
-                                                        }
-                                                    }else{
-                                                        Toast.makeText(requireContext(), getString(R.string.please_select_approval),Toast.LENGTH_SHORT).show()
-                                                    }
-                                                }else{
-                                                    Toast.makeText(requireContext(), getString(R.string.please_enter_order_no),Toast.LENGTH_SHORT).show()
-                                                }
-                                            }else{
-                                                Toast.makeText(requireContext(), getString(R.string.please_enter_estimate_revised),Toast.LENGTH_SHORT).show()
-                                            }
-                                        }else{
-                                            Toast.makeText(requireContext(), getString(R.string.please_enter_revised_cost),Toast.LENGTH_SHORT).show()
-                                        }
-                                    }else{
-                                        Toast.makeText(requireContext(), getString(R.string.please_enter_tech_details),Toast.LENGTH_SHORT).show()
-                                    }
-                                }else{
-                                    Toast.makeText(requireContext(), getString(R.string.please_select_sanction),Toast.LENGTH_SHORT).show()
-                                }
-                            }else{
-                                Toast.makeText(requireContext(), getString(R.string.please_select_tech_sanction),Toast.LENGTH_SHORT).show()
-                            }
-                        }else{
-                            Toast.makeText(requireContext(), getString(R.string.please_enter_tech_amt),Toast.LENGTH_SHORT).show()
-                        }
-                    }else{
-                        Toast.makeText(requireContext(), getString(R.string.please_enter_admin_details),Toast.LENGTH_SHORT).show()
+                        binding.continueBtn.visibility = View.GONE
+                        binding.createProjectBtn.visibility = View.VISIBLE
+
+                        binding.tabOneCard.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.green
+                            )
+                        )
+                        binding.tabTwoCard.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.green
+                            )
+                        )
+                        binding.tabThreeCard.setCardBackgroundColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.orange
+                            )
+                        )
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.please_select_tech_sanction),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                }else{
-                    Toast.makeText(requireContext(), getString(R.string.please_select_sanction),Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.please_enter_tech_amt),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-            }else{
-                Toast.makeText(requireContext(), getString(R.string.please_select_admin_date),Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.please_select_admin_date),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-        }else{
-            Toast.makeText(requireContext(), getString(R.string.please_administrative_sanction_amount),Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.please_administrative_sanction_amount),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -417,7 +403,6 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
               if(binding.estimatedCostEt.text.toString().isNotEmpty()){
                   if(binding.agreementNoEt.text.toString().isNotEmpty()) {
                       if(binding.agreementDateTv.text.toString().isNotEmpty()) {
-                          if(binding.timePeriodEt.text.toString().isNotEmpty()) {
                               if(binding.ecvEt.text.toString().isNotEmpty()) {
                                   if(binding.tenderPremiumEt.text.toString().isNotEmpty()) {
                                       if(binding.tenderCostEdt.text.toString().isNotEmpty()) {
@@ -440,9 +425,6 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
                               }else{
                                   Toast.makeText(requireContext(), getString(R.string.please_enter_ecv),Toast.LENGTH_SHORT).show()
                               }
-                          }else{
-                              Toast.makeText(requireContext(), getString(R.string.please_enter_time_period),Toast.LENGTH_SHORT).show()
-                          }
                       }else{
                           Toast.makeText(requireContext(), getString(R.string.please_select_agreement_date),Toast.LENGTH_SHORT).show()
                       }
@@ -465,34 +447,35 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
             try {
                 progressDialog.show()
 
+                var se_name=se_list[binding.spinnerSE.selectedItemPosition-1].DisplayName.toString()
                 val url = "http://vmrda.gov.in/ewpms_api/api/Usp_Ins_CurrentProjects"
 
                 // JSON body
                 val requestBody = JSONObject()
                 requestBody.put("VillageMasterID", villege_list[binding.spinnerVillege.selectedItemPosition-1].id.toString())
                 requestBody.put("ContractorMasterID", contractorList[binding.spinnerContractor.selectedItemPosition-1].LoginName.toString())
-                requestBody.put("DivisionMasterID", division_list[binding.spinnerDivision.selectedItemPosition-1].LoginName.toString())
+                requestBody.put("DivisionMasterID", (binding.spinnerDivision.selectedItemPosition-1).toString())
                 requestBody.put("ProjectName", binding.projectNameEt.text.toString().trim())
                 requestBody.put("Description", "")
-                requestBody.put("EstimatedCostValue", binding.estimatedCostEt.text.toString().trim())
-                requestBody.put("ProjectCost", "")
-                requestBody.put("InceptionDate","")
+                requestBody.put("EstimatedCostValue", binding.estimatedCostEt.text.toString().trim().toString())
+                requestBody.put("ProjectCost", binding.estimatedCostEt.text.toString().trim().toString())
+                requestBody.put("InceptionDate",binding.approvalDateTv.text.toString().trim())
                 requestBody.put("ProjectCategoryID",  category_list[binding.spinnerCategory.selectedItemPosition-1].id.toString())
-                requestBody.put("Latitude", binding.latitudeTxt.text.toString().trim())
-                requestBody.put("Longitude", binding.longitudeTxt.text.toString().trim())
+                requestBody.put("Latitude", binding.latitudeTxt.text.toString().trim().toString())
+                requestBody.put("Longitude", binding.longitudeTxt.text.toString().trim().toString())
                 requestBody.put("AdministrativeSanction",binding.adminSanctionDetailEt.text.toString().trim())
-                requestBody.put("AdministrativeSanctionAmount", binding.adminSactionAmtEt.text.toString().trim())
+                requestBody.put("AdministrativeSanctionAmount", binding.adminSactionAmtEt.text.toString().trim().toString())
                 requestBody.put("AdministrativeSanctionOn", binding.adminSanctionDateTv.text.toString().trim())
                 requestBody.put("TechnicalSanction", binding.technicalSanctionDetailsEt.text.toString().trim())
-                requestBody.put("TechnicalSanctionAmount", binding.technicalSanctionAmtEt.text.toString().trim())
+                requestBody.put("TechnicalSanctionAmount", binding.technicalSanctionAmtEt.text.toString().trim().toString())
                 requestBody.put("TechnicalSanctionOn", binding.technicalSanctionDateTv.text.toString().trim())
                 requestBody.put("Status", "")
                 requestBody.put("AgreementNo", binding.agreementNoEt.text.toString().trim())
                 requestBody.put("AgreementDate", binding.agreementDateTv.text.toString().trim())
                 requestBody.put("TimePeriod", binding.timePeriodEt.text.toString().trim())
-                requestBody.put("ExtensionofTime","" )
+                requestBody.put("ExtensionofTime","")
                 requestBody.put("EOTOrderNo","")
-                requestBody.put("RevisedCost", binding.revisedCostEt.text.toString().trim())
+                requestBody.put("RevisedCost", binding.revisedCostEt.text.toString().trim().toString())
                 requestBody.put("WorkingCost", "")
                 requestBody.put("ApprovalDate", binding.approvalDateTv.text.toString().trim())
                 requestBody.put("Supplementaryorderno",binding.suppOrderEt.text.toString().trim())
@@ -504,11 +487,11 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
                 requestBody.put("Grantedupto",binding.grandedUptoEt.text.toString().trim())
                 requestBody.put("Extendedupto","" )
                 requestBody.put("WorkOrderNo", "")
-                requestBody.put("WorkOrderDate", "")
-                requestBody.put("CurrentProjectsID","" )
+                requestBody.put("WorkOrderDate", binding.approvalDateTv.text.toString().trim())
+                requestBody.put("CurrentProjectsID","0")
                 requestBody.put("DistrictMasterID",  district_list[binding.spinnerDistrict.selectedItemPosition-1].id.toString())
                 requestBody.put("MandalMasterID",  mandals_list[binding.spinnerMandal.selectedItemPosition-1].id.toString())
-                requestBody.put("PanchayatMasterID","" )
+                requestBody.put("PanchayatMasterID",villege_list[binding.spinnerVillege.selectedItemPosition-1].id.toString())
                 requestBody.put("SE",  se_list[binding.spinnerSE.selectedItemPosition-1].DisplayName.toString())
                 requestBody.put("DEE",  dee_list[binding.spinnerDEE.selectedItemPosition-1].DisplayName.toString())
                 requestBody.put("AEE",  aee_list[binding.spinnerAEE.selectedItemPosition-1].DisplayName.toString())
@@ -517,18 +500,19 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
                 requestBody.put("EndDate", binding.endDateTv.text.toString().trim())
                 requestBody.put("Administrative_Sanction_by", binding.spinnerSanctionName.selectedItem.toString().trim())
                 requestBody.put("Technical_Sanction_by", binding.spinnerTechSanctionName.selectedItem.toString().trim())
-                requestBody.put("Tender_Premium", binding.tenderPremiumEt.text.toString().trim())
-                requestBody.put("Tender_PremiumType","" )
+                requestBody.put("Tender_Premium", binding.tenderPremiumEt.text.toString().trim().toString())
+                requestBody.put("Tender_PremiumType",tender_premium_status)
 
-                // Request queue
-                val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+                println("Response_: $url"+requestBody.toString())
 
-                // JsonObjectRequest
-                val jsonObjectRequest = JsonObjectRequest(
-                    Request.Method.POST, url, requestBody,
-                    { response ->
-                        // Handle the successful response
-                        println("Response: $response")
+                val requestBodyString = requestBody.toString()
+
+                // Create a POST request
+                val stringRequest = object : StringRequest(
+                    Method.POST, url,
+                    Response.Listener { response ->
+                        // Handle successful response
+                        Log.d("API Response", response)
                         progressDialog.dismiss()
                         Toast.makeText(requireContext(), getString(R.string.new_project_created_successfully),Toast.LENGTH_SHORT).show()
                         binding.tabThreeLayout.visibility = View.GONE
@@ -557,21 +541,31 @@ class CreateNewWorkFragment : Fragment(), DatePickerCallBack {
                             )
                         )
                     },
-                    { error ->
-                        // Handle the error response
+                    Response.ErrorListener { error ->
+                        // Handle error response
+                        Log.e("API Error", error.toString())
                         progressDialog.dismiss()
-                        println("Error: ${error.message}")
                         Toast.makeText(requireContext(), getString(R.string.upload_failed), Toast.LENGTH_SHORT).show()
                     }
-                )
+                ) {
+                    override fun getBodyContentType(): String {
+                        return "application/json; charset=utf-8"
+                    }
 
-                // Add the request to the RequestQueue
-                requestQueue.add(jsonObjectRequest)
+                    override fun getBody(): ByteArray {
+                        return requestBodyString.toByteArray(Charsets.UTF_8)
+                    }
+                }
+
+            // Add the request to the Volley request queue
+                val requestQueue = Volley.newRequestQueue(context)
+                requestQueue.add(stringRequest)
+
             } catch (e: Exception) {
                 e.printStackTrace()
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.upload_failed),
+                    getString(R.string.response_failure_please_try_again),
                     Toast.LENGTH_SHORT
                 ).show()
             }

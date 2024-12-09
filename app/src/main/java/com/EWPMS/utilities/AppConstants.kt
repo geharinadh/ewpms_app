@@ -6,4 +6,5 @@ object AppConstants {
     const val USERTYPE = "user_type"
     const val USERMOBILE = "user_mobile"
     const val USERID = "user_id"
+    const val THEME = "theme"
 }

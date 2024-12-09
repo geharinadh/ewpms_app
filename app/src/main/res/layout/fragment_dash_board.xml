@@ -4,14 +4,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true"
-    android:background="@color/white"
     tools:context="com.EWPMS.fragments.DashBoardFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="12sp"
         android:layout_marginRight="12sp"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView

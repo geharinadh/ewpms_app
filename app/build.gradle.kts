@@ -9,10 +9,10 @@ android {
 
     defaultConfig {
         applicationId = "com.EWPMS"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,11 +22,16 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
     compileOptions {
@@ -38,6 +43,7 @@ android {
     }
     buildFeatures {
         compose = true
+        //noinspection DataBindingWithoutKapt
         dataBinding = true
         viewBinding = true
     }
