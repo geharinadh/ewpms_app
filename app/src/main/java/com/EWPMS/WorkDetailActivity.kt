@@ -8,6 +8,8 @@ import android.content.IntentSender
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -62,6 +64,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.io.DataOutputStream
 import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -742,7 +745,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                     File(FileUtils.getPath(this, filepath))
                 if (imageFile1 != null) {
                     imageFile = imageFile1.absolutePath
-                    Log.d("imageUri2",imageFile.toString())
+                    Log.d("imageUri2", imageFile.toString())
 
                     // Copy the image to a temporary file for further use
                     val inputStream = contentResolver.openInputStream(imageUri!!)
@@ -753,8 +756,11 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         }
                     }
 
-                    // Use the temporary file
-                    val fileSizeInBytes = tempFile.length()
+                    // Compress the image
+                    val compressedFile = compressImage(tempFile)
+
+                    // Check file size after compression
+                    val fileSizeInBytes = compressedFile.length()
                     val fileSizeInKB = fileSizeInBytes / 1024
                     val fileSizeInMB = fileSizeInKB / 1024
 
@@ -767,9 +773,10 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         live_photo_list,
                         this
                     )
-                    checkCameraOpen=="false"
-                    // Call your API with the temp file
-                    call_live_photo_api(tempFile)
+                    checkCameraOpen == "false"
+
+                    // Call your API with the compressed file
+                    call_live_photo_api(compressedFile)
                     println("File size: $fileSizeInKB KB ($fileSizeInMB MB) ${live_photo_list.size}")
                 }
             } catch (e: Exception) {
@@ -781,47 +788,20 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
     }
 
 
-/*
-    var cameraResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            try {
-                // Use the imageUri for the captured image
-                filepath = imageUri
-                Log.d("imageUri", imageUri.toString())
+    fun compressImage(file: File): File {
+        val bitmap = BitmapFactory.decodeFile(file.absolutePath)
 
-                // Copy the image to a temporary file for further use
-                val inputStream = contentResolver.openInputStream(imageUri!!)
-                val tempFile = File(cacheDir, "captured_image.jpg")
-                inputStream?.use { input ->
-                    tempFile.outputStream().use { output ->
-                        input.copyTo(output)
-                    }
-                }
+        // Resize the bitmap if necessary
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 1024, 1024, true)
 
-                // Use the temporary file
-                val fileSizeInBytes = tempFile.length()
-                val fileSizeInKB = fileSizeInBytes / 1024
-                val fileSizeInMB = fileSizeInKB / 1024
-
-                live_photo_list.add("$fileSizeInKB KB")
-                binding.mileStonesRv.adapter = MilestonesListAdapter(
-                    this@WorkDetailActivity,
-                    project_id,
-                    live_photo_position,
-                    mile_stone_list,
-                    live_photo_list,
-                    this
-                )
-
-                // Call your API with the temp file
-                call_live_photo_api(tempFile)
-                println("File size: $fileSizeInKB KB ($fileSizeInMB MB) ${live_photo_list.size}")
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        // Save the compressed image to a temporary file
+        val compressedFile = File(file.parent, "compressed_image.jpg")
+        FileOutputStream(compressedFile).use { outputStream ->
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream) // Adjust quality (80) as needed
         }
+
+        return compressedFile
     }
-*/
 
     private fun call_live_photo_api(imageFile: File) {
         if (Common.isInternetAvailable(this@WorkDetailActivity)) {
