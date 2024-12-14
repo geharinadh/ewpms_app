@@ -397,24 +397,28 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         val obj = jsonArray.getJSONObject(0)
                         Log.d("Response", response)
 
-                        // Assuming `Password` or `UserType` exists
-                        val totalMilestones = obj.getString("TotalMilestones")
-                        val financePercentage = obj.getString("FinancePercentage")
-                        val totalPercentage = obj.getString("TotalPercentage")
-                        val daysPercentage = obj.getString("DaysPercentage")
+                        try {
+                            // Assuming `Password` or `UserType` exists
+                            val totalMilestones = obj.getString("TotalMilestones")
+                            val financePercentage = obj.getString("FinancePercentage")
+                            val totalPercentage = obj.getString("TotalPercentage")
+                            val daysPercentage = obj.getString("DaysPercentage")
 
-                        progressDialog.dismiss()
-                        binding.totalWorkTv.text = totalMilestones.toString()+" Milestones"
-                        binding.totalWorkPercentage.text = totalPercentage.toString()+"%"
+                            progressDialog.dismiss()
+                            binding.totalWorkTv.text = totalMilestones.toString() + " Milestones"
+                            binding.totalWorkPercentage.text = totalPercentage.toString() + "%"
 
-                        binding.totalWorkProgress.progress=totalPercentage.toFloat()
-                        binding.amountPaidProgress.progress=financePercentage.toFloat()
-                        binding.milestoneProgress.progress=daysPercentage.toFloat()
+                            binding.totalWorkProgress.progress = totalPercentage.toFloat()
+                            binding.amountPaidProgress.progress = financePercentage.toFloat()
+                            binding.milestoneProgress.progress = daysPercentage.toFloat()
 
-                        binding.totalWorkProgress.labelText=totalPercentage.toString()+"%"
-                        binding.amountPaidProgress.labelText=financePercentage.toString()+"%"
-                        binding.milestoneProgress.labelText=daysPercentage.toString()+"%"
-
+                            binding.totalWorkProgress.labelText = totalPercentage.toString() + "%"
+                            binding.amountPaidProgress.labelText =
+                                financePercentage.toString() + "%"
+                            binding.milestoneProgress.labelText = daysPercentage.toString() + "%"
+                        }catch (e: Exception) {
+                            e.printStackTrace()
+                        }
                         call_milestones_api(project_id)
 
                     } catch (e: JSONException) {
@@ -510,45 +514,53 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                         val jsonArray = JSONArray(response)
                         Log.d("Response", response)
 
-                        for (i in 0 until jsonArray.length()) {
-                            val jsonObject = jsonArray.getJSONObject(i)
+                        try {
+                            for (i in 0 until jsonArray.length()) {
+                                val jsonObject = jsonArray.getJSONObject(i)
 
-                            // Extract the required fields from the JSON object
-                            val EndDate = jsonObject.optString("EndDate")
-                            val ItemDetailed = jsonObject.optString("ItemDetailed")
-                            val MileStoneID = jsonObject.optString("MileStoneID")
-                            val Persentage = jsonObject.optString("Persentage")
-                            val StartDate = jsonObject.optString("StartDate")
+                                // Extract the required fields from the JSON object
+                                val EndDate = jsonObject.optString("EndDate")
+                                val ItemDetailed = jsonObject.optString("ItemDetailed")
+                                val MileStoneID = jsonObject.optString("MileStoneID")
+                                val Persentage = jsonObject.optString("Persentage")
+                                val StartDate = jsonObject.optString("StartDate")
 
-                            // Create a new MyWorksResponse object and add it to the list
-                            val workItem = MileStoneResponse(
-                                MileStoneID,
-                                EndDate,
-                                ItemDetailed,
-                                Persentage,
-                                StartDate
-                            )
+                                // Create a new MyWorksResponse object and add it to the list
+                                val workItem = MileStoneResponse(
+                                    MileStoneID,
+                                    EndDate,
+                                    ItemDetailed,
+                                    Persentage,
+                                    StartDate
+                                )
 
-                            mile_stone_list.add(workItem)
-                        }
+                                mile_stone_list.add(workItem)
+                            }
 
-                        if(mile_stone_list.size>0){
-                            binding.noDataLayout.visibility=View.GONE
-                            binding.mileStonesRv.visibility=View.VISIBLE
-                            binding.mileStonesRv.adapter = MilestonesListAdapter(
-                                this@WorkDetailActivity,
-                                project_id,
-                                live_photo_position,
-                                mile_stone_list,
-                                live_photo_list,
-                                this
-                            )
-                            progressDialog.dismiss()
-                        }else{
-                            progressDialog.dismiss()
-                            binding.noDataLayout.visibility=View.VISIBLE
-                            binding.mileStonesRv.visibility=View.GONE
-                            Toast.makeText(this@WorkDetailActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                            if (mile_stone_list.size > 0) {
+                                binding.noDataLayout.visibility = View.GONE
+                                binding.mileStonesRv.visibility = View.VISIBLE
+                                binding.mileStonesRv.adapter = MilestonesListAdapter(
+                                    this@WorkDetailActivity,
+                                    project_id,
+                                    live_photo_position,
+                                    mile_stone_list,
+                                    live_photo_list,
+                                    this
+                                )
+                                progressDialog.dismiss()
+                            } else {
+                                progressDialog.dismiss()
+                                binding.noDataLayout.visibility = View.VISIBLE
+                                binding.mileStonesRv.visibility = View.GONE
+                                Toast.makeText(
+                                    this@WorkDetailActivity,
+                                    getString(R.string.response_failure_please_try_again),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }catch (e: Exception) {
+                            e.printStackTrace()
                         }
                     } catch (e: JSONException) {
                         Log.e("JSONError", "Parsing error", e)
