@@ -192,18 +192,15 @@ class UpdateProjectActivity : AppCompatActivity(), CallBackData {
                         { response ->
                             try {
                                 // Handle the JSONArray response
-                                for (i in 0 until response.length()) {
-                                    val jsonObject = response.getJSONObject(i)
+                                for (j in 0 until response.length()) {
+                                    val jsonObject = response.getJSONObject(j)
                                     val retVal = jsonObject.getString("RetVal")
                                     Log.d("Response Value", "RetVal: $retVal")
                                     if (retVal == "Success") {
                                         if((update_project_data_list.size-1)==i) {
                                             progressDialog.dismiss()
                                             // Handle the successful response
-                                            Toast.makeText(
-                                                this,
-                                                getString(R.string.project_progress_updated_successfully),
-                                                Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, getString(R.string.project_progress_updated_successfully), Toast.LENGTH_SHORT).show()
                                             startActivity(Intent(this@UpdateProjectActivity,WorkDetailActivity::class.java).putExtra("project_id",project_id))
                                             finish()
                                         }

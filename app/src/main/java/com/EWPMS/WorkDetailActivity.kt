@@ -424,13 +424,13 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                     } catch (e: JSONException) {
                         Log.e("JSONError", "Parsing error", e)
                         progressDialog.dismiss()
-                        Toast.makeText(this@WorkDetailActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@WorkDetailActivity, getString(R.string.no_data), Toast.LENGTH_SHORT).show()
                     }
                 },
                 { error ->
                     progressDialog.dismiss()
                     Log.e("VolleyError", "Request failed", error)
-                    Toast.makeText(this@WorkDetailActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@WorkDetailActivity, getString(R.string.no_data), Toast.LENGTH_SHORT).show()
                 }
             )
             queue.add(stringRequest)
@@ -555,7 +555,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                                 binding.mileStonesRv.visibility = View.GONE
                                 Toast.makeText(
                                     this@WorkDetailActivity,
-                                    getString(R.string.response_failure_please_try_again),
+                                    getString(R.string.no_data),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -565,7 +565,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                     } catch (e: JSONException) {
                         Log.e("JSONError", "Parsing error", e)
                         progressDialog.dismiss()
-                        Toast.makeText(this@WorkDetailActivity, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@WorkDetailActivity, getString(R.string.no_data), Toast.LENGTH_SHORT).show()
                     }
                 },
                 { error ->

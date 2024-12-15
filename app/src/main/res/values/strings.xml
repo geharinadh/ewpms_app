@@ -42,7 +42,7 @@
 
     <!--report screen-->
     <string name="work_Status">Status of Works</string>
-    <string name="ahead_of_schedule">AHEAD OF SCHEDULE</string>
+    <string name="ahead_of_schedule">COMPLETED PROJECTS</string>
     <string name="beyond_schedule">BEYOND SCHEDULE</string>
     <string name="asper_schedule">AS PER SCHEDULE</string>
     <string name="milestones">Milestones</string>

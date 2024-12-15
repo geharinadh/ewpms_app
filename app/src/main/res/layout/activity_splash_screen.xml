@@ -34,10 +34,10 @@
         android:textStyle="bold" />
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/start_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
@@ -45,6 +45,7 @@
         android:fontFamily="@font/libre_medium"
         android:text="@string/get_started"
         android:textAllCaps="false"
+        android:gravity="center"
         android:visibility="gone"
         android:textColor="@color/button_text"
         android:textSize="16dp"
