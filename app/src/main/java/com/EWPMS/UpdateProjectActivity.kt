@@ -207,11 +207,8 @@ class UpdateProjectActivity : AppCompatActivity(), CallBackData {
                                     } else {
                                         if((update_project_data_list.size-1)==i) {
                                             progressDialog.dismiss()
-                                            Toast.makeText(
-                                                this,
-                                                getString(R.string.upload_failed) + ": ${retVal}",
-                                                Toast.LENGTH_LONG
-                                            ).show()
+                                            Toast.makeText(this,
+                                                getString(R.string.upload_failed) + ": ${retVal}", Toast.LENGTH_LONG).show()
                                         }
                                     }
                                 }

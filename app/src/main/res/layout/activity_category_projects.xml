@@ -249,6 +249,7 @@
                         android:textSize="20sp"
                         />
                     <LinearLayout
+                        android:id="@+id/completed_project_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -302,6 +303,7 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/beyond_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -355,6 +357,7 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/as_per_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -446,6 +449,7 @@
                         android:textSize="20sp"
                         />
                     <LinearLayout
+                        android:id="@+id/mile_stonecompleted_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -499,6 +503,7 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/mile_stoneongoing_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -551,6 +556,7 @@
                         app:progressView_labelTypeface="bold"
                         />
                     <LinearLayout
+                        android:id="@+id/mile_stonedelay_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -641,7 +647,9 @@
                         android:textColor="@color/text_ColorDark"
                         android:textSize="20sp"
                         />
+
                     <LinearLayout
+                        android:id="@+id/amt_commited_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -696,6 +704,7 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/amt_released_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -750,6 +759,7 @@
                         />
 
                     <LinearLayout
+                        android:id="@+id/amt_pending_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"

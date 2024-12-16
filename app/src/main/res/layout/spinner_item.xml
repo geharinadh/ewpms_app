@@ -10,6 +10,7 @@
     android:paddingHorizontal="16dp"
     android:gravity="left"
     android:singleLine="true"
+    android:background="@color/white"
     android:textColor="@color/black"
     />
 

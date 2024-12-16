@@ -68,8 +68,8 @@ class ReportsFragment : Fragment() {
                         Log.d("Response", response)
 
                         // Assuming `Password` or `UserType` exists
-                        val AheadPercentage = obj.getString("AheadPercentage")
-                        val AheadofShedule = obj.getString("AheadofShedule")
+                        val AheadPercentage = obj.getString("CompletedPercentage")
+                        val AheadofShedule = obj.getString("Completedprojects")
 
                         val BeyondPercentage = obj.getString("BeyondPercentage")
                         val BeyondShedule = obj.getString("BeyondShedule")

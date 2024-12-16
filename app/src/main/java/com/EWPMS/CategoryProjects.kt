@@ -36,6 +36,10 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
 
     var status_api="true"
 
+    var user_type=""
+
+    var user_name=""
+
     private lateinit var my_works_list: ArrayList<DashboardWorkResponse>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,17 +52,60 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
 
         spinner_selection()
 
+        onClickListners()
+
         binding.backIconLayout.setOnClickListener{
             startActivity(Intent(this@CategoryProjects, MainActivity::class.java))
             finish()
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this@CategoryProjects, MainActivity::class.java))
+        finish()
+    }
+
+    private fun onClickListners() {
+        binding.completedProjectLayout.setOnClickListener {
+            call_work_details_api("104",user_type,user_name)
+        }
+        binding.beyondLayout.setOnClickListener {
+            call_work_details_api("102",user_type,user_name)
+        }
+        binding.asPerLayout.setOnClickListener {
+            call_work_details_api("103",user_type,user_name)
+        }
+
+        binding.mileStonecompletedLayout.setOnClickListener {
+            call_work_details_api("108",user_type,user_name)
+        }
+        binding.mileStoneongoingLayout.setOnClickListener {
+            call_work_details_api("109",user_type,user_name)
+        }
+        binding.mileStonedelayLayout.setOnClickListener {
+            call_work_details_api("110",user_type,user_name)
+        }
+
+        binding.amtCommitedLayout.setOnClickListener {
+            call_work_details_api("105",user_type,user_name)
+        }
+        binding.amtReleasedLayout.setOnClickListener {
+            call_work_details_api("106",user_type,user_name)
+        }
+        binding.amtPendingLayout.setOnClickListener {
+            call_work_details_api("107",user_type,user_name)
+        }
+
+    }
+
     private fun spinner_selection() {
         binding.spinnerSE.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                  call_reports_api(se_list[position-1].LoginName.toString())
+                    user_type="se"
+                    user_name=se_list[position-1].LoginName.toString()
+                    call_reports_api(se_list[position-1].LoginName.toString())
                 }
             }
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -69,7 +116,9 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
         binding.spinnerAee.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                  call_reports_api(aee_list[position-1].LoginName.toString())
+                    user_type="ae"
+                    user_name=aee_list[position-1].LoginName.toString()
+                    call_reports_api(aee_list[position-1].LoginName.toString())
                 }
             }
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -80,7 +129,9 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
         binding.spinnerDivision.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                  call_reports_api(division_list[position-1].LoginName.toString())
+                    user_type="div"
+                    user_name=division_list[position-1].LoginName.toString()
+                    call_reports_api(division_list[position-1].LoginName.toString())
                 }
             }
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -91,7 +142,9 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
         binding.spinnerDee.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position != 0) {
-                  call_reports_api(dee_list[position-1].LoginName.toString())
+                    user_type="de"
+                    user_name=dee_list[position-1].LoginName.toString()
+                    call_reports_api(dee_list[position-1].LoginName.toString())
                 }
             }
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -101,6 +154,22 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
     }
 
     private fun callCommonClass() {
+        if(AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString().substring(0,2).toString() == "se") {
+            user_type ="se"
+            user_name =AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString()
+        }else if(AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString().substring(0,2).toString() == "ae") {
+            user_type ="ae"
+            user_name =AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString()
+        }else if(AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString().substring(0,2).toString() == "de") {
+            user_type ="de"
+            user_name =AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString()
+        }else if(AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString().substring(0,2).toString() == "div") {
+            user_type ="div"
+            user_name =AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString()
+        }else if(AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString().substring(0,2).toString() == "ee") {
+            user_type ="div"
+            user_name =AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString()
+        }
         progressDialog = Common.progressDialog(this@CategoryProjects)
 
         call_reports_api(AppSharedPreferences.getStringSharedPreference(this, AppConstants.USERID).toString())
@@ -122,8 +191,8 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
                         Log.d("Response", response)
 
                         // Assuming `Password` or `UserType` exists
-                        val AheadPercentage = obj.getString("AheadPercentage")
-                        val AheadofShedule = obj.getString("AheadofShedule")
+                        val AheadPercentage = obj.getString("CompletedPercentage")
+                        val AheadofShedule = obj.getString("Completedprojects")
 
                         val BeyondPercentage = obj.getString("BeyondPercentage")
                         val BeyondShedule = obj.getString("BeyondShedule")
@@ -198,7 +267,7 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
                             call_se_list_api()
                             status_api="false"
                         }else{
-                            call_my_works_api(id)
+                            call_work_details_api("104",user_type,user_name)
                         }
 
                     } catch (e: JSONException) {
@@ -476,7 +545,6 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
         }
     }
 
-
     private fun call_my_works_api(id: String) {
         if (Common.isInternetAvailable(this)) {
             progressDialog.show()
@@ -484,8 +552,7 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
             Log.d("API_URL", url)
 
             val queue = Volley.newRequestQueue(this)
-            val stringRequest = StringRequest(
-                Request.Method.GET, url,
+            val stringRequest = StringRequest(Request.Method.GET, url,
                 { response ->
                     try {
                         my_works_list=ArrayList<DashboardWorkResponse>()
@@ -510,9 +577,7 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
                                 currentProjectsID,
                                 daysLeft,
                                 noOfMileStones,
-                                projectName
-                            )
-
+                                projectName)
                             my_works_list.add(workItem)
                         }
 
@@ -537,6 +602,71 @@ class CategoryProjects : AppCompatActivity(),CallBackData {
                     progressDialog.dismiss()
                     Log.e("VolleyError", "Request failed", error)
                     Toast.makeText(this, getString(R.string.response_failure_please_try_again), Toast.LENGTH_SHORT).show()
+                }
+            )
+            queue.add(stringRequest)
+        }else{
+            Toast.makeText(this, getString(R.string.please_check_with_the_internet_connection), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun call_work_details_api(id: String,type: String,name: String) {
+        if (Common.isInternetAvailable(this)) {
+            progressDialog.show()
+            val url = "http://www.vmrda.gov.in/ewpms_api/api/Usp_Get_ProjectsList2/?id="+id+"&type="+type+"&name="+name
+            Log.d("API_URL", url)
+
+            val queue = Volley.newRequestQueue(this)
+            val stringRequest = StringRequest(Request.Method.GET, url,
+                { response ->
+                    try {
+                        my_works_list=ArrayList<DashboardWorkResponse>()
+                        val jsonArray = JSONArray(response)
+                        Log.d("Response", response)
+
+                        for (i in 0 until jsonArray.length()) {
+                            val jsonObject = jsonArray.getJSONObject(i)
+
+                            // Extract the required fields from the JSON object
+                            val categoryName = jsonObject.optString("CategoryName")
+                            val completedPercentage = jsonObject.optString("CompletedPercentage")
+                            val currentProjectsID = jsonObject.optString("CurrentProjectsID")
+                            val daysLeft = jsonObject.optString("DaysLeft")
+                            val noOfMileStones = jsonObject.optString("NoOfMileStones")
+                            val projectName = jsonObject.optString("ProjectName")
+
+                            // Create a new MyWorksResponse object and add it to the list
+                            val workItem = DashboardWorkResponse(
+                                categoryName,
+                                completedPercentage,
+                                currentProjectsID,
+                                daysLeft,
+                                noOfMileStones,
+                                projectName)
+                            my_works_list.add(workItem)
+                        }
+
+                        if(my_works_list.size>0){
+                            binding.noDataLayout.visibility=View.GONE
+                            binding.myWorksRv.visibility=View.VISIBLE
+                            binding.myWorksRv.adapter = MyWorksAdapter(this, my_works_list,this)
+                            progressDialog.dismiss()
+                        }else{
+                            progressDialog.dismiss()
+                            binding.noDataLayout.visibility=View.VISIBLE
+                            binding.myWorksRv.visibility=View.GONE
+                            Toast.makeText(this, getString(R.string.no_data), Toast.LENGTH_SHORT).show()
+                        }
+                    } catch (e: JSONException) {
+                        Log.e("JSONError", "Parsing error", e)
+                        progressDialog.dismiss()
+                        Toast.makeText(this, getString(R.string.no_data), Toast.LENGTH_SHORT).show()
+                    }
+                },
+                { error ->
+                    progressDialog.dismiss()
+                    Log.e("VolleyError", "Request failed", error)
+                    Toast.makeText(this, getString(R.string.no_data), Toast.LENGTH_SHORT).show()
                 }
             )
             queue.add(stringRequest)

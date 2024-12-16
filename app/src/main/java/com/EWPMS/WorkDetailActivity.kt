@@ -795,6 +795,7 @@ class WorkDetailActivity : AppCompatActivity(), OnMapReadyCallback,CallBackData 
                 e.printStackTrace()
             }
         }else{
+            checkCameraOpen="false"
             println("File size: result not found ")
         }
     }
